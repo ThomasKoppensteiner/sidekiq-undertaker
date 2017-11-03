@@ -37,6 +37,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rack-test'
   spec.add_development_dependency 'mock_redis'
 
-  spec.add_runtime_dependency 'sidekiq', "~>3.0"
+  spec.add_runtime_dependency 'sidekiq', "> 3.0"
   spec.add_runtime_dependency 'celluloid'
 end
