@@ -3,17 +3,9 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'sidekiq/cleaner/version'
 
-gem_version = Sidekiq::Cleaner::VERSION.dup
-if ENV.has_key?( 'BUILD_NUMBER' )
-  gem_version << ".#{ENV['BUILD_NUMBER']}"
-else
-  gem_version << '.99999'
-end
-
-
 Gem::Specification.new do |spec|
   spec.name          = "sidekiq-cleaner"
-  spec.version       = gem_version
+  spec.version       = Sidekiq::Cleaner::VERSION
   spec.authors       = ["Madan Thangavelu"]
   spec.email         = ["madan.thangavelu@lookout.com"]
   spec.summary       = %q{Gem provides ability to dig through dead jobs in sidekiq.}
