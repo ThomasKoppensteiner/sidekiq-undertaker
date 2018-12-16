@@ -1,27 +1,88 @@
-require "spec_helper"
+# frozen_string_literal: true
 
+require "spec_helper"
 
 module Sidekiq
   module Cleaner
     describe DeadJob do
-      describe ".dead_jobs" do
-        before do
-          ::Sidekiq::DeadSet.stub(:new) { [double(:item => {
-              "class" => "HardWorkTask",
-              "failed_at" => 1,
-              "error_class" => "NoMethodError"
-          })]
-          }
+      let(:job) do
+        build_job(
+          "class"       => "HardWorkTask",
+          "failed_at"   => Time.now,
+          "error_class" => "NoMethodError",
+          "queue"       => "SomeQueue"
+        )
+      end
 
-          Time.stub(:now).and_return(10)
+      describe "attributes" do
+        let(:expected_attributes) do
+          {
+            job_class:                  "HardWorkTask",
+            time_elapsed_since_failure: 9,
+            error_class:                "NoMethodError",
+            bucket_name:                "1_hour",
+            job:                        job
+          }
+        end
+
+        context "when all attributes are given" do
+          let(:args) { expected_attributes }
+
+          it { expect(described_class.new(args)).to have_attributes expected_attributes }
+        end
+
+        context "when some attributes are derived" do
+          let(:args) do
+            {
+              time_elapsed_since_failure: 9,
+              bucket_name:                "1_hour",
+              job:                        job
+            }
+          end
+
+          it do
+            expect(
+              described_class.new(args)
+            ).to have_attributes expected_attributes
+          end
+        end
+      end
+
+      describe ".for_each" do
+        let(:expected_dead_job) do
+          DeadJob.new(
+            job_class:                  "HardWorkTask",
+            time_elapsed_since_failure: time_elapsed,
+            error_class:                "NoMethodError",
+            bucket_name:                "1_hour",
+            job:                        killed_job
+          )
+        end
+
+        let(:killed_job) do
+          Sidekiq::DeadSet.new.find_job(job.jid)
+        end
+
+        let(:time_elapsed) { Time.now.to_i - job.item["failed_at"].to_i }
+
+        before do
+          Timecop.freeze
+
+          kill_job(job)
+        end
+
+        after do
+          Timecop.return
         end
 
         it "returns job with appropriate metadata filled" do
-          described_class.for_each do |job|
-            job["failure_class"].should eq "HardWorkTask"
-            job["error_class"].should eq "NoMethodError"
-            job["bucket_name"].should eq "1_hour"
+          cnt = 0
+          described_class.for_each do |dead_job|
+            # It returns only one dead_job
+            cnt += 1
+            expect(dead_job).to eql expected_dead_job
           end
+          expect(cnt).to be 1
         end
       end
     end

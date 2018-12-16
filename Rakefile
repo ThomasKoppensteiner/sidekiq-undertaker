@@ -1,11 +1,33 @@
+# frozen_string_literal: true
+
 require "bundler/gem_tasks"
-require 'rspec/core/rake_task'
 
-$:.unshift('lib')
+$LOAD_PATH.unshift("lib")
 
-RSpec::Core::RakeTask.new do |t|
-  t.pattern = "./spec/unit/*.rb"
+desc "setup gem for development"
+task :init do
+  Rake::Task["rubocop:install"].execute
 end
 
-task :default => :spec
-task :test    => :spec
+#
+# RubocopRunner
+#
+begin
+  require "rubocop_runner/rake_task"
+  RubocopRunner::RakeTask.new
+rescue LoadError
+  puts "RubocopRunner not available!"
+end
+
+#
+# RSpec
+#
+begin
+  require "rspec/core/rake_task"
+
+  RSpec::Core::RakeTask.new(:spec)
+
+  task default: :spec
+rescue LoadError
+  puts "RSpec not available!"
+end
