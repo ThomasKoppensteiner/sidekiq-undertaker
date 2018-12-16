@@ -1,0 +1,5 @@
+require:
+  - rubocop-rspec
+  - rt_rubocop_defaults
+
+inherit_from: .rubocop_todo.yml

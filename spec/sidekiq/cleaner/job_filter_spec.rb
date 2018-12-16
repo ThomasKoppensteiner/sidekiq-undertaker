@@ -1,80 +1,103 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 module Sidekiq
   module Cleaner
     describe JobFilter do
       describe ".filter_dead_jobs" do
+        let(:job1) do
+          instance_double(Sidekiq::Job, item: {
+                            "class"       => "HardWorkTask",
+                            "failed_at"   => Time.now.to_i - 5 * 60,
+                            "error_class" => "NoMethodError"
+                          })
+        end
+
+        let(:job2) do
+          instance_double(Sidekiq::Job, item: {
+                            "class"       => "HardWorkTask",
+                            "failed_at"   => Time.now.to_i - 2 * 60 * 60,
+                            "error_class" => "RandomError"
+                          })
+        end
+
+        let(:job3) do
+          instance_double(Sidekiq::Job, item: {
+                            "class"       => "LazyWorkTask",
+                            "failed_at"   => Time.now.to_i - 2 * 60 * 60,
+                            "error_class" => "NoMethodError"
+                          })
+        end
+
         before do
-          Sidekiq::DeadSet.stub(:new) {
-            [
-              double(:item => {
-              "class" => "HardWorkTask",
-              "failed_at" => 1,
-              "error_class" => "NoMethodError"
-              }),
-              double(:item => {
-                  "class" => "HardWorkTask",
-                  "failed_at" => 3601,
-                  "error_class" => "RandomError"
-              }),
-              double(:item => {
-                  "class" => "LazyWorkTask",
-                  "failed_at" => 3601,
-                  "error_class" => "NoMethodError"
-              }),
-            ]
-          }
+          Timecop.freeze
 
-          Time.stub(:now).and_return(5000)
+          dead_set = instance_double(Sidekiq::DeadSet)
+
+          allow(dead_set).to receive(:each)
+            .and_yield(job1)
+            .and_yield(job2)
+            .and_yield(job3)
+
+          allow(Sidekiq::DeadSet).to receive(:new).and_return(dead_set)
         end
 
+        after { Timecop.return }
 
-        it "filters jobs based on calss" do
-          jobs = described_class.filter_dead_jobs({'failure_class' => 'HardWorkTask'})
+        context "when the job_class filter is given" do
+          subject(:dead_jobs) { described_class.filter_dead_jobs("job_class" => "HardWorkTask") }
 
-          jobs.each do |job|
-            job["failure_class"].should eq 'HardWorkTask'
+          it "filters jobs based on job_class" do
+            dead_jobs.each do |dead_job|
+              expect(dead_job.job_class).to eq "HardWorkTask"
+            end
           end
+
+          it { expect(dead_jobs.size).to eq 2 }
         end
 
-        it "filters based on multiple filter attributes" do
-          jobs = described_class.filter_dead_jobs({'failure_class' => 'HardWorkTask',
-                                                  'bucket_name' => "3_days"})
-
-          jobs.each do |job|
-            job["failure_class"].should eq 'HardWorkTask'
-            job["bucket_name"].should eq '3_days'
+        context "when the job_class and bucket_name filters are given" do
+          subject(:dead_jobs) do
+            described_class.filter_dead_jobs("job_class"   => "HardWorkTask",
+                                             "bucket_name" => "3_hours")
           end
-        end
 
-        it "filters jobs based on error_class" do
-          jobs = described_class.filter_dead_jobs({'error_class' => 'NoMethodError'})
-
-          jobs.each do |job|
-            job["error_class"].should eq 'NoMethodError'
+          it "filters based on multiple filter attributes" do
+            dead_jobs.each do |dead_job|
+              expect(dead_job.job_class).to eq "HardWorkTask"
+              expect(dead_job.bucket_name).to eq "3_hours"
+            end
           end
+
+          it { expect(dead_jobs.size).to eq 1 }
         end
 
-        it "returns all jobs when all filters are nil" do
-          jobs = described_class.filter_dead_jobs({'failure_class' => nil,
-                                                  'error_class' => nil,
-                                                  'bucket_name' => nil})
-          jobs.size.should eq 3
-        end
-      end
+        context "when the error_class filter is given" do
+          subject(:dead_jobs) { described_class.filter_dead_jobs("error_class" => "NoMethodError") }
 
-
-      describe ".filter_dead_jobs_by_params" do
-        before do
-          Sidekiq::Cleaner::JobFilter.stub(:filter_dead_jobs).and_return(["job1","job2"])
+          it "filters jobs based on error_class" do
+            dead_jobs.each do |dead_job|
+              expect(dead_job.error_class).to eq "NoMethodError"
+            end
+          end
+          it { expect(dead_jobs.size).to eq 2 }
         end
 
-        it "returns all required values" do
-          dead, req_failure_class, req_bucket_name, req_error_class = described_class.filter_dead_jobs_by_params({"failure_class" => 'A', "bucket_name" => 'B', "error_class" => 'C' })
-          dead.should eq ["job1", "job2"]
-          req_failure_class.should eq "A"
-          req_bucket_name.should eq "B"
-          req_error_class.should eq "C"
+        context "when no filters are applied" do
+          subject(:dead_jobs) { described_class.filter_dead_jobs }
+
+          it { expect(dead_jobs.size).to eq 3 }
+        end
+
+        context "when all filters are nil" do
+          subject(:dead_jobs) do
+            described_class.filter_dead_jobs("job_class"   => nil,
+                                             "bucket_name" => nil,
+                                             "error_class" => nil)
+          end
+
+          it { expect(dead_jobs.size).to eq 3 }
         end
       end
     end

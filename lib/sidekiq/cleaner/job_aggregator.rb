@@ -1,45 +1,70 @@
-module Sidekiq::Cleaner
-  class JobAggregator
-    def initialize(jobs)
-      @jobs = jobs
-    end
+# frozen_string_literal: true
 
-    def self.group_by(jobs, group_by_attribute, attribute_value)
-      memo = {}
+module Sidekiq
+  module Cleaner
+    class JobAggregator
+      attr_reader :dead_jobs
 
-      memo["AllErrors"] = {}
-      memo["AllErrors"]['total_failures'] = 0
-
-      jobs.each do |job|
-        attr = job[group_by_attribute]
-        attr_val = job[attribute_value]
-        if memo[attr] && memo[attr][attr_val]
-          memo[attr][attr_val] += 1
-          memo[attr]['total_failures'] += 1
-
-          memo["AllErrors"][attr_val] += 1
-          memo["AllErrors"]['total_failures'] += 1
-
-        else
-          unless memo[attr]
-            memo[attr] = {}
-            memo[attr]['total_failures'] = 0
-
-            memo["AllErrors"][attr_val] = 0
-          end
-
-          memo[attr][attr_val] = 1
-          memo[attr]['total_failures'] += 1
-
-          memo["AllErrors"][attr_val] = 1
-          memo["AllErrors"]['total_failures'] += 1
-
-        end
+      def initialize(dead_jobs)
+        @dead_jobs = dead_jobs
       end
 
-      memo
+      def group_by_job_class
+        group_by(:job_class)
+      end
+
+      def group_by_error_class
+        group_by(:error_class)
+      end
+
+      private
+
+      def group_by(attribute)
+        distribution = init_all_error_counts
+
+        dead_jobs.each do |dead_job|
+          attr        = dead_job.public_send(attribute)
+          bucket_name = dead_job.bucket_name
+
+          distribution = init_attr_counts(distribution, attr, bucket_name) unless distribution[attr]
+          distribution = init_bucket_counts(distribution, attr, bucket_name) unless distribution[attr][bucket_name]
+
+          distribution = incr_counters(distribution, attr, bucket_name)
+        end
+
+        distribution
+      end
+
+      def init_all_error_counts
+        distribution = {}
+
+        distribution["AllErrors"] = {}
+        distribution["AllErrors"]["total_failures"] = 0
+        distribution
+      end
+
+      def init_attr_counts(distribution, attr, bucket_name)
+        distribution[attr] = {}
+        distribution[attr]["total_failures"] = 0
+
+        distribution["AllErrors"][bucket_name] = 0 unless distribution["AllErrors"][bucket_name]
+        distribution
+      end
+
+      def init_bucket_counts(distribution, attr, bucket_name)
+        distribution[attr][bucket_name] = 0
+        distribution["AllErrors"][bucket_name] = 0 unless distribution["AllErrors"][bucket_name]
+        distribution
+      end
+
+      def incr_counters(distribution, attr, bucket_name, value = 1)
+        distribution[attr][bucket_name] += value
+        distribution[attr]["total_failures"] += value
+
+        distribution["AllErrors"][bucket_name] += value
+        distribution["AllErrors"]["total_failures"] += value
+        distribution
+      end
     end
-
-
   end
 end

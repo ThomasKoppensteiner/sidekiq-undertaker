@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 require "sidekiq/cleaner/version"
-require "sidekiq/cleaner/dead_jobs"
+require "sidekiq/cleaner/dead_job"
 require "sidekiq/cleaner/job_filter"
 require "sidekiq/cleaner/web_extension"
 require "sidekiq/cleaner/bucket"
