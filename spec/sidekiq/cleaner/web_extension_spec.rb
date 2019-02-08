@@ -59,7 +59,7 @@ module Sidekiq
             subject
 
             expect(last_response.status).to eq 200
-            verify { last_response.body }
+            verify { exclude_sidekiq_version(last_response.body) }
           end
         end
 
