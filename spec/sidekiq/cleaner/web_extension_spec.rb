@@ -34,7 +34,7 @@ module Sidekiq
       end
 
       before do
-        Timecop.freeze(Time.new(2018, 12, 16, 20, 57))
+        Timecop.freeze(Time.gm(2018, 12, 16, 20, 57))
 
         job_refs.push add_dead("jid" => jid1)
         job_refs.push add_dead("jid" => jid2)
@@ -59,7 +59,9 @@ module Sidekiq
             subject
 
             expect(last_response.status).to eq 200
-            verify { exclude_sidekiq_version(last_response.body) }
+            verify format: :html do
+              apply_custom_excludes(last_response.body)
+            end
           end
         end
 
