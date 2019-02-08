@@ -50,6 +50,10 @@ RSpec.configure do |config|
   end
 end
 
+def exclude_sidekiq_version(data)
+  data.gsub!("Sidekiq v#{Sidekiq::VERSION}","Sidekiq v*EXCLUDED*")
+end
+
 def build_job(item)
   Sidekiq::Job.new(item)
 end
