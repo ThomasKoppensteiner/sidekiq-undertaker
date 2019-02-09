@@ -58,9 +58,11 @@
     </form>
 
     <form action="<%= root_path %>cleaner/<%= @req_job_class %>/<%= @req_error_class %>/<%= @req_bucket_name %>/delete" method="post">
+      <%= respond_to?(:csrf_tag) && csrf_tag %>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="<%= t('DeleteAll') %>" data-confirm="<%= t('AreYouSure') %>" />
     </form>
     <form action="<%= root_path %>cleaner/<%= @req_job_class %>/<%= @req_error_class %>/<%= @req_bucket_name %>/retry" method="post">
+      <%= respond_to?(:csrf_tag) && csrf_tag %>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="<%= t('RetryAll') %>" data-confirm="<%= t('AreYouSure') %>" />
     </form>
 <% else %>

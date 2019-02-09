@@ -230,9 +230,9 @@
             </tr></table><input class="btn btn-primary btn-xs pull-left" type="submit" name="retry" value="Retry Now" /><input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="Delete" /></form>
 
     <form action="/cleaner/AllErrors/AllErrors/total_failures/delete" method="post">
-      <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Delete All" data-confirm="Are you sure?" /></form>
+      <input type="hidden" name="authenticity_token" value="" /><input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Delete All" data-confirm="Are you sure?" /></form>
     <form action="/cleaner/AllErrors/AllErrors/total_failures/retry" method="post">
-      <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="Retry All" data-confirm="Are you sure?" /></form>
+      <input type="hidden" name="authenticity_token" value="" /><input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="Retry All" data-confirm="Are you sure?" /></form>
 
 
           </div>
