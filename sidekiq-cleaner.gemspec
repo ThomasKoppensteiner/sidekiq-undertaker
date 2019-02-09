@@ -7,12 +7,24 @@ require "sidekiq/cleaner/version"
 Gem::Specification.new do |spec|
   spec.name          = "sidekiq-cleaner"
   spec.version       = Sidekiq::Cleaner::VERSION
-  spec.authors       = ["Madan Thangavelu"]
-  spec.email         = ["madan.thangavelu@lookout.com"]
-  spec.summary       = "Gem provides ability to dig through dead jobs in sidekiq."
-  spec.description   = "Gem provides ability to dig through dead jobs in sidekiq."
-  spec.homepage      = ""
+  spec.authors       = ["Thomas Koppensteiner"]
+  spec.email         = ["thomas.koppensteiner@gmx.net "]
+  spec.summary       = "Sidekiq::Cleaner makes exploring the Sidekiq dead job queue easier"
+  spec.description   = <<-DES
+    Sidekiq::Cleaner is a plugin for Sidekiq.
+    It makes exploring the dead job queue easier
+    by breaking down the dead jobs into time windows (buckets) of hours and days.
+    The gems allows retrying or deleting a certain subset of failures.
+  DES
   spec.license       = "MIT"
+
+  spec.homepage      = "https://github.com/ThomasKoppensteiner/sidekiq-cleaner"
+  spec.metadata      = {
+    "homepage_uri"     => "https://github.com/ThomasKoppensteiner/sidekiq-cleaner",
+    "source_code_uri"  => "https://github.com/ThomasKoppensteiner/sidekiq-cleaner",
+    "bug_tracker_uri"  => "https://github.com/ThomasKoppensteiner/sidekiq-cleaner/issues",
+    "build_status_uri" => "https://travis-ci.org/ThomasKoppensteiner/sidekiq-cleaner"
+  }
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
