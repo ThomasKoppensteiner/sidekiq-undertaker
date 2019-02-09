@@ -59,31 +59,35 @@ module Sidekiq
             subject
 
             expect(last_response.status).to eq 200
-            verify format: :html do
+            verify do
               apply_custom_excludes(last_response.body)
             end
           end
         end
 
-        context "when /cleaner is called" do
+        # /cleaner
+        context "when overview page is called" do
           subject { get "/cleaner" }
 
           it_behaves_like "a cleaner page"
         end
 
-        context "when /cleaner/:job_class/:bucket_name is called" do
+        # /cleaner/:job_class/:bucket_name
+        context "when job-class/bucket page is called" do
           subject { get "/cleaner/HardWorker/1_hour" }
 
           it_behaves_like "a cleaner page"
         end
 
-        context "when /cleaner/:job_class/:bucket_name with live-poll is called" do
+        # /cleaner/:job_class/:bucket_name?poll=true
+        context "when job-class/bucket page is polled" do
           subject { get "/cleaner/HardWorker/1_hour?poll=true" }
 
           it_behaves_like "a cleaner page"
         end
 
-        context "when /cleaner/:job_class/:error_class/:bucket_name is called" do
+        # /cleaner/:job_class/:error_class/:bucket_name
+        context "when job-class/error/bucket is called" do
           context "with specific job-class and a specific error" do
             subject { get "/cleaner/HardWorker/RuntimeError/1_hour" }
 
