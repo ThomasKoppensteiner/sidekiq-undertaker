@@ -42,7 +42,7 @@ RSpec.configure do |config|
   config.order = "random"
 
   RSpec.configure do |con|
-    con.approvals_default_format = :html
+    con.approvals_default_format = :txt
   end
 
   config.before do

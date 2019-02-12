@@ -5,35 +5,36 @@ rvm:
   - 2.4.4
   - 2.5.3
   - 2.6.1
+  - jruby-9.1.17.0
+  - jruby-9.2.5.0
+jdk:
+  - oraclejdk11
+env:
+  - "JRUBY_OPTS='--dev --debug'"
+  - "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
 
-#  - jruby-9.1.17.0
-#  - jruby-9.2.5.0
-# jdk:
-#   - oraclejdk8
-# env:
-#   - "JRUBY_OPTS='--dev --debug'"
-#   - "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
-#
-# matrix:
-#   exclude:
-#     - rvm: 2.3.5
-#       jdk: oraclejdk8
-#       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
-#     - rvm: 2.4.4
-#       jdk: oraclejdk8
-#       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
-#     - rvm: 2.5.3
-#       jdk: oraclejdk8
-#       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
-#     - rvm: 2.6.1
-#       jdk: oraclejdk8
-#       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
-#     - rvm: truffleruby
-#       jdk: oraclejdk8
-#       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
-#   allow_failures:
-#     - rvm: jruby-9.1.17.0
-#     - rvm: jruby-9.2.5.0
+matrix:
+  exclude:
+    - rvm: 2.3.5
+      jdk: oraclejdk8
+      env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
+    - rvm: 2.4.4
+      jdk: oraclejdk8
+      env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
+    - rvm: 2.5.3
+      jdk: oraclejdk8
+      env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
+    - rvm: 2.6.1
+      jdk: oraclejdk8
+      env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
+    - rvm: truffleruby
+      jdk: oraclejdk8
+      env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
+  allow_failures:
+    - rvm: jruby-9.1.17.0
+      env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
+    - rvm: jruby-9.2.5.0
+      env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
 
 before_install:
  - gem update --system
