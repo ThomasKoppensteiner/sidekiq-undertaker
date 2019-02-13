@@ -10,8 +10,11 @@ rvm:
 jdk:
   - oraclejdk11
 env:
-  - "JRUBY_OPTS='--dev --debug'"
-  - "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
+  global:
+    - CC_TEST_REPORTER_ID=9fd6c503f8bb89483410c1fc0578e5845c3fe0d3e773a32eb2788713fb101a93
+  matrix:
+    - "JRUBY_OPTS='--dev --debug'"
+    - "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
 
 matrix:
   exclude:
@@ -36,10 +39,19 @@ matrix:
     - rvm: jruby-9.2.5.0
       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
 
+services:
+  - redis-server
+
 before_install:
  - gem update --system
  - gem install bundler -v "~> 1.0"
  - gem install bundler -v "~> 2.0"
 
-services:
-  - redis-server
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - COVERAGE=true bundle exec rspec
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
