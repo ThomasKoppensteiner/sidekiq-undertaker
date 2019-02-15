@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ThomasKoppensteiner/sidekiq-cleaner.svg?branch=master)](https://travis-ci.org/ThomasKoppensteiner/sidekiq-cleaner)
 [![Code Climate](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-cleaner.svg)](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-cleaner)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/9d75b8b7d3ff076e1ef1/test_coverage)](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-cleaner/test_coverage)
 
 ## About
 
