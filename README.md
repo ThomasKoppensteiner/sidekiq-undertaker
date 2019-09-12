@@ -33,7 +33,7 @@ Or install it yourself as:
 ## Impressions
 
 **Attention** The following demo images are
-[outdated and need the be recreated](https://github.com/ThomasKoppensteiner/sidekiq-cleaner/issues/2), but the still give a good impression how the views of the plugin look like.
+[outdated and need to be recreated](https://github.com/ThomasKoppensteiner/sidekiq-cleaner/issues/2), but the still give a good impression how the views of the plugin look like.
 
 #### Overview
 
