@@ -9,7 +9,7 @@ require "sidekiq/cleaner/job_aggregator"
 
 begin
   require "sidekiq/web"
-rescue LoadError
+rescue LoadError # rubocop:disable Lint/SuppressedException
   # client-only usage
 end
 
