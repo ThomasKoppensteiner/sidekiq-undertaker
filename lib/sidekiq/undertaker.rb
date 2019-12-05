@@ -16,4 +16,5 @@ end
 if defined?(Sidekiq::Web)
   Sidekiq::Web.register Sidekiq::Undertaker::WebExtension
   Sidekiq::Web.tabs["Undertaker"] = "undertaker"
+  Sidekiq::Web.settings.locales << File.join(File.dirname(__FILE__), "../../web/locales")
 end
