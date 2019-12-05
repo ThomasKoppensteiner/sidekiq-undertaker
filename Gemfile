@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in sidekiq-cleaner.gemspec
+# Specify your gem's dependencies in sidekiq-undertaker.gemspec
 gemspec
 
 # Good for debuging on travis-ci.org
