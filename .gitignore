@@ -1,4 +1,5 @@
 _yardoc
+.approvals
 .bundle
 .config
 .idea/
@@ -7,6 +8,7 @@ _yardoc
 .yardoc
 *.gem
 *.rbc
+*.received.*
 coverage
 doc/
 Gemfile.lock
@@ -18,4 +20,3 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-*.received.*
