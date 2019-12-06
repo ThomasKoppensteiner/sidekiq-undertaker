@@ -116,7 +116,7 @@ module Sidekiq
         end
 
         def view_path
-          File.join(File.expand_path(__dir__), "../views")
+          File.join(File.expand_path(__dir__), "../../../../web/views")
         end
 
         def redirect_path(request)
