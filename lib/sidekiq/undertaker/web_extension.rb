@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "sidekiq/undertaker/web_extension/helpers"
+require "sidekiq/undertaker/web_extension/api_helpers"
 
 module Sidekiq
   module Undertaker
     module WebExtension
       def self.registered(app)
-        app.helpers Helpers
+        app.helpers APIHelpers
 
         app.get "/undertaker" do
           show_undertaker
