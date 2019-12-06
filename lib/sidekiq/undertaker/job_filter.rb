@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "sidekiq/undertaker/dead_job"
+
 module Sidekiq
   module Undertaker
     class JobFilter

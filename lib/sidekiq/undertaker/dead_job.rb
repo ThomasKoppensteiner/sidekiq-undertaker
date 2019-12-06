@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "sidekiq/undertaker/bucket"
+
 module Sidekiq
   module Undertaker
     class DeadJob
