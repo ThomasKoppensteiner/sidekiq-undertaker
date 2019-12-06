@@ -8,27 +8,27 @@ module Sidekiq
       def self.registered(app)
         app.helpers APIHelpers
 
-        app.get "/undertaker" do
-          show_undertaker
+        app.get "/undertaker/filter" do
+          show_filter
         end
 
-        app.get "/undertaker/:job_class/:bucket_name" do
-          show_undertaker_by_job_class_bucket_name
+        app.get "/undertaker/filter/:job_class/:bucket_name" do
+          show_filter_by_job_class_bucket_name
         end
 
-        app.get "/undertaker/:job_class/:error_class/:bucket_name" do
+        app.get "/undertaker/morgue/:job_class/:error_class/:bucket_name" do
           show_undertaker_by_job_class_error_class_bucket_name
         end
 
-        app.post "/undertaker" do
+        app.post "/undertaker/morgue" do
           post_undertaker
         end
 
-        app.post "/undertaker/:job_class/:error_class/:bucket_name/delete" do
+        app.post "/undertaker/morgue/:job_class/:error_class/:bucket_name/delete" do
           post_undertaker_job_class_error_class_buckent_name_delete
         end
 
-        app.post "/undertaker/:job_class/:error_class/:bucket_name/retry" do
+        app.post "/undertaker/morgue/:job_class/:error_class/:bucket_name/retry" do
           post_undertaker_job_class_error_class_buckent_name_retry
         end
       end

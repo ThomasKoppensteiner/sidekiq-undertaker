@@ -28,7 +28,7 @@
       <div class="navbar-toggle collapsed navbar-livereload">
         
   
-    <a id="live-poll" class="btn btn-primary" href="/undertaker/HardWorker/RuntimeError/1_hour?poll=true">Live Poll</a>
+    <a id="live-poll" class="btn btn-primary" href="/undertaker/morgue/AllErrors/AllErrors/total_failures?poll=true">Live Poll</a>
   
 
 
@@ -85,8 +85,8 @@
         
 
         
-          <li class="active" data-navbar="custom-tab">
-            <a href="/undertaker">Undertaker</a>
+          <li class="" data-navbar="custom-tab">
+            <a href="/undertaker/filter">Undertaker</a>
           </li>
         
 
@@ -94,7 +94,7 @@
           <div class="poll-wrapper">
             
   
-    <a id="live-poll" class="btn btn-primary" href="/undertaker/HardWorker/RuntimeError/1_hour?poll=true">Live Poll</a>
+    <a id="live-poll" class="btn btn-primary" href="/undertaker/morgue/AllErrors/AllErrors/total_failures?poll=true">Live Poll</a>
   
 
 
@@ -156,7 +156,7 @@
           <div class="col-sm-12">
             <header class="row head">
   <div class="col-sm-12">
-    <h3><b>2</b> failures in <b>HardWorker</b> queue with <b>RuntimeError</b> exception in <b>1_hour</b></h3>
+    <h3><b>4</b> failures in <b>AllErrors</b> queue with <b>AllErrors</b> exception in <b>total_failures</b></h3>
   </div>
   <div class="col-sm-12">
       
@@ -182,6 +182,27 @@
             <th>Error</th>
           </tr>
         </thead>
+        
+            <tr>
+              <td class="table-checkbox">
+                <label>
+                  <input type='checkbox' name='key[]' value='1544993820.0-bfa4a272cdcac8bfac7b9f1a' />
+                </label>
+              </td>
+              <td>
+                <a href="/morgue/1544993820.0-bfa4a272cdcac8bfac7b9f1a"><time class="ltr" dir="ltr" title="2018-12-16T20:57:00Z" datetime="2018-12-16T20:57:00Z">2018-12-16 20:57:00 UTC</time></a>
+              </td>
+              <td>
+                <a href="/queues/foo">foo</a>
+              </td>
+              <td>HardWorker1</td>
+              <td>
+                <div class="args">&quot;asdf&quot;, 1234</div>
+              </td>
+              <td>
+                <div>NoMethodError: Some fake message</div>
+              </td>
+            </tr>
         
             <tr>
               <td class="table-checkbox">
@@ -225,16 +246,37 @@
               </td>
             </tr>
         
+            <tr>
+              <td class="table-checkbox">
+                <label>
+                  <input type='checkbox' name='key[]' value='1544993820.0-8d08674fce759ac75d1a6e75' />
+                </label>
+              </td>
+              <td>
+                <a href="/morgue/1544993820.0-8d08674fce759ac75d1a6e75"><time class="ltr" dir="ltr" title="2018-12-16T20:57:00Z" datetime="2018-12-16T20:57:00Z">2018-12-16 20:57:00 UTC</time></a>
+              </td>
+              <td>
+                <a href="/queues/foo">foo</a>
+              </td>
+              <td>HardWorker</td>
+              <td>
+                <div class="args">&quot;asdf&quot;, 1234</div>
+              </td>
+              <td>
+                <div>NoMethodError: Some fake message</div>
+              </td>
+            </tr>
+        
       </table>
       <input class="btn btn-primary btn-xs pull-left" type="submit" name="retry" value="Revive (Retry) Now" />
       <input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="Bury (Delete)" />
     </form>
 
-    <form action="/undertaker/HardWorker/RuntimeError/1_hour/delete" method="post">
+    <form action="/undertaker/AllErrors/AllErrors/total_failures/delete" method="post">
       <input type='hidden' name='authenticity_token' value=''/>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Bury (Delete) All" data-confirm="Are you sure?" />
     </form>
-    <form action="/undertaker/HardWorker/RuntimeError/1_hour/retry" method="post">
+    <form action="/undertaker/AllErrors/AllErrors/total_failures/retry" method="post">
       <input type='hidden' name='authenticity_token' value=''/>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="Revive (Retry) All" data-confirm="Are you sure?" />
     </form>
