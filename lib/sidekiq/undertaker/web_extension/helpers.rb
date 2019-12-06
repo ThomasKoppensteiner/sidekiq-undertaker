@@ -20,7 +20,7 @@ module Sidekiq
           @count_by_class = @count_by_class.collect { |k, v| [k, v] }.sort do |x, y|
             x[1]["total_failures"] <=> y[1]["total_failures"]
           end.reverse
-          render_result("undertaker.erb")
+          render_result("filter.erb")
         end
 
         def show_undertaker_by_job_class_bucket_name
@@ -36,7 +36,7 @@ module Sidekiq
           @count_by_class = @count_by_class.collect { |k, v| [k, v] }.sort do |x, y|
             x[1]["total_failures"] <=> y[1]["total_failures"]
           end.reverse
-          render_result("undertaker.erb")
+          render_result("filter.erb")
         end
 
         def show_undertaker_by_job_class_error_class_bucket_name
@@ -62,7 +62,7 @@ module Sidekiq
           params.delete("bucket_name")
           params.delete("error_class")
 
-          render_result("undertaker_failures.erb")
+          render_result("morgue.erb")
         end
 
         def render_result(template)
