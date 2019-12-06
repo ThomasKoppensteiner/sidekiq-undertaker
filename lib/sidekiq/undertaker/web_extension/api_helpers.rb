@@ -11,15 +11,12 @@ module Sidekiq
           store_request_params
 
           @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
+          @distribution = Sidekiq::Undertaker::JobAggregator.new(@dead_jobs).group_by_job_class
 
+          @total_dead = @dead_jobs.size
           @undertaker_path = "undertaker"
           @failure_link = "/AllErrors/total_failures"
 
-          @total_dead = @dead_jobs.size
-          @count_by_class = Sidekiq::Undertaker::JobAggregator.new(@dead_jobs).group_by_job_class
-          @count_by_class = @count_by_class.collect { |k, v| [k, v] }.sort do |x, y|
-            x[1]["total_failures"] <=> y[1]["total_failures"]
-          end.reverse
           render_result("filter.erb")
         end
 
@@ -27,15 +24,12 @@ module Sidekiq
           store_request_params
 
           @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
+          @distribution = Sidekiq::Undertaker::JobAggregator.new(@dead_jobs).group_by_error_class
 
+          @total_dead = @dead_jobs.size
           @undertaker_path = "undertaker/#{@req_job_class}"
           @failure_link = "/total_failures"
 
-          @total_dead = @dead_jobs.size
-          @count_by_class = Sidekiq::Undertaker::JobAggregator.new(@dead_jobs).group_by_error_class
-          @count_by_class = @count_by_class.collect { |k, v| [k, v] }.sort do |x, y|
-            x[1]["total_failures"] <=> y[1]["total_failures"]
-          end.reverse
           render_result("filter.erb")
         end
 
