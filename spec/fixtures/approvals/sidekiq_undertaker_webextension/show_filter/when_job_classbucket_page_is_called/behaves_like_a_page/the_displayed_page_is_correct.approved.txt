@@ -16,7 +16,7 @@
     <meta name="google" content="notranslate" />
     
   </head>
-  <body class="admin" data-poll-path="/undertaker/HardWorker/1_hour" data-locale="en">
+  <body class="admin" data-poll-path="" data-locale="en">
     <div class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header" data-navbar="static">
@@ -28,7 +28,7 @@
       <div class="navbar-toggle collapsed navbar-livereload">
         
   
-    <a id="live-poll" class="btn btn-primary active" href="/undertaker/HardWorker/1_hour">Stop Polling</a>
+    <a id="live-poll" class="btn btn-primary" href="/undertaker/filter/HardWorker/1_hour?poll=true">Live Poll</a>
   
 
 
@@ -86,7 +86,7 @@
 
         
           <li class="active" data-navbar="custom-tab">
-            <a href="/undertaker">Undertaker</a>
+            <a href="/undertaker/filter">Undertaker</a>
           </li>
         
 
@@ -94,7 +94,7 @@
           <div class="poll-wrapper">
             
   
-    <a id="live-poll" class="btn btn-primary active" href="/undertaker/HardWorker/1_hour">Stop Polling</a>
+    <a id="live-poll" class="btn btn-primary" href="/undertaker/filter/HardWorker/1_hour?poll=true">Live Poll</a>
   
 
 

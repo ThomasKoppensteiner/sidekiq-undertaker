@@ -53,60 +53,62 @@ module Sidekiq
         "#{killed_job.score}-#{job.jid}"
       end
 
-      describe "show" do
-        shared_examples "a undertaker page" do
-          it "the displayed page is correct" do
-            subject
+      shared_examples "a page" do
+        it "the displayed page is correct" do
+          subject
 
-            expect(last_response.status).to eq 200
-            verify do
-              apply_custom_excludes(last_response.body)
-            end
+          expect(last_response.status).to eq 200
+          verify do
+            apply_custom_excludes(last_response.body)
           end
         end
+      end
 
-        # /undertaker
-        context "when overview page is called" do
-          subject { get "/undertaker" }
+      describe "show filter" do
+        # /undertaker/filter
+        context "when filter page is called" do
+          subject { get "/undertaker/filter" }
 
-          it_behaves_like "a undertaker page"
+          it_behaves_like "a page"
         end
 
-        # /undertaker/:job_class/:bucket_name
+        # /undertaker/filter/:job_class/:bucket_name
         context "when job-class/bucket page is called" do
-          subject { get "/undertaker/HardWorker/1_hour" }
+          subject { get "/undertaker/filter/HardWorker/1_hour" }
 
-          it_behaves_like "a undertaker page"
+          it_behaves_like "a page"
         end
 
-        # /undertaker/:job_class/:bucket_name?poll=true
+        # /undertaker/filter/:job_class/:bucket_name?poll=true
         context "when job-class/bucket page is polled" do
-          subject { get "/undertaker/HardWorker/1_hour?poll=true" }
+          subject { get "/undertaker/filter/HardWorker/1_hour?poll=true" }
 
-          it_behaves_like "a undertaker page"
+          it_behaves_like "a page"
         end
+      end
 
-        # /undertaker/:job_class/:error_class/:bucket_name
+      describe "show morgue" do
+        # /undertaker/morgue/:job_class/:error_class/:bucket_name
         context "when job-class/error/bucket is called" do
           context "with specific job-class and a specific error" do
-            subject { get "/undertaker/HardWorker/RuntimeError/1_hour" }
+            subject { get "/undertaker/morgue/HardWorker/RuntimeError/1_hour" }
 
-            it_behaves_like "a undertaker page"
+            it_behaves_like "a page"
           end
 
           context "with all failures and errors" do
-            subject { get "/undertaker/AllErrors/AllErrors/total_failures" }
+            subject { get "/undertaker/morgue/AllErrors/AllErrors/total_failures" }
 
-            it_behaves_like "a undertaker page"
+            it_behaves_like "a page"
           end
         end
       end
 
       describe "delete" do
         context "when job-class, error and bucket are given" do
-          subject { post "/undertaker/HardWorker/RuntimeError/1_hour/delete" }
+          subject { post "/undertaker/morgue/HardWorker/RuntimeError/1_hour/delete" }
 
-          let(:expected_redirect_url) { "http://example.org/undertaker/HardWorker/RuntimeError/1_hour" }
+          let(:expected_redirect_url) { "http://example.org/undertaker/morgue/HardWorker/RuntimeError/1_hour" }
 
           let(:params) { { "job_class" => "HardWorker", "error_class" => "RuntimeError", "bucket_name" => "1_hour" } }
           let(:dead_jobs_set) { [dead_job1, dead_job2] }
@@ -128,7 +130,7 @@ module Sidekiq
             expect { subject }.to change { Sidekiq::DeadSet.new.size }.from(4).to(2)
           end
 
-          it "redirects to /undertaker/HardWorker/RuntimeError/1_hour after the delete" do
+          it "redirects to /undertaker/morgue/HardWorker/RuntimeError/1_hour after the delete" do
             subject
             expect(last_response.status).to eq 302
 
@@ -141,20 +143,21 @@ module Sidekiq
 
         context "when referer given" do
           subject do
-            post("/undertaker",
+            post("/undertaker/morgue",
                  "key[]=#{job_refs[0]}&delete=Delete",
-                 "HTTP_REFERER" => "/undertaker/AllErrors/AllErrors/total_failures")
+                 "HTTP_REFERER" => "/undertaker/morgue/AllErrors/AllErrors/total_failures")
           end
 
           it "redirects back to referer after delete" do
             subject
-            expect(last_response.header["Location"]).to include "/undertaker/AllErrors/AllErrors/total_failures"
+            expect(last_response.status).to eq 302
+            expect(last_response.header["Location"]).to include "/undertaker/morgue/AllErrors/AllErrors/total_failures"
           end
         end
 
-        context "when /undertaker is called" do
+        context "when /undertaker/morgue is called" do
           context "when a key is given" do
-            subject { post "/undertaker", "key[]=#{job_refs[0]}&delete=Delete" }
+            subject { post "/undertaker/morgue", "key[]=#{job_refs[0]}&delete=Delete" }
 
             it "deletes specific dead job now" do
               expect { subject }.to change { Sidekiq::DeadSet.new.size }.from(4).to(3)
@@ -162,7 +165,7 @@ module Sidekiq
           end
 
           context "when a key is missing" do
-            subject { post "/undertaker" }
+            subject { post "/undertaker/morgue" }
 
             it "returns 400 Bad Request" do
               subject
@@ -174,9 +177,9 @@ module Sidekiq
 
       describe "retry" do
         context "when job class, error and bucket are given" do
-          subject { post "/undertaker/HardWorker/RuntimeError/1_hour/retry" }
+          subject { post "/undertaker/morgue/HardWorker/RuntimeError/1_hour/retry" }
 
-          let(:expected_redirect_url) { "http://example.org/undertaker/HardWorker/RuntimeError/1_hour" }
+          let(:expected_redirect_url) { "http://example.org/undertaker/morgue/HardWorker/RuntimeError/1_hour" }
 
           let(:params) { { "job_class" => "HardWorker", "error_class" => "RuntimeError", "bucket_name" => "1_hour" } }
           let(:dead_jobs_set) { [dead_job1, dead_job2] }
@@ -198,7 +201,7 @@ module Sidekiq
             expect { subject }.to change { Sidekiq::DeadSet.new.size }.from(4).to(2)
           end
 
-          it "redirects to /undertaker/HardWorker/RuntimeError/1_hour" do
+          it "redirects to /undertaker/morgue/HardWorker/RuntimeError/1_hour" do
             subject
             expect(last_response.status).to eq 302
 
@@ -209,9 +212,9 @@ module Sidekiq
           end
         end
 
-        context "when /undertaker is called" do
+        context "when /undertaker/morgue is called" do
           context "when a key is given" do
-            subject { post "/undertaker", "key[]=#{job_refs[0]}&retry=Retry+Now" }
+            subject { post "/undertaker/morgue", "key[]=#{job_refs[0]}&retry=Retry+Now" }
 
             it "reduces DeadSet" do
               expect { subject }.to change { Sidekiq::DeadSet.new.size }.from(4).to(3)
@@ -219,7 +222,7 @@ module Sidekiq
           end
 
           context "when a key is missing" do
-            subject { post "/undertaker" }
+            subject { post "/undertaker/morgue" }
 
             it "returns 400 Bad Request" do
               subject
@@ -246,14 +249,15 @@ module Sidekiq
 
         it "retries specific dead job now" do
           expect(dead_job).to receive(:retry)
-          post "/undertaker", "key[]=#{job_refs[0]}&retry=Retry+Now"
+          post "/undertaker/morgue", "key[]=#{job_refs[0]}&retry=Retry+Now"
         end
 
         it "redirects on specific retry post" do
-          post("/undertaker",
+          post("/undertaker/morgue",
                "key[]=#{job_refs[0]}&retry=Retry+Now",
-               "HTTP_REFERER" => "/undertaker/AllErrors/AllErrors/total_failures")
-          expect(last_response.header["Location"]).to include("/undertaker/AllErrors/AllErrors/total_failures")
+               "HTTP_REFERER" => "/undertaker/morgue/AllErrors/AllErrors/total_failures")
+          expect(last_response.status).to eq 302
+          expect(last_response.header["Location"]).to include("/undertaker/morgue/AllErrors/AllErrors/total_failures")
         end
       end
     end

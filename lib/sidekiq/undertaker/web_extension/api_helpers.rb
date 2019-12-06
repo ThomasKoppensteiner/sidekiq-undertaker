@@ -7,7 +7,7 @@ module Sidekiq
   module Undertaker
     module WebExtension
       module APIHelpers
-        def show_undertaker
+        def show_filter
           store_request_params
 
           @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
@@ -23,7 +23,7 @@ module Sidekiq
           render_result("filter.erb")
         end
 
-        def show_undertaker_by_job_class_bucket_name
+        def show_filter_by_job_class_bucket_name
           store_request_params
 
           @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
@@ -104,8 +104,6 @@ module Sidekiq
 
           redirect redirect_path(request)
         end
-
-
 
         def render_result(template)
           render(:erb, File.read(File.join(view_path, template)))
