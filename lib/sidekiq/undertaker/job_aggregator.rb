@@ -10,11 +10,13 @@ module Sidekiq
       end
 
       def group_by_job_class
-        group_by(:job_class)
+        distribution = group_by(:job_class)
+        sort(distribution)
       end
 
       def group_by_error_class
-        group_by(:error_class)
+        distribution = group_by(:error_class)
+        sort(distribution)
       end
 
       private
@@ -33,6 +35,12 @@ module Sidekiq
         end
 
         distribution
+      end
+
+      def sort(distribution)
+        distribution.collect { |k, v| [k, v] }.sort do |x, y|
+          x[1]["total_failures"] <=> y[1]["total_failures"]
+        end.reverse
       end
 
       def init_all_error_counts

@@ -16,7 +16,7 @@
       <th style="width: 10%"><%= t('7 days') %></th>
     </tr>
   </thead>
-  <% @count_by_class.each do |job_class, bucket_counts| %>
+  <% @distribution.each do |job_class, bucket_counts| %>
       <tr>
         <td><a href='<%= root_path %><%= @undertaker_path + '/' + job_class + (@failure_link || '') %>'><%= job_class %></a></td>
         <td><a href='<%= root_path %><%= @undertaker_path + '/' + job_class %>/total_failures'><%= bucket_counts['total_failures'] %></a></td>

@@ -71,11 +71,11 @@ module Sidekiq
           subject(:distribution) { described_class.new(dead_jobs).group_by_job_class }
 
           let(:expected_distribution) do
-            {
-              "A"         => { "1_hour" => 1, "3_hours" => 1,               "total_failures" => 2 },
-              "B"         => {                "3_hours" => 1, "1_day" => 1, "total_failures" => 2 },
-              "AllErrors" => { "1_hour" => 1, "3_hours" => 2, "1_day" => 1, "total_failures" => 4 }
-            }
+            [
+              ["AllErrors", { "1_hour" => 1, "3_hours" => 2, "1_day" => 1, "total_failures" => 4 }],
+              ["B",         { "3_hours" => 1, "1_day" => 1, "total_failures" => 2 }],
+              ["A",         { "1_hour" => 1, "3_hours" => 1, "total_failures" => 2 }]
+            ]
           end
 
           it "groups by job_class" do
@@ -87,11 +87,11 @@ module Sidekiq
           subject(:distribution) { described_class.new(dead_jobs).group_by_error_class }
 
           let(:expected_distribution) do
-            {
-              "E1"        => { "1_hour" => 1, "3_hours" => 2,               "total_failures" => 3 },
-              "E2"        => {                                "1_day" => 1, "total_failures" => 1 },
-              "AllErrors" => { "1_hour" => 1, "3_hours" => 2, "1_day" => 1, "total_failures" => 4 }
-            }
+            [
+              ["AllErrors", { "1_hour" => 1, "3_hours" => 2, "1_day" => 1, "total_failures" => 4 }],
+              ["E1",        { "1_hour" => 1, "3_hours" => 2, "total_failures" => 3 }],
+              ["E2",        { "1_day" => 1, "total_failures" => 1 }]
+            ]
           end
 
           it "groups by job_class" do
