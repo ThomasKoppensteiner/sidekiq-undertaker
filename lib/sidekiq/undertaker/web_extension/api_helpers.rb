@@ -6,7 +6,7 @@ require "sidekiq/undertaker/job_aggregator"
 module Sidekiq
   module Undertaker
     module WebExtension
-      module Helpers
+      module APIHelpers
         def show_undertaker
           store_request_params
 
@@ -65,10 +65,6 @@ module Sidekiq
           render_result("morgue.erb")
         end
 
-        def render_result(template)
-          render(:erb, File.read(File.join(view_path, template)))
-        end
-
         def post_undertaker
           raise ::ArgumentError.new("Key missing") unless params["key"]
 
@@ -107,6 +103,12 @@ module Sidekiq
           end
 
           redirect redirect_path(request)
+        end
+
+
+
+        def render_result(template)
+          render(:erb, File.read(File.join(view_path, template)))
         end
 
         def store_request_params
