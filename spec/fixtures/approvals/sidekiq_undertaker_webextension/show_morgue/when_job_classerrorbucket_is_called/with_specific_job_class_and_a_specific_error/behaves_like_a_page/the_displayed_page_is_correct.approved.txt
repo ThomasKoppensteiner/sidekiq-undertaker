@@ -230,18 +230,18 @@
           </tr>
         
       </table>
-      <input class="btn btn-primary btn-xs pull-left" type="submit" name="retry" value="Revive (Retry) Now" />
-      <input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="Bury (Delete)" />
+      <input class="btn btn-primary btn-xs pull-left" type="submit" name="retry" value="Revive" />
+      <input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="Bury" />
     </form>
 
     <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_hour/delete" method="post">
       <input type='hidden' name='authenticity_token' value=''/>
-      <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Bury (Delete) All" data-confirm="Are you sure?" />
+      <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Bury All" data-confirm="Are you sure?" />
     </form>
 
     <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_hour/retry" method="post">
       <input type='hidden' name='authenticity_token' value=''/>
-      <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="Revive (Retry) All" data-confirm="Are you sure?" />
+      <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="Revive All" data-confirm="Are you sure?" />
     </form>
 
 
