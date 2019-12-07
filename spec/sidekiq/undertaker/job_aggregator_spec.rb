@@ -4,7 +4,7 @@ require "spec_helper"
 
 module Sidekiq
   module Undertaker
-    describe JobAggregator do
+    describe JobDistributor do
       describe "#group_by" do
         let(:job1) do
           instance_double(Sidekiq::Job, item: {

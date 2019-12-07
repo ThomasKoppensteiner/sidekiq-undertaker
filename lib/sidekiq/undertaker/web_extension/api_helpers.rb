@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
+require "sidekiq/undertaker/job_distributor"
 require "sidekiq/undertaker/job_filter"
-require "sidekiq/undertaker/job_aggregator"
 
 module Sidekiq
   module Undertaker
@@ -11,7 +11,7 @@ module Sidekiq
           store_request_params
 
           @dead_jobs    = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
-          @distribution = Sidekiq::Undertaker::JobAggregator.new(@dead_jobs).group_by_job_class
+          @distribution = Sidekiq::Undertaker::JobDistributor.new(@dead_jobs).group_by_job_class
           @total_dead   = @dead_jobs.size
 
           render_result("filter.erb")
@@ -21,7 +21,7 @@ module Sidekiq
           store_request_params
 
           @dead_jobs    = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
-          @distribution = Sidekiq::Undertaker::JobAggregator.new(@dead_jobs).group_by_error_class
+          @distribution = Sidekiq::Undertaker::JobDistributor.new(@dead_jobs).group_by_error_class
           @total_dead   = @dead_jobs.size
 
           render_result("filter_job_class.erb")
