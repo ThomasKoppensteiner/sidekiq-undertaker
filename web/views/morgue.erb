@@ -57,18 +57,18 @@
           </tr>
         <% end %>
       </table>
-      <input class="btn btn-primary btn-xs pull-left" type="submit" name="retry" value="<%= t('UndertakerRetryNow') %>" />
-      <input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="<%= t('UndertakerDelete') %>" />
+      <input class="btn btn-primary btn-xs pull-left" type="submit" name="retry" value="<%= t('UndertakerRevive') %>" />
+      <input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="<%= t('UndertakerBury') %>" />
     </form>
 
     <form action="<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{@req_error_class}/#{@req_bucket_name}/delete" %>" method="post">
       <%= respond_to?(:csrf_tag) && csrf_tag %>
-      <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="<%= t('UndertakerDeleteAll') %>" data-confirm="<%= t('AreYouSure') %>" />
+      <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="<%= t('UndertakerBuryAll') %>" data-confirm="<%= t('AreYouSure') %>" />
     </form>
 
     <form action="<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{@req_error_class}/#{@req_bucket_name}/retry" %>" method="post">
       <%= respond_to?(:csrf_tag) && csrf_tag %>
-      <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="<%= t('UndertakerRetryAll') %>" data-confirm="<%= t('AreYouSure') %>" />
+      <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="<%= t('UndertakerReviveAll') %>" data-confirm="<%= t('AreYouSure') %>" />
     </form>
 <% else %>
     <div class="alert alert-success"><%= t('NoDeadJobsFound') %></div>
