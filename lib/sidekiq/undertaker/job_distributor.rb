@@ -2,7 +2,7 @@
 
 module Sidekiq
   module Undertaker
-    class JobAggregator
+    class JobDistributor
       attr_reader :dead_jobs
 
       def initialize(dead_jobs)
