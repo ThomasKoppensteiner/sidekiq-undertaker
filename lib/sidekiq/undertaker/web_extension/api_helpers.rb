@@ -10,12 +10,9 @@ module Sidekiq
         def show_filter
           store_request_params
 
-          @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
+          @dead_jobs    = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
           @distribution = Sidekiq::Undertaker::JobAggregator.new(@dead_jobs).group_by_job_class
-
-          @total_dead = @dead_jobs.size
-          @undertaker_path = "undertaker"
-          @failure_link = "/AllErrors/total_failures"
+          @total_dead   = @dead_jobs.size
 
           render_result("filter.erb")
         end
@@ -23,14 +20,11 @@ module Sidekiq
         def show_filter_by_job_class_bucket_name
           store_request_params
 
-          @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
+          @dead_jobs    = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
           @distribution = Sidekiq::Undertaker::JobAggregator.new(@dead_jobs).group_by_error_class
+          @total_dead   = @dead_jobs.size
 
-          @total_dead = @dead_jobs.size
-          @undertaker_path = "undertaker/#{@req_job_class}"
-          @failure_link = "/total_failures"
-
-          render_result("filter.erb")
+          render_result("filter_job_class.erb")
         end
 
         def show_undertaker_by_job_class_error_class_bucket_name
@@ -44,11 +38,10 @@ module Sidekiq
           @undertaker_path = "undertaker/#{@req_job_class}/#{@req_error_class}/#{@req_bucket_name}"
 
           # Pagination
-          @total_size = @dead_jobs.size
-          @current_page = params[:page] || 1
-          @current_page = @current_page.to_i
-          @count = 50 # per page
-          @dead_jobs = @dead_jobs[((@current_page - 1) * @count), @count]
+          @total_dead   = @dead_jobs.size
+          @current_page = (params[:page] || 1).to_i
+          @count        = 50 # per page
+          @dead_jobs    = @dead_jobs[((@current_page - 1) * @count), @count]
 
           # Remove unrelated arguments to allow _paginate url to be clean
           # Hack to continue to reuse sidekiq's _pagination template

@@ -33,6 +33,7 @@ module Sidekiq
         }
       end
 
+      # rubocop:disable RSpec/AnyInstance
       before do
         Timecop.freeze(Time.gm(2018, 12, 16, 20, 57))
 
@@ -40,7 +41,10 @@ module Sidekiq
         job_refs.push add_dead("jid" => jid2)
         job_refs.push add_dead("jid" => jid3, "error_class" => "NoMethodError")
         job_refs.push add_dead("jid" => jid4, "class" => "HardWorker1", "error_class" => "NoMethodError")
+
+        allow_any_instance_of(Sidekiq::WebAction).to receive(:root_path).and_return("/sidekiq/")
       end
+      # rubocop:enable RSpec/AnyInstance
 
       after { Timecop.return }
 
