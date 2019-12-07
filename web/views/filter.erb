@@ -1,14 +1,16 @@
 <header class="row header">
   <div class="col-sm-12">
-      <h3><b><%= @total_dead %></b> failures <%= "in queue <b>#{@req_job_class}</b>" if @req_job_class %></h3>
+    <h3>
+      <%= "<b>#{@total_dead}</b> dead #{@total_dead == 1 ? 'job' : 'jobs'}" %>
+    </h3>
   </div>
 </header>
 
 <table class="table table-striped table-bordered table-white">
   <thead>
     <tr>
-      <th style="width: 20%"><%= t('Failure') %></th>
-      <th style="width: 10%"><%= t('Failed') %></th>
+      <th style="width: 20%"><%= t('Jobs') %></th>
+      <th style="width: 10%"><%= t('All') %></th>
       <th style="width: 10%"><%= t('1 hour') %></th>
       <th style="width: 10%"><%= t('3 hours') %></th>
       <th style="width: 10%"><%= t('1 day') %></th>
@@ -16,15 +18,15 @@
       <th style="width: 10%"><%= t('7 days') %></th>
     </tr>
   </thead>
-  <% @distribution.each do |job_class, bucket_counts| %>
+  <% @distribution.each do |group, bucket_counts| %>
       <tr>
-        <td><a href='<%= root_path %><%= @undertaker_path + '/' + job_class + (@failure_link || '') %>'><%= job_class %></a></td>
-        <td><a href='<%= root_path %><%= @undertaker_path + '/' + job_class %>/total_failures'><%= bucket_counts['total_failures'] %></a></td>
-        <td><a href='<%= root_path %><%= @undertaker_path + '/' + job_class %>/1_hour'><%= bucket_counts['1_hour'] || 0 %></a></td>
-        <td><a href='<%= root_path %><%= @undertaker_path + '/' + job_class %>/3_hours'><%= bucket_counts['3_hours'] || 0 %></a></td>
-        <td><a href='<%= root_path %><%= @undertaker_path + '/' + job_class %>/1_day'><%= bucket_counts['1_day'] || 0 %></a></td>
-        <td><a href='<%= root_path %><%= @undertaker_path + '/' + job_class %>/3_days'><%= bucket_counts['3_days'] || 0 %></a></td>
-        <td><a href='<%= root_path %><%= @undertaker_path + '/' + job_class %>/7_days'><%= bucket_counts['7_days'] || 0 %></a></td>
+        <td><a href='<%= "#{root_path}undertaker/morgue/#{group}/AllErrors/total_failures" %>'> <%= group %></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/total_failures" %>'>        <%= bucket_counts['total_failures'] %></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/1_hour" %>'>                <%= bucket_counts['1_hour'] || 0 %></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/3_hours" %>'>               <%= bucket_counts['3_hours'] || 0 %></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/1_day" %>'>                 <%= bucket_counts['1_day'] || 0 %></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/3_days" %>'>                <%= bucket_counts['3_days'] || 0 %></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/7_days" %>'>                <%= bucket_counts['7_days'] || 0 %></a></td>
       </tr>
   <% end %>
 </table>

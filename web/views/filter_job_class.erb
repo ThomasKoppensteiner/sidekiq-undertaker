@@ -1,0 +1,33 @@
+<header class="row header">
+  <div class="col-sm-12">
+    <h3>
+      <%= "<b>#{@total_dead}</b> dead #{@total_dead == 1 ? 'job' : 'jobs'}" %>
+      <%= " of <b>#{@req_job_class}</b> class" %>
+    </h3>
+  </div>
+</header>
+
+<table class="table table-striped table-bordered table-white">
+  <thead>
+    <tr>
+      <th style="width: 20%"><%= t('Error') %></th>
+      <th style="width: 10%"><%= t('All') %></th>
+      <th style="width: 10%"><%= t('1 hour') %></th>
+      <th style="width: 10%"><%= t('3 hours') %></th>
+      <th style="width: 10%"><%= t('1 day') %></th>
+      <th style="width: 10%"><%= t('3 days') %></th>
+      <th style="width: 10%"><%= t('7 days') %></th>
+    </tr>
+  </thead>
+  <% @distribution.each do |group, bucket_counts| %>
+      <tr>
+        <td><a href='<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{group}/total_failures" %>'><%= group %></a></td>
+        <td><a href='<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{group}/total_failures" %>'><%= bucket_counts['total_failures'] %></a></td>
+        <td><a href='<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{group}/1_hour" %>'>        <%= bucket_counts['1_hour'] || 0 %></a></td>
+        <td><a href='<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{group}/3_hours" %>'>       <%= bucket_counts['3_hours'] || 0 %></a></td>
+        <td><a href='<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{group}/1_day" %>'>         <%= bucket_counts['1_day'] || 0 %></a></td>
+        <td><a href='<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{group}/3_days" %>'>        <%= bucket_counts['3_days'] || 0 %></a></td>
+        <td><a href='<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{group}/7_days" %>'>        <%= bucket_counts['7_days'] || 0 %></a></td>
+      </tr>
+  <% end %>
+</table>

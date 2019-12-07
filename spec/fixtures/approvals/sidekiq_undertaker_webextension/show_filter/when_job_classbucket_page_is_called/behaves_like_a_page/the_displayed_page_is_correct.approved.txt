@@ -5,14 +5,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
-    <link href="/stylesheets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/sidekiq/stylesheets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
     
 
-    <link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/sidekiq/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
     
 
-    <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
-    <script type="text/javascript" src="/javascripts/application.js"></script>
+    <link rel="shortcut icon" type="image/ico" href="/sidekiq/images/favicon.ico" />
+    <script type="text/javascript" src="/sidekiq/javascripts/application.js"></script>
     <meta name="google" content="notranslate" />
     
   </head>
@@ -28,13 +28,13 @@
       <div class="navbar-toggle collapsed navbar-livereload">
         
   
-    <a id="live-poll" class="btn btn-primary" href="/undertaker/filter/HardWorker/1_hour?poll=true">Live Poll</a>
+    <a id="live-poll" class="btn btn-primary" href="/sidekiq/undertaker/filter/HardWorker/1_hour?poll=true">Live Poll</a>
   
 
 
         
       </div>
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand" href="/sidekiq/">
         Sidekiq
         <span class="status">
   <i class="status-sprite status-idle"></i>
@@ -49,44 +49,44 @@
         
           
             <li class="">
-            <a href="/">Dashboard</a>
+            <a href="/sidekiq/">Dashboard</a>
             </li>
           
         
           
             <li class="">
-            <a href="/busy">Busy</a>
+            <a href="/sidekiq/busy">Busy</a>
             </li>
           
         
           
             <li class="">
-            <a href="/queues">Queues</a>
+            <a href="/sidekiq/queues">Queues</a>
             </li>
           
         
           
             <li class="">
-            <a href="/retries">Retries</a>
+            <a href="/sidekiq/retries">Retries</a>
             </li>
           
         
           
             <li class="">
-            <a href="/scheduled">Scheduled</a>
+            <a href="/sidekiq/scheduled">Scheduled</a>
             </li>
           
         
           
             <li class="">
-            <a href="/morgue">Dead</a>
+            <a href="/sidekiq/morgue">Dead</a>
             </li>
           
         
 
         
           <li class="active" data-navbar="custom-tab">
-            <a href="/undertaker/filter">Undertaker</a>
+            <a href="/sidekiq/undertaker/filter">Undertaker</a>
           </li>
         
 
@@ -94,7 +94,7 @@
           <div class="poll-wrapper">
             
   
-    <a id="live-poll" class="btn btn-primary" href="/undertaker/filter/HardWorker/1_hour?poll=true">Live Poll</a>
+    <a id="live-poll" class="btn btn-primary" href="/sidekiq/undertaker/filter/HardWorker/1_hour?poll=true">Live Poll</a>
   
 
 
@@ -120,31 +120,31 @@
     <span class="desc">Failed</span>
   </li>
   <li class="busy col-sm-1">
-    <a href="/busy">
+    <a href="/sidekiq/busy">
       <span class="count">0</span>
       <span class="desc">Busy</span>
     </a>
   </li>
   <li class="enqueued col-sm-1">
-    <a href="/queues">
+    <a href="/sidekiq/queues">
       <span class="count">0</span>
       <span class="desc">Enqueued</span>
     </a>
   </li>
   <li class="retries col-sm-1">
-    <a href="/retries">
+    <a href="/sidekiq/retries">
       <span class="count">0</span>
       <span class="desc">Retries</span>
     </a>
   </li>
   <li class="scheduled col-sm-1">
-    <a href="/scheduled">
+    <a href="/sidekiq/scheduled">
       <span class="count">0</span>
       <span class="desc">Scheduled</span>
     </a>
   </li>
   <li class="dead col-sm-1">
-    <a href="/morgue">
+    <a href="/sidekiq/morgue">
       <span class="count">4</span>
       <span class="desc">Dead</span>
     </a>
@@ -156,15 +156,18 @@
           <div class="col-sm-12">
             <header class="row header">
   <div class="col-sm-12">
-      <h3><b>3</b> failures in queue <b>HardWorker</b></h3>
+    <h3>
+      <b>3</b> dead jobs
+       of <b>HardWorker</b> class
+    </h3>
   </div>
 </header>
 
 <table class="table table-striped table-bordered table-white">
   <thead>
     <tr>
-      <th style="width: 20%">Failure</th>
-      <th style="width: 10%">Failed</th>
+      <th style="width: 20%">Error</th>
+      <th style="width: 10%">All</th>
       <th style="width: 10%">1 hour</th>
       <th style="width: 10%">3 hours</th>
       <th style="width: 10%">1 day</th>
@@ -174,33 +177,33 @@
   </thead>
   
       <tr>
-        <td><a href='/undertaker/HardWorker/AllErrors/total_failures'>AllErrors</a></td>
-        <td><a href='/undertaker/HardWorker/AllErrors/total_failures'>3</a></td>
-        <td><a href='/undertaker/HardWorker/AllErrors/1_hour'>3</a></td>
-        <td><a href='/undertaker/HardWorker/AllErrors/3_hours'>0</a></td>
-        <td><a href='/undertaker/HardWorker/AllErrors/1_day'>0</a></td>
-        <td><a href='/undertaker/HardWorker/AllErrors/3_days'>0</a></td>
-        <td><a href='/undertaker/HardWorker/AllErrors/7_days'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/total_failures'>AllErrors</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/total_failures'>3</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/1_hour'>        3</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/3_hours'>       0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/1_day'>         0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/3_days'>        0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/7_days'>        0</a></td>
       </tr>
   
       <tr>
-        <td><a href='/undertaker/HardWorker/RuntimeError/total_failures'>RuntimeError</a></td>
-        <td><a href='/undertaker/HardWorker/RuntimeError/total_failures'>2</a></td>
-        <td><a href='/undertaker/HardWorker/RuntimeError/1_hour'>2</a></td>
-        <td><a href='/undertaker/HardWorker/RuntimeError/3_hours'>0</a></td>
-        <td><a href='/undertaker/HardWorker/RuntimeError/1_day'>0</a></td>
-        <td><a href='/undertaker/HardWorker/RuntimeError/3_days'>0</a></td>
-        <td><a href='/undertaker/HardWorker/RuntimeError/7_days'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/total_failures'>RuntimeError</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/total_failures'>2</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_hour'>        2</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/3_hours'>       0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_day'>         0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/3_days'>        0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/7_days'>        0</a></td>
       </tr>
   
       <tr>
-        <td><a href='/undertaker/HardWorker/NoMethodError/total_failures'>NoMethodError</a></td>
-        <td><a href='/undertaker/HardWorker/NoMethodError/total_failures'>1</a></td>
-        <td><a href='/undertaker/HardWorker/NoMethodError/1_hour'>1</a></td>
-        <td><a href='/undertaker/HardWorker/NoMethodError/3_hours'>0</a></td>
-        <td><a href='/undertaker/HardWorker/NoMethodError/1_day'>0</a></td>
-        <td><a href='/undertaker/HardWorker/NoMethodError/3_days'>0</a></td>
-        <td><a href='/undertaker/HardWorker/NoMethodError/7_days'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/total_failures'>NoMethodError</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/total_failures'>1</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/1_hour'>        1</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/3_hours'>       0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/1_day'>         0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/3_days'>        0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/7_days'>        0</a></td>
       </tr>
   
 </table>
