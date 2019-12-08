@@ -172,38 +172,42 @@
       <th style="width: 10%">3 hours</th>
       <th style="width: 10%">1 day</th>
       <th style="width: 10%">3 days</th>
-      <th style="width: 10%">7 days</th>
+      <th style="width: 10%">1 week</th>
+      <th style="width: 10%">Older</th>
     </tr>
   </thead>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/total_failures'>AllErrors</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/total_failures'>3</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/1_hour'>        3</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/3_hours'>       0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/1_day'>         0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/3_days'>        0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/7_days'>        0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/total_dead'>all</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/total_dead'>3</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/1_hour'>3</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/3_hours'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/1_day'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/3_days'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/1_week'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/older'>0</a></td>
       </tr>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/total_failures'>RuntimeError</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/total_failures'>2</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_hour'>        2</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/3_hours'>       0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_day'>         0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/3_days'>        0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/7_days'>        0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/total_dead'>RuntimeError</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/total_dead'>2</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_hour'>2</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/3_hours'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_day'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/3_days'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_week'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/older'>0</a></td>
       </tr>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/total_failures'>NoMethodError</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/total_failures'>1</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/1_hour'>        1</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/3_hours'>       0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/1_day'>         0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/3_days'>        0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/7_days'>        0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/total_dead'>NoMethodError</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/total_dead'>1</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/1_hour'>1</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/3_hours'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/1_day'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/3_days'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/1_week'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/older'>0</a></td>
       </tr>
   
 </table>

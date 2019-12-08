@@ -15,18 +15,20 @@
       <th style="width: 10%"><%= t('3 hours') %></th>
       <th style="width: 10%"><%= t('1 day') %></th>
       <th style="width: 10%"><%= t('3 days') %></th>
-      <th style="width: 10%"><%= t('7 days') %></th>
+      <th style="width: 10%"><%= t('1 week') %></th>
+      <th style="width: 10%"><%= t('Older') %></th>
     </tr>
   </thead>
   <% @distribution.each do |group, bucket_counts| %>
       <tr>
-        <td><a href='<%= "#{root_path}undertaker/morgue/#{group}/AllErrors/total_failures" %>'> <%= group %></a></td>
-        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/total_failures" %>'>        <%= bucket_counts['total_failures'] %></a></td>
-        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/1_hour" %>'>                <%= bucket_counts['1_hour'] || 0 %></a></td>
-        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/3_hours" %>'>               <%= bucket_counts['3_hours'] || 0 %></a></td>
-        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/1_day" %>'>                 <%= bucket_counts['1_day'] || 0 %></a></td>
-        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/3_days" %>'>                <%= bucket_counts['3_days'] || 0 %></a></td>
-        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/7_days" %>'>                <%= bucket_counts['7_days'] || 0 %></a></td>
+        <td><a href='<%= "#{root_path}undertaker/morgue/#{group}/all/total_dead" %>'> <%= group %></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/total_dead" %>'><%= bucket_counts['total_dead']%></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/1_hour" %>'><%= bucket_counts['1_hour']%></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/3_hours" %>'><%= bucket_counts['3_hours']%></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/1_day" %>'><%= bucket_counts['1_day']%></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/3_days" %>'><%= bucket_counts['3_days']%></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/1_week" %>'><%= bucket_counts['1_week']%></a></td>
+        <td><a href='<%= "#{env['REQUEST_PATH']}/#{group}/older" %>'><%= bucket_counts['older']%></a></td>
       </tr>
   <% end %>
 </table>

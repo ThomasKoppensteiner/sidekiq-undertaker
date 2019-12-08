@@ -24,21 +24,21 @@ module Sidekiq
 
         def skip?(filter, value)
           value.nil? ||
-            total_failures_bucket?(filter, value) ||
+            total_dead_bucket?(filter, value) ||
             all_jobs?(filter, value) ||
             all_errors?(filter, value)
         end
 
-        def total_failures_bucket?(filter, value)
-          filter == "bucket_name" && value == "total_failures"
+        def total_dead_bucket?(filter, value)
+          filter == "bucket_name" && value == "total_dead"
         end
 
         def all_jobs?(filter, value)
-          filter == "job_class" && value == "AllErrors" # FIXME: Nameing
+          filter == "job_class" && value == "all"
         end
 
         def all_errors?(filter, value)
-          filter == "error_class" && value == "AllErrors"
+          filter == "error_class" && value == "all"
         end
       end
     end
