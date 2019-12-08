@@ -101,7 +101,7 @@ module Sidekiq
           end
 
           context "with all failures and errors" do
-            subject { get "/undertaker/morgue/AllErrors/AllErrors/total_failures" }
+            subject { get "/undertaker/morgue/all/all/total_dead" }
 
             it_behaves_like "a page"
           end
@@ -149,13 +149,13 @@ module Sidekiq
           subject do
             post("/undertaker/morgue",
                  "key[]=#{job_refs[0]}&delete=Delete",
-                 "HTTP_REFERER" => "/undertaker/morgue/AllErrors/AllErrors/total_failures")
+                 "HTTP_REFERER" => "/undertaker/morgue/all/all/total_dead")
           end
 
           it "redirects back to referer after delete" do
             subject
             expect(last_response.status).to eq 302
-            expect(last_response.header["Location"]).to include "/undertaker/morgue/AllErrors/AllErrors/total_failures"
+            expect(last_response.header["Location"]).to include "/undertaker/morgue/all/all/total_dead"
           end
         end
 
@@ -259,9 +259,9 @@ module Sidekiq
         it "redirects on specific retry post" do
           post("/undertaker/morgue",
                "key[]=#{job_refs[0]}&retry=Retry+Now",
-               "HTTP_REFERER" => "/undertaker/morgue/AllErrors/AllErrors/total_failures")
+               "HTTP_REFERER" => "/undertaker/morgue/all/all/total_dead")
           expect(last_response.status).to eq 302
-          expect(last_response.header["Location"]).to include("/undertaker/morgue/AllErrors/AllErrors/total_failures")
+          expect(last_response.header["Location"]).to include("/undertaker/morgue/all/all/total_dead")
         end
       end
     end

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "sidekiq/undertaker/bucket"
+
 module Sidekiq
   module Undertaker
     class JobDistributor
@@ -10,68 +12,52 @@ module Sidekiq
       end
 
       def group_by_job_class
-        distribution = group_by(:job_class)
-        sort(distribution)
+        group_by(:job_class)
       end
 
       def group_by_error_class
-        distribution = group_by(:error_class)
-        sort(distribution)
+        group_by(:error_class)
       end
 
       private
 
-      def group_by(attribute)
-        distribution = init_all_error_counts
+      def distribute
+        distribution = init_counters({}, "all")
 
         dead_jobs.each do |dead_job|
-          attr        = dead_job.public_send(attribute)
           bucket_name = dead_job.bucket_name
 
-          distribution = init_attr_counts(distribution, attr, bucket_name) unless distribution[attr]
-          distribution = init_bucket_counts(distribution, attr, bucket_name) unless distribution[attr][bucket_name]
-
-          distribution = incr_counters(distribution, attr, bucket_name)
+          incr_counters(distribution, "all", bucket_name)
+          yield distribution, dead_job, bucket_name if block_given?
         end
 
-        distribution
+        sort_by_total_dead(distribution)
       end
 
-      def sort(distribution)
-        distribution.collect { |k, v| [k, v] }.sort do |x, y|
-          x[1]["total_failures"] <=> y[1]["total_failures"]
+      def group_by(attribute)
+        distribute do |distribution, dead_job, bucket_name|
+          attr = dead_job.public_send(attribute)
+          init_counters(distribution, attr) unless distribution[attr]
+          incr_counters(distribution, attr, bucket_name)
+        end
+      end
+
+      def sort_by_total_dead(distribution)
+        distribution.map { |k, v| [k, v] }.sort do |x, y|
+          x[1]["total_dead"] <=> y[1]["total_dead"]
         end.reverse
       end
 
-      def init_all_error_counts
-        distribution = {}
-
-        distribution["AllErrors"] = {}
-        distribution["AllErrors"]["total_failures"] = 0
-        distribution
-      end
-
-      def init_attr_counts(distribution, attr, bucket_name)
+      def init_counters(distribution, attr)
         distribution[attr] = {}
-        distribution[attr]["total_failures"] = 0
-
-        distribution["AllErrors"][bucket_name] = 0 unless distribution["AllErrors"][bucket_name]
-        distribution
-      end
-
-      def init_bucket_counts(distribution, attr, bucket_name)
-        distribution[attr][bucket_name] = 0
-        distribution["AllErrors"][bucket_name] = 0 unless distribution["AllErrors"][bucket_name]
+        Bucket.bucket_names.each { |bucket| distribution[attr][bucket] = 0 }
+        distribution[attr]["total_dead"] = 0
         distribution
       end
 
       def incr_counters(distribution, attr, bucket_name, value = 1)
         distribution[attr][bucket_name] += value
-        distribution[attr]["total_failures"] += value
-
-        distribution["AllErrors"][bucket_name] += value
-        distribution["AllErrors"]["total_failures"] += value
-        distribution
+        distribution[attr]["total_dead"] += value
       end
     end
   end

@@ -28,7 +28,7 @@
       <div class="navbar-toggle collapsed navbar-livereload">
         
   
-    <a id="live-poll" class="btn btn-primary" href="/sidekiq/undertaker/morgue/AllErrors/AllErrors/total_failures?poll=true">Live Poll</a>
+    <a id="live-poll" class="btn btn-primary" href="/sidekiq/undertaker/morgue/all/all/total_dead?poll=true">Live Poll</a>
   
 
 
@@ -94,7 +94,7 @@
           <div class="poll-wrapper">
             
   
-    <a id="live-poll" class="btn btn-primary" href="/sidekiq/undertaker/morgue/AllErrors/AllErrors/total_failures?poll=true">Live Poll</a>
+    <a id="live-poll" class="btn btn-primary" href="/sidekiq/undertaker/morgue/all/all/total_dead?poll=true">Live Poll</a>
   
 
 
@@ -158,9 +158,9 @@
   <div class="col-sm-12">
     <h3>
       <b>4</b> dead jobs
-       of <b>AllErrors</b> class
-       with <b>AllErrors</b> exception
-       in <b>total_failures</b> bucket
+       of <b>all</b> class
+       with <b>all</b> exception
+       in <b>total_dead</b> bucket
     </h3>
   </div>
   <div class="col-sm-12">
@@ -276,12 +276,12 @@
       <input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="Bury" />
     </form>
 
-    <form action="/sidekiq/undertaker/morgue/AllErrors/AllErrors/total_failures/delete" method="post">
+    <form action="/sidekiq/undertaker/morgue/all/all/total_dead/delete" method="post">
       <input type='hidden' name='authenticity_token' value=''/>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Bury All" data-confirm="Are you sure?" />
     </form>
 
-    <form action="/sidekiq/undertaker/morgue/AllErrors/AllErrors/total_failures/retry" method="post">
+    <form action="/sidekiq/undertaker/morgue/all/all/total_dead/retry" method="post">
       <input type='hidden' name='authenticity_token' value=''/>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="Revive All" data-confirm="Are you sure?" />
     </form>

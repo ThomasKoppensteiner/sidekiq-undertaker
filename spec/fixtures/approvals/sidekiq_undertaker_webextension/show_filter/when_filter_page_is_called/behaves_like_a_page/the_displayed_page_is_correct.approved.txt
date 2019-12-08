@@ -171,38 +171,42 @@
       <th style="width: 10%">3 hours</th>
       <th style="width: 10%">1 day</th>
       <th style="width: 10%">3 days</th>
-      <th style="width: 10%">7 days</th>
+      <th style="width: 10%">1 week</th>
+      <th style="width: 10%">Older</th>
     </tr>
   </thead>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/AllErrors/AllErrors/total_failures'> AllErrors</a></td>
-        <td><a href='/AllErrors/total_failures'>        4</a></td>
-        <td><a href='/AllErrors/1_hour'>                4</a></td>
-        <td><a href='/AllErrors/3_hours'>               0</a></td>
-        <td><a href='/AllErrors/1_day'>                 0</a></td>
-        <td><a href='/AllErrors/3_days'>                0</a></td>
-        <td><a href='/AllErrors/7_days'>                0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/all/all/total_dead'> all</a></td>
+        <td><a href='/all/total_dead'>4</a></td>
+        <td><a href='/all/1_hour'>4</a></td>
+        <td><a href='/all/3_hours'>0</a></td>
+        <td><a href='/all/1_day'>0</a></td>
+        <td><a href='/all/3_days'>0</a></td>
+        <td><a href='/all/1_week'>0</a></td>
+        <td><a href='/all/older'>0</a></td>
       </tr>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/AllErrors/total_failures'> HardWorker</a></td>
-        <td><a href='/HardWorker/total_failures'>        3</a></td>
-        <td><a href='/HardWorker/1_hour'>                3</a></td>
-        <td><a href='/HardWorker/3_hours'>               0</a></td>
-        <td><a href='/HardWorker/1_day'>                 0</a></td>
-        <td><a href='/HardWorker/3_days'>                0</a></td>
-        <td><a href='/HardWorker/7_days'>                0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/total_dead'> HardWorker</a></td>
+        <td><a href='/HardWorker/total_dead'>3</a></td>
+        <td><a href='/HardWorker/1_hour'>3</a></td>
+        <td><a href='/HardWorker/3_hours'>0</a></td>
+        <td><a href='/HardWorker/1_day'>0</a></td>
+        <td><a href='/HardWorker/3_days'>0</a></td>
+        <td><a href='/HardWorker/1_week'>0</a></td>
+        <td><a href='/HardWorker/older'>0</a></td>
       </tr>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker1/AllErrors/total_failures'> HardWorker1</a></td>
-        <td><a href='/HardWorker1/total_failures'>        1</a></td>
-        <td><a href='/HardWorker1/1_hour'>                1</a></td>
-        <td><a href='/HardWorker1/3_hours'>               0</a></td>
-        <td><a href='/HardWorker1/1_day'>                 0</a></td>
-        <td><a href='/HardWorker1/3_days'>                0</a></td>
-        <td><a href='/HardWorker1/7_days'>                0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker1/all/total_dead'> HardWorker1</a></td>
+        <td><a href='/HardWorker1/total_dead'>1</a></td>
+        <td><a href='/HardWorker1/1_hour'>1</a></td>
+        <td><a href='/HardWorker1/3_hours'>0</a></td>
+        <td><a href='/HardWorker1/1_day'>0</a></td>
+        <td><a href='/HardWorker1/3_days'>0</a></td>
+        <td><a href='/HardWorker1/1_week'>0</a></td>
+        <td><a href='/HardWorker1/older'>0</a></td>
       </tr>
   
 </table>
