@@ -9,6 +9,7 @@ _yardoc
 *.gem
 *.rbc
 *.received.*
+*.rt_rubocop_defaults.yml
 coverage
 doc/
 Gemfile.lock
