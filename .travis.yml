@@ -6,6 +6,7 @@ rvm:
   - 2.6.5
   - jruby-9.1.17.0
   - jruby-9.2.9.0
+  # - truffleruby # https://github.com/oracle/truffleruby/issues/1398
 jdk:
   - oraclejdk11
 env:
@@ -18,22 +19,14 @@ env:
 matrix:
   exclude:
     - rvm: 2.4.9
-      jdk: oraclejdk8
       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
     - rvm: 2.5.7
-      jdk: oraclejdk8
       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
     - rvm: 2.6.5
-      jdk: oraclejdk8
-      env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
-    - rvm: truffleruby
-      jdk: oraclejdk8
       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
   allow_failures:
-    - rvm: jruby-9.1.17.0
-      env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
-    - rvm: jruby-9.2.9.0
-      env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
+    - rvm: truffleruby
+    - env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
 
 services:
   - redis-server
