@@ -1,5 +1,6 @@
 # Sidekiq::Undertaker
 
+[![Gem Version](https://badge.fury.io/rb/sidekiq-undertaker.svg)](https://badge.fury.io/rb/sidekiq-undertaker)
 [![Build Status](https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker.svg?branch=master)](https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker)
 [![Code Climate](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-undertaker.svg)](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-undertaker)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d442eb0a323d8911661f/test_coverage)](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-undertaker/test_coverage)
