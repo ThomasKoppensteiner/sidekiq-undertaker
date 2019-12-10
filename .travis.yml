@@ -11,7 +11,7 @@ jdk:
   - oraclejdk11
 env:
   global:
-    - CC_TEST_REPORTER_ID=7b5e25f524eae178880e783dbc800488dcfa5ea47cddc290a1b9daf1c728182f
+    - CC_TEST_REPORTER_ID=7b2f0f3c9e20e50573e293fe3743a322a74e54087f95abc98d0f1dd1f3dd0a97
   matrix:
     - "JRUBY_OPTS='--dev --debug'"
     - "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
