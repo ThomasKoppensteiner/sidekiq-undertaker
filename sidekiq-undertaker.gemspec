@@ -9,12 +9,11 @@ Gem::Specification.new do |spec|
   spec.version       = Sidekiq::Undertaker::VERSION
   spec.authors       = ["Thomas Koppensteiner"]
   spec.email         = ["thomas.koppensteiner@gmx.net "]
-  spec.summary       = "Sidekiq::Undertaker makes exploring the Sidekiq dead job queue easier"
+  spec.summary       = "Sidekiq::Undertaker allows exploring, reviving or burying dead jobs"
   spec.description   = <<-DES
     Sidekiq::Undertaker is a plugin for Sidekiq.
-    It makes exploring the dead job queue easier
-    by breaking down the dead jobs into time windows (buckets) of hours and days.
-    The gems allows retrying or deleting a certain subset of failures.
+    It allows exploring, reviving (retrying) or burying (deleting) dead jobs.
+    For easy exploring the dead-jobs queue is broken down into time windows (buckets) of hours, days and weeks.
   DES
   spec.license       = "MIT"
 
@@ -51,5 +50,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "sinatra", "~> 2.0"
   spec.add_development_dependency "timecop", "~> 0.9"
 
-  spec.add_runtime_dependency "sidekiq", "~> 5.2"
+  spec.add_runtime_dependency "sidekiq", "~> 5.2", "< 7"
 end
