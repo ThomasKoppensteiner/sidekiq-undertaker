@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker.svg?branch=master)](https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker)
 [![Code Climate](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-undertaker.svg)](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-undertaker)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/9d75b8b7d3ff076e1ef1/test_coverage)](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-undertaker/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c28a741febec72e2e034/test_coverage)](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-undertaker/test_coverage)
 
 ## About
 
