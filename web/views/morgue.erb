@@ -2,8 +2,8 @@
   <div class="col-sm-12">
     <h3>
       <%= "<b>#{@total_dead}</b> dead #{@total_dead == 1 ? 'job' : 'jobs'}" %>
-      <%= " of <b>#{@req_job_class}</b> class" %>
-      <%= " with <b>#{@req_error_class}</b> exception" %>
+      <%= " of <b>#{@req_job_class}</b> class" unless @req_job_class == "all" %>
+      <%= " with <b>#{@req_error_class}</b> exception" unless @req_error_class == "all" %>
       <%= " in <b>#{@req_bucket_name}</b> bucket"  %>
     </h3>
   </div>
