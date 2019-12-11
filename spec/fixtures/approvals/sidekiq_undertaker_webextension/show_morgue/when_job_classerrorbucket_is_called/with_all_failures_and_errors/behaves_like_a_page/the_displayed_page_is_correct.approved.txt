@@ -158,8 +158,8 @@
   <div class="col-sm-12">
     <h3>
       <b>4</b> dead jobs
-       of <b>all</b> class
-       with <b>all</b> exception
+      
+      
        in <b>total_dead</b> bucket
     </h3>
   </div>
