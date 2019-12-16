@@ -58,7 +58,7 @@ module Sidekiq
       end
 
       shared_examples "a page" do
-        it "the displayed page is correct" do
+        it "the displayed page is correct (for Sidekiq=v#{Sidekiq::VERSION.split('.').first})" do
           subject
 
           expect(last_response.status).to eq 200
