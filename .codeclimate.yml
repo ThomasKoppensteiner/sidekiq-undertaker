@@ -4,10 +4,12 @@ prepare:
     - url:  "https://raw.githubusercontent.com/runtastic/rt_rubocop_defaults/master/config/default.yml"
       path: .rt_rubocop_defaults.yml
 plugins:
-  git-legal:
-    enabled: true
   rubocop:
     enabled: true
     channel: rubocop-0-77
     config:
       file: .rubocop_codeclimate.yml
+  bundler-audit:
+    enabled: true
+  git-legal:
+    enabled: true
