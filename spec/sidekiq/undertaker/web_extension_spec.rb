@@ -49,7 +49,7 @@ module Sidekiq
       after { Timecop.return }
 
       def add_dead(opts = {})
-        opts = default_job_opts.merge!(opts)
+        opts = default_job_opts.merge(opts)
 
         job = build_job(opts)
         killed_job = kill_job(job)
@@ -98,6 +98,16 @@ module Sidekiq
             subject { get "/undertaker/morgue/HardWorker/RuntimeError/1_hour" }
 
             it_behaves_like "a page"
+
+            context "with pagination" do
+              before do
+                50.times do |i|
+                  job_refs.push add_dead("jid" => i.to_s)
+                end
+              end
+
+              it_behaves_like "a page"
+            end
           end
 
           context "with all failures and errors" do

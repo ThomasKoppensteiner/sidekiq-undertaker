@@ -8,11 +8,9 @@
     </h3>
   </div>
   <div class="col-sm-12">
-    <% if @total_dead > 0 && @total_dead > @count %>
-      <div class="col-sm-4">
-        <%= erb :_paging, :locals => { :url => "#{root_path}" + @undertaker_path } %>
-      </div>
-    <% end %>
+    <div class="col-sm-4">
+      <%= erb :_paging, :locals => { :url => "#{root_path}" + @undertaker_path } %>
+    </div>
   </div>
 </header>
 
