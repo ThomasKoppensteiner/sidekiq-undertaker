@@ -50,7 +50,7 @@ module Sidekiq
 
       describe ".for_each" do
         let(:expected_dead_job) do
-          DeadJob.new(
+          described_class.new(
             job_class:                  "HardWorkTask",
             time_elapsed_since_failure: time_elapsed,
             error_class:                "NoMethodError",

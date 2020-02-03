@@ -81,6 +81,7 @@ module Sidekiq
               expect(dead_job.error_class).to eq "NoMethodError"
             end
           end
+
           it { expect(dead_jobs.size).to eq 2 }
         end
 
