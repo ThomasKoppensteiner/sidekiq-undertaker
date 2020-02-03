@@ -35,13 +35,17 @@ module Sidekiq
           # Display dead jobs as list
           @dead_jobs = @dead_jobs.map(&:job)
 
-          @undertaker_path = "undertaker/#{@req_job_class}/#{@req_error_class}/#{@req_bucket_name}"
+          @undertaker_path = "undertaker/morgue/#{@req_job_class}/#{@req_error_class}/#{@req_bucket_name}"
 
           # Pagination
           @total_dead   = @dead_jobs.size
           @current_page = (params[:page] || 1).to_i
           @count        = 50 # per page
           @dead_jobs    = @dead_jobs[((@current_page - 1) * @count), @count]
+
+          # HINT: For making the pagination from sidekiq work, @total_size needs to be set
+          #       https://github.com/mperham/sidekiq/blob/master/web/views/_paging.erb#L1
+          @total_size = @total_dead
 
           # Remove unrelated arguments to allow _paginate url to be clean
           # Hack to continue to reuse sidekiq's _pagination template
