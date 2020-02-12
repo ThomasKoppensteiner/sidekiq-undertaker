@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib", "lib/sidekiq/undertaker"]
 
   spec.add_development_dependency "bundler", ">= 1.17", "<3"
-  spec.add_development_dependency "rake", "~> 12.3"
+  spec.add_development_dependency "rake", "~> 13.0"
 
   spec.add_development_dependency "approvals", "~> 0.0", ">= 0.0.24"
   spec.add_development_dependency "mock_redis", "~> 0.19"
