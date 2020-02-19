@@ -5,7 +5,7 @@ rvm:
   - 2.6.5
   - 2.5.7
   - 2.4.9
-  - jruby-9.2.9.0
+  - jruby-9.2.10.0
   - jruby-9.1.17.0
   # - truffleruby # https://github.com/oracle/truffleruby/issues/1398
 jdk:
