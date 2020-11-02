@@ -32,7 +32,7 @@ Or install it yourself as:
   $ gem install sidekiq-undertaker
 ````
 
-#### Install the Rubocop Pre-Commit Hook
+#### Development: Install the Rubocop Pre-Commit Hook
 
 ````sh
   $ rake rubocop:install
