@@ -25,6 +25,8 @@ Gem::Specification.new do |spec|
     "build_status_uri" => "https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker"
   }
 
+  spec.required_ruby_version = ">= 2.4.0"
+
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
@@ -42,9 +44,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-core", "~> 3.8"
   spec.add_development_dependency "rspec-mocks", "~> 3.8"
   spec.add_development_dependency "rspec-sidekiq", "~> 3.0"
-  spec.add_development_dependency "rt_rubocop_defaults", "~> 1.2"
-  spec.add_development_dependency "rubocop", "~> 0.77"
-  spec.add_development_dependency "rubocop-rspec", "~> 1.30"
+  spec.add_development_dependency "rt_rubocop_defaults", "~> 2.1"
+  spec.add_development_dependency "rubocop", "~> 1.2"
+  spec.add_development_dependency "rubocop-rspec", "~> 2.0"
   spec.add_development_dependency "rubocop_runner", "~> 2.1"
   spec.add_development_dependency "simplecov", "~> 0.14"
   spec.add_development_dependency "sinatra", "~> 2.0"
