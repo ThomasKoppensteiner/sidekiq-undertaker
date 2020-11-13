@@ -3,6 +3,8 @@ _yardoc
 .bundle
 .config
 .idea/
+.java-version
+.ruby-env
 .ruby-version
 .rvmrc
 .yardoc

@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
     "build_status_uri" => "https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker"
   }
 
-  spec.required_ruby_version = ">= 2.4.0"
+  spec.required_ruby_version = ">= 2.5.0"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", ">= 1.17", "<3"
   spec.add_development_dependency "rake", "~> 13.0"
 
-  spec.add_development_dependency "approvals", "~> 0.0", ">= 0.0.24"
+  spec.add_development_dependency "approvals", "~> 0.0.24"
   spec.add_development_dependency "mock_redis", "~> 0.19"
   spec.add_development_dependency "pry", "~> 0.12"
   spec.add_development_dependency "rack-test", "~> 1.1"
@@ -52,5 +52,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "sinatra", "~> 2.0"
   spec.add_development_dependency "timecop", "~> 0.9"
 
-  spec.add_runtime_dependency "sidekiq", ">= 5.2", "< 7"
+  spec.add_runtime_dependency "sidekiq", "~> 6"
 end

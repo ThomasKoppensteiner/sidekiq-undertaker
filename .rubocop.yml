@@ -2,3 +2,15 @@ require:
   - rubocop-rspec
   - rt_rubocop_defaults
 inherit_from: .rubocop_todo.yml
+
+AllCops:
+  TargetRubyVersion: 2.5
+
+Lint/DuplicateBranch:
+  Enabled: true
+
+Lint/EmptyClass:
+  Enabled: true
+
+Style/NilLambda:
+  Enabled: true
