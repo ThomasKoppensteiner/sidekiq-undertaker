@@ -66,7 +66,7 @@ module Sidekiq
 
       let(:dead_jobs) { [dead_job1, dead_job2, dead_job3, dead_job4] }
 
-      # rubocop:disable Metrics/LineLength
+      # rubocop:disable Layout/LineLength
       describe "#group_by_job_class" do
         subject(:distribution) { described_class.new(dead_jobs).group_by_job_class }
 
@@ -98,7 +98,7 @@ module Sidekiq
           expect(distribution).to eq expected_distribution
         end
       end
-      # rubocop:enable Metrics/LineLength
+      # rubocop:enable Layout/LineLength
     end
   end
 end

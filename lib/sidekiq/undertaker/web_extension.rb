@@ -5,6 +5,7 @@ require "sidekiq/undertaker/web_extension/api_helpers"
 module Sidekiq
   module Undertaker
     module WebExtension
+      # rubocop:disable Metrics/MethodLength
       def self.registered(app)
         app.helpers APIHelpers
 
@@ -32,6 +33,7 @@ module Sidekiq
           post_undertaker_job_class_error_class_buckent_name_retry
         end
       end
+      # rubocop:enable Metrics/MethodLength
     end
   end
 end
