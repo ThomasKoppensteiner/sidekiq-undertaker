@@ -28,6 +28,8 @@ begin
   RSpec::Core::RakeTask.new(:spec)
 
   task default: :spec
+
+  desc "run specs"
   task test: :spec
 rescue LoadError
   puts "RSpec not available!"

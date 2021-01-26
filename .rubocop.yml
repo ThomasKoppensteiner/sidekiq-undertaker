@@ -1,4 +1,9 @@
 require:
+  - rubocop-rake
   - rubocop-rspec
   - rt_rubocop_defaults
+
 inherit_from: .rubocop_todo.yml
+
+AllCops:
+  TargetRubyVersion: 2.5
