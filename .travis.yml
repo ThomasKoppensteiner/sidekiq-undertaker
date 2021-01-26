@@ -1,43 +1,45 @@
 language: ruby
 cache: bundler
 rvm:
-  - 2.7.0
-  - 2.6.5
-  - 2.5.7
-  - 2.4.9
-  - jruby-9.2.10.0
-  - jruby-9.1.17.0
-  # - truffleruby # https://github.com/oracle/truffleruby/issues/1398
+  # - 3.0.0 # Not yet supported by all dependencies
+  - 2.7.2
+  - 2.6.6
+  - 2.5.8
+  - jruby # latest
+  - jruby-9.2.14.0
+  #
+  # 1. https://github.com/oracle/truffleruby/issues/1398
+  # 2. Nokogiri build fails
+  # - truffleruby # latest
+  # - truffleruby-21.0.0
 jdk:
   - oraclejdk11
 env:
   global:
     - CC_TEST_REPORTER_ID=7b2f0f3c9e20e50573e293fe3743a322a74e54087f95abc98d0f1dd1f3dd0a97
   matrix:
-    - "JRUBY_OPTS='--dev --debug'"
+    - "JRUBY_OPTS='--debug'"
     - "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
 
 matrix:
   exclude:
-    - rvm: 2.7.0
+    - rvm: 3.0.0
       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
-    - rvm: 2.6.5
+    - rvm: 2.7.2
       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
-    - rvm: 2.5.7
+    - rvm: 2.6.6
       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
-    - rvm: 2.4.9
+    - rvm: 2.5.8
+      env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
+    - rvm: truffleruby-21.0.0
+      env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
+    - rvm: truffleruby
       env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
   allow_failures:
-    - rvm: 2.4.9
     - rvm: truffleruby
-    - env: "JRUBY_OPTS='-Xcompile.invokedynamic=true --debug'"
+    - rvm: truffleruby-21.0.0
 services:
   - redis-server
-
-# before_install:
-#  - gem update --system
-#  - gem install bundler -v "~> 2.0"
-# #  - gem update bundler
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
