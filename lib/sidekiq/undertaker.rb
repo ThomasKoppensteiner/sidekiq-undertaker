@@ -5,7 +5,7 @@ require "sidekiq/undertaker/web_extension"
 
 begin
   require "sidekiq/web"
-rescue LoadError # rubocop:disable Lint/SuppressedException
+rescue LoadError
   # client-only usage
 end
 

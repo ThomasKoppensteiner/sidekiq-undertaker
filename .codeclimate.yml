@@ -8,6 +8,6 @@ plugins:
     enabled: true
   rubocop:
     enabled: true
-    channel: rubocop-0-77
+    channel: rubocop-1-8-1
     config:
       file: .rubocop_codeclimate.yml

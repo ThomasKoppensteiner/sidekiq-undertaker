@@ -50,7 +50,7 @@ module Sidekiq
 
       attr_writer :job_class, :time_elapsed_since_failure, :error_class, :bucket_name, :job
 
-      def job_eql?(other_job) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity
+      def job_eql?(other_job) # rubocop:disable Metrics/AbcSize
         job.jid == other_job.jid &&
           job.item        == other_job.item &&
           job.args        == other_job.args &&
