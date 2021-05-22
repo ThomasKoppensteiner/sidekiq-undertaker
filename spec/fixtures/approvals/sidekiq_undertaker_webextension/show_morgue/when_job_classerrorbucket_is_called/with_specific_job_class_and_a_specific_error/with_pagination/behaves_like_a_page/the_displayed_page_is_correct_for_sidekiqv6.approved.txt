@@ -12,6 +12,7 @@
     <link href="/sidekiq/stylesheets/application-dark.css" media="screen and (prefers-color-scheme: dark)" rel="stylesheet" type="text/css" />
     
 
+    <link rel="apple-touch-icon" href="/sidekiq/images/apple-touch-icon.png">
     <link rel="shortcut icon" type="image/ico" href="/sidekiq/images/favicon.ico" />
     <script type="text/javascript" src="/sidekiq/javascripts/application.js"></script>
     <meta name="google" content="notranslate" />
@@ -192,7 +193,7 @@
 
 
     <form action="/sidekiq/undertaker/morgue" method="post">
-      <input type='hidden' name='authenticity_token' value=''/>
+      <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
       <table class="table table-striped table-bordered table-white">
         <thead>
           <tr>
@@ -1265,12 +1266,12 @@
     </form>
 
     <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_hour/delete" method="post">
-      <input type='hidden' name='authenticity_token' value=''/>
+      <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Bury All" data-confirm="Are you sure?" />
     </form>
 
     <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_hour/retry" method="post">
-      <input type='hidden' name='authenticity_token' value=''/>
+      <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="Revive All" data-confirm="Are you sure?" />
     </form>
 
