@@ -12,6 +12,7 @@
     <link href="/sidekiq/stylesheets/application-dark.css" media="screen and (prefers-color-scheme: dark)" rel="stylesheet" type="text/css" />
     
 
+    <link rel="apple-touch-icon" href="/sidekiq/images/apple-touch-icon.png">
     <link rel="shortcut icon" type="image/ico" href="/sidekiq/images/favicon.ico" />
     <script type="text/javascript" src="/sidekiq/javascripts/application.js"></script>
     <meta name="google" content="notranslate" />

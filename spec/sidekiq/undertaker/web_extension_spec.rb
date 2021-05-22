@@ -13,7 +13,13 @@ module Sidekiq
     describe WebExtension, type: :controller do
       include Rack::Test::Methods
 
-      let(:app) { Sidekiq::Web }
+      let(:app) do
+        Sidekiq::Web.new.tap do |app|
+          # In order to use the Web UI of Sidekiq `6.2` a session is required
+          # SEE: https://github.com/mperham/sidekiq/blob/master/Changes.md#620
+          app.use Rack::Session::Cookie, secret: "A-Test-Web-Session-Secret"
+        end
+      end
       let(:job_refs) { [] }
 
       let(:jid1) { "4416aa76eb8cf03f56a49220" }
@@ -43,8 +49,9 @@ module Sidekiq
         job_refs.push add_dead("jid" => jid4, "class" => "HardWorker1", "error_class" => "NoMethodError")
 
         allow_any_instance_of(Sidekiq::WebAction).to receive(:root_path).and_return("/sidekiq/")
+
+        allow_any_instance_of(::Sidekiq::Web::CsrfProtection).to receive(:valid_token?).and_return(true)
       end
-      # rubocop:enable RSpec/AnyInstance
 
       after { Timecop.return }
 
@@ -69,6 +76,10 @@ module Sidekiq
       end
 
       describe "show filter" do
+        before do
+          allow_any_instance_of(Sidekiq::Web::CsrfProtection).to receive(:mask_token).and_return("stubbed-csrf-token")
+        end
+
         # /undertaker/filter
         context "when filter page is called" do
           subject { get "/undertaker/filter" }
@@ -92,6 +103,10 @@ module Sidekiq
       end
 
       describe "show morgue" do
+        before do
+          allow_any_instance_of(Sidekiq::Web::CsrfProtection).to receive(:mask_token).and_return("stubbed-csrf-token")
+        end
+
         # /undertaker/morgue/:job_class/:error_class/:bucket_name
         context "when job-class/error/bucket is called" do
           context "with specific job-class and a specific error" do
@@ -117,6 +132,7 @@ module Sidekiq
           end
         end
       end
+      # rubocop:enable RSpec/AnyInstance
 
       describe "delete" do
         context "when job-class, error and bucket are given" do
