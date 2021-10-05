@@ -56,7 +56,7 @@ def apply_custom_excludes(data)
 end
 
 def build_job(item)
-  Sidekiq::Job.new(item)
+  Sidekiq::JobRecord.new(item)
 end
 
 def job_to_sorted_entry(job, score: Time.now.utc.to_i, set: Sidekiq::SortedSet.new("test-jobs"))
