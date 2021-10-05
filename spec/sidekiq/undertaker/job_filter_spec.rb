@@ -7,7 +7,7 @@ module Sidekiq
     describe JobFilter do
       describe ".filter_dead_jobs" do
         let(:job1) do
-          instance_double(Sidekiq::Job, item: {
+          instance_double(Sidekiq::JobRecord, item: {
                             "class"       => "HardWorkTask",
                             "failed_at"   => Time.now.to_i - 5 * 60,
                             "error_class" => "NoMethodError"
@@ -15,7 +15,7 @@ module Sidekiq
         end
 
         let(:job2) do
-          instance_double(Sidekiq::Job, item: {
+          instance_double(Sidekiq::JobRecord, item: {
                             "class"       => "HardWorkTask",
                             "failed_at"   => Time.now.to_i - 2 * 60 * 60,
                             "error_class" => "RandomError"
@@ -23,7 +23,7 @@ module Sidekiq
         end
 
         let(:job3) do
-          instance_double(Sidekiq::Job, item: {
+          instance_double(Sidekiq::JobRecord, item: {
                             "class"       => "LazyWorkTask",
                             "failed_at"   => Time.now.to_i - 2 * 60 * 60,
                             "error_class" => "NoMethodError"

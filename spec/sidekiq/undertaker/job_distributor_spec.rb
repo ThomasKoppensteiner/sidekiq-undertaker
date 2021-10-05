@@ -6,28 +6,28 @@ module Sidekiq
   module Undertaker
     describe JobDistributor do
       let(:job1) do
-        instance_double(Sidekiq::Job, item: {
+        instance_double(Sidekiq::JobRecord, item: {
                           "class"       => "A",
                           "failed_at"   => 1,
                           "error_class" => "E1"
                         })
       end
       let(:job2) do
-        instance_double(Sidekiq::Job, item: {
+        instance_double(Sidekiq::JobRecord, item: {
                           "class"       => "A",
                           "failed_at"   => 1,
                           "error_class" => "E1"
                         })
       end
       let(:job3) do
-        instance_double(Sidekiq::Job, item: {
+        instance_double(Sidekiq::JobRecord, item: {
                           "class"       => "B",
                           "failed_at"   => 1,
                           "error_class" => "E1"
                         })
       end
       let(:job4) do
-        instance_double(Sidekiq::Job, item: {
+        instance_double(Sidekiq::JobRecord, item: {
                           "class"       => "B",
                           "failed_at"   => 1,
                           "error_class" => "E2"
