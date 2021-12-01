@@ -19,10 +19,11 @@ Gem::Specification.new do |spec|
 
   spec.homepage      = "https://github.com/ThomasKoppensteiner/sidekiq-undertaker"
   spec.metadata      = {
-    "homepage_uri"     => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker",
-    "source_code_uri"  => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker",
-    "bug_tracker_uri"  => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker/issues",
-    "build_status_uri" => "https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker"
+    "homepage_uri"          => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker",
+    "source_code_uri"       => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker",
+    "bug_tracker_uri"       => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker/issues",
+    "build_status_uri"      => "https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker",
+    "rubygems_mfa_required" => "true"
   }
 
   spec.required_ruby_version = ">= 2.5.0"
@@ -53,5 +54,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "sinatra", "~> 2.0"
   spec.add_development_dependency "timecop", "~> 0.9"
 
-  spec.add_runtime_dependency "sidekiq", ">= 6.2.2", "< 6.3"
+  spec.add_runtime_dependency "sidekiq", ">= 6.2.2", "< 7.0"
 end
