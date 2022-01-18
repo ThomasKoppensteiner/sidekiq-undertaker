@@ -65,11 +65,12 @@ module Sidekiq
       end
 
       shared_examples "a page" do
-        it "the displayed page is correct (for Sidekiq=v#{Sidekiq::VERSION.split('.').first})" do
+        it "the displayed page is correct" do
           subject
 
           expect(last_response.status).to eq 200
           verify do
+            puts "DEBUG: #{last_response.body}"
             apply_custom_excludes(last_response.body)
           end
         end
