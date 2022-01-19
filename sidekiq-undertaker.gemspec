@@ -19,10 +19,11 @@ Gem::Specification.new do |spec|
 
   spec.homepage      = "https://github.com/ThomasKoppensteiner/sidekiq-undertaker"
   spec.metadata      = {
-    "homepage_uri"     => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker",
-    "source_code_uri"  => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker",
-    "bug_tracker_uri"  => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker/issues",
-    "build_status_uri" => "https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker"
+    "homepage_uri"          => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker",
+    "source_code_uri"       => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker",
+    "bug_tracker_uri"       => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker/issues",
+    "build_status_uri"      => "https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker",
+    "rubygems_mfa_required" => "true"
   }
 
   spec.required_ruby_version = ">= 2.5.0"
@@ -35,7 +36,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", ">= 1.17", "<3"
   spec.add_development_dependency "rake", "~> 13.0"
 
-  spec.add_development_dependency "approvals", "~> 0.0.24"
+  spec.add_development_dependency "approvals", "~> 0.0.25"
   spec.add_development_dependency "mock_redis", "~> 0.19"
   spec.add_development_dependency "pry", "~> 0.12"
   spec.add_development_dependency "rack-test", "~> 1.1"
