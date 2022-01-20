@@ -45,21 +45,21 @@ module Sidekiq
       let(:dead_job2) do
         DeadJob.new(
           job:                        job2, # 'A', 'E1'
-          time_elapsed_since_failure: 10 + 60 * 60,
+          time_elapsed_since_failure: 10 + (60 * 60),
           bucket_name:                "3_hours"
         )
       end
       let(:dead_job3) do
         DeadJob.new(
           job:                        job3, # 'B', 'E1'
-          time_elapsed_since_failure: 10 + 60 * 60,
+          time_elapsed_since_failure: 10 + (60 * 60),
           bucket_name:                "3_hours"
         )
       end
       let(:dead_job4) do
         DeadJob.new(
           job:                        job4, # 'B', 'E2'
-          time_elapsed_since_failure: 10 + 60 * 60 * 24,
+          time_elapsed_since_failure: 10 + (60 * 60 * 24),
           bucket_name:                "1_day"
         )
       end
