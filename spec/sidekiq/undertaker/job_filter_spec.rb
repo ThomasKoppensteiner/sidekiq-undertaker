@@ -9,7 +9,7 @@ module Sidekiq
         let(:job1) do
           instance_double(Sidekiq::JobRecord, item: {
                             "class"       => "HardWorkTask",
-                            "failed_at"   => Time.now.to_i - 5 * 60,
+                            "failed_at"   => Time.now.to_i - (5 * 60),
                             "error_class" => "NoMethodError"
                           })
         end
@@ -17,7 +17,7 @@ module Sidekiq
         let(:job2) do
           instance_double(Sidekiq::JobRecord, item: {
                             "class"       => "HardWorkTask",
-                            "failed_at"   => Time.now.to_i - 2 * 60 * 60,
+                            "failed_at"   => Time.now.to_i - (2 * 60 * 60),
                             "error_class" => "RandomError"
                           })
         end
@@ -25,7 +25,7 @@ module Sidekiq
         let(:job3) do
           instance_double(Sidekiq::JobRecord, item: {
                             "class"       => "LazyWorkTask",
-                            "failed_at"   => Time.now.to_i - 2 * 60 * 60,
+                            "failed_at"   => Time.now.to_i - (2 * 60 * 60),
                             "error_class" => "NoMethodError"
                           })
         end
