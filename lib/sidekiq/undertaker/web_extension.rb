@@ -12,7 +12,6 @@ module Sidekiq
         app.get "/undertaker/filter" do
           show_filter
         end
-
         app.get "/undertaker/filter/:job_class/:bucket_name" do
           show_filter_by_job_class_bucket_name
         end
@@ -31,6 +30,14 @@ module Sidekiq
 
         app.post "/undertaker/morgue/:job_class/:error_class/:bucket_name/retry" do
           post_undertaker_job_class_error_class_buckent_name_retry
+        end
+
+        app.post "/undertaker/morgue/:job_class/:error_class/:bucket_name/export" do
+          post_undertaker_job_class_error_class_buckent_name_export
+        end
+
+        app.post "/undertaker/import_jobs" do
+          post_import_jobs
         end
       end
       # rubocop:enable Metrics/MethodLength
