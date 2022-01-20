@@ -32,3 +32,19 @@
       </tr>
   <% end %>
 </table>
+
+<header class="row header">
+  <div class="col-sm-12">
+    <h3>
+      Import Jobs
+    </h3>
+  </div>
+</header>
+
+<form enctype="multipart/form-data" method="post" action='<%="#{root_path}undertaker/import_jobs"%>'>
+  <%= respond_to?(:csrf_tag) && csrf_tag %>
+    <input type="file" id=upload_file" name="upload_file" >
+    <button class="btn btn-danger" style="margin-top: 10px" type="submit">
+      Import
+    </button>
+</form>

@@ -2,11 +2,16 @@
 
 require "sidekiq/undertaker/job_distributor"
 require "sidekiq/undertaker/job_filter"
+require "json"
+require "zip"
 
 module Sidekiq
   module Undertaker
     module WebExtension
+      # rubocop:disable Metrics/ModuleLength
       module APIHelpers
+        EXPORT_CHUNK_SIZE = 2000
+
         def show_filter
           store_request_params
 
@@ -59,20 +64,23 @@ module Sidekiq
         def post_undertaker
           raise ::ArgumentError.new("Key missing") unless params["key"]
 
-          params["key"].each do |key|
-            job = Sidekiq::DeadSet.new.fetch(*parse_params(key)).first
-            if job
-              if params["retry"]
-                job.retry
-              elsif params["delete"]
-                job.delete
-              end
-            end
+          jobs = params["key"].map { |k| Sidekiq::DeadSet.new.fetch(*parse_params(k)).first }.compact
+
+          handle_selected_jobs jobs
+        rescue ::ArgumentError
+          bad_request
+        end
+
+        def handle_selected_jobs(jobs)
+          return send_data(*prepare_data(jobs.map(&:item), EXPORT_CHUNK_SIZE)) if params["export"]
+
+          if params["retry"]
+            jobs.each(&:retry)
+          elsif params["delete"]
+            jobs.each(&:delete)
           end
 
           redirect redirect_path(request)
-        rescue ::ArgumentError
-          bad_request
         end
 
         def post_undertaker_job_class_error_class_buckent_name_delete
@@ -96,6 +104,28 @@ module Sidekiq
           redirect redirect_path(request)
         end
 
+        def post_undertaker_job_class_error_class_buckent_name_export
+          store_request_params
+
+          @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
+          send_data(*prepare_data(@dead_jobs.map { |j| j.job.item }, EXPORT_CHUNK_SIZE))
+        end
+
+        def post_import_jobs
+          file = params["upload_file"]
+          raise ::ArgumentError.new("The file is not a json") if file.nil? || file[:type] != "application/json"
+
+          data = params['upload_file'][:tempfile].read
+          dead_set = Sidekiq::DeadSet.new
+
+          JSON.parse(data).each do |job|
+            dead_set.kill(Sidekiq.dump_json(job))
+          end
+          redirect redirect_path(request)
+        rescue
+          bad_request
+        end
+
         def render_result(template)
           render(:erb, File.read(File.join(view_path, template)))
         end
@@ -112,13 +142,40 @@ module Sidekiq
 
         def redirect_path(request)
           path = request.referer ? URI.parse(request.referer).path : request.path
-          path.gsub("/delete", "").gsub("/retry", "")
+          path.gsub("/delete", "").gsub("/retry", "").gsub("/export", "")
+        end
+
+        def prepare_data(data, chunk_size)
+          filename = Time.now.strftime("%Y-%m-%d_%H-%M").to_s
+          return [data.to_json, "application/json", "#{filename}.json"] if data.length <= chunk_size
+
+          filename = "#{@req_job_class}_#{filename}"
+          zip = Zip::OutputStream.write_buffer do |file|
+            data.each_slice(chunk_size).each_with_index do |chunk, index|
+              file.put_next_entry("#{filename}_part-#{index + 1}.json")
+              file.write chunk.to_json
+            end
+          end
+
+          [zip.string, "application/zip", "#{filename}.zip"]
+        end
+
+        def send_data(data, content_type = "text/plain", file_name = "attachment.txt")
+          [
+            200,
+            {
+              "Content-Type"        => content_type,
+              "Content-Disposition" => "attachment; filename=\"#{file_name}\""
+            },
+            [data]
+          ]
         end
 
         def bad_request
           [400, { "Content-Type" => "text/plain" }, ["Bad Request"]]
         end
       end
+      # rubocop:enable Metrics/ModuleLength
     end
   end
 end
