@@ -115,14 +115,14 @@ module Sidekiq
           file = param["upload_file"]
           raise ::ArgumentError.new("The file is not a json") if file.nil? || file[:type] != "application/json"
 
-          data = params['upload_file'][:tempfile].read
+          data = params["upload_file"][:tempfile].read
           dead_set = Sidekiq::DeadSet.new
 
           JSON.parse(data).each do |job|
             dead_set.kill(Sidekiq.dump_json(job))
           end
           redirect redirect_path(request)
-        rescue
+        rescue StandardError
           bad_request
         end
 
