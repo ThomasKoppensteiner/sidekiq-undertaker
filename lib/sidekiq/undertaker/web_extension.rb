@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "sidekiq/undertaker/web_extension/api_helpers"
-
+require 'pry'
 module Sidekiq
   module Undertaker
     module WebExtension
@@ -9,6 +9,8 @@ module Sidekiq
       def self.registered(app)
         app.helpers APIHelpers
 
+
+        
         app.get "/undertaker/filter" do
           show_filter
         end
@@ -31,6 +33,10 @@ module Sidekiq
 
         app.post "/undertaker/morgue/:job_class/:error_class/:bucket_name/retry" do
           post_undertaker_job_class_error_class_buckent_name_retry
+        end
+
+        app.post "/undertaker/import_jobs" do
+          post_import_jobs
         end
       end
       # rubocop:enable Metrics/MethodLength

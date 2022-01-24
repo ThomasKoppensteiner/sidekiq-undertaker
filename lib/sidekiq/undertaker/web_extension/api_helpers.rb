@@ -96,6 +96,20 @@ module Sidekiq
           redirect redirect_path(request)
         end
 
+        def post_import_jobs
+          raise ::ArgumentError.new("The file is not a json") if params["upload_file"].nil? || params["upload_file"]
+
+          data = params['upload_file'][:tempfile].read
+          dead_set = Sidekiq::DeadSet.new
+
+          JSON.parse(data).each do |job|
+            dead_set.kill(Sidekiq.dump_json(job))
+          end
+          redirect redirect_path(request)
+        rescue
+          bad_request
+        end
+
         def render_result(template)
           render(:erb, File.read(File.join(view_path, template)))
         end
