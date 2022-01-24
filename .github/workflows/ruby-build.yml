@@ -25,16 +25,25 @@ jobs:
           - 6379:6379
 
     strategy:
+      fail-fast: false
       matrix:
-        ruby-version: ['2.7', '3.0', 'head', 'jruby-head', 'truffleruby-head'] # 'jruby-9.2.19.0' currently not supported
+        # SEE: https://github.com/ruby/setup-ruby#supported-versions
+        ruby-version:
+          - 'ruby'
+          - '3.1'
+          - '2.7'
+          - 'jruby'
+          - 'jruby-9.3.2.0'
+          - 'jruby-9.2.20.0'
+          - 'truffleruby'
+          - 'truffleruby+graalvm'
 
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby
     # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
-    # uses: ruby/setup-ruby@v1
-      uses: ruby/setup-ruby@473e4d8fe5dd94ee328fdfca9f8c9c7afc9dae5e
+      uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
