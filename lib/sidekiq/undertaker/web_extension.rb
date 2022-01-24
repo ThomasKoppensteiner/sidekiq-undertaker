@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "sidekiq/undertaker/web_extension/api_helpers"
-require 'pry'
+require "pry"
 module Sidekiq
   module Undertaker
     module WebExtension
@@ -9,8 +9,6 @@ module Sidekiq
       def self.registered(app)
         app.helpers APIHelpers
 
-
-        
         app.get "/undertaker/filter" do
           show_filter
         end
