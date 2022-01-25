@@ -150,7 +150,7 @@ module Sidekiq
             200,
             {
               "Content-Type"        => content_type,
-              "Content-Disposition" => " attachment; filename=\"#{file_name}\""
+              "Content-Disposition" => "attachment; filename=\"#{file_name}\""
             },
             [data]
           ]

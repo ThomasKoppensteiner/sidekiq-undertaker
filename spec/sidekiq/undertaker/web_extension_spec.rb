@@ -262,6 +262,50 @@ module Sidekiq
         end
       end
 
+      describe "export" do
+        context "when job class, error and bucket are given" do
+          subject { post "/undertaker/morgue/HardWorker/RuntimeError/1_hour/export" }
+
+          let(:expected_redirect_url) { "http://example.org/undertaker/morgue/HardWorker/RuntimeError/1_hour" }
+          let(:expected_content_disposition_header) { "attachment; filename=\"2018-12-16_20-57.json\"" }
+
+          let(:params) do
+            { "job_class" => "HardWorker", "error_class" => "RuntimeError", "bucket_name" => "1_hour" }
+          end
+          let(:dead_jobs_set) { [dead_job1, dead_job2] }
+          let(:dead_job1) { Sidekiq::Undertaker::DeadJob.to_dead_job(Sidekiq::DeadSet.new.find_job(jid1)) }
+          let(:dead_job2) { Sidekiq::Undertaker::DeadJob.to_dead_job(Sidekiq::DeadSet.new.find_job(jid2)) }
+
+          before do
+            allow(Sidekiq::Undertaker::JobFilter).to receive(:filter_dead_jobs).with(params)
+                                                                               .and_return(dead_jobs_set)
+          end
+
+          it "exports the dead jobs" do
+            subject
+            expect(last_response.status).to eq 200
+            expect(last_response.content_type).to eq "application/json"
+            expect(last_response.headers["Content-Disposition"]).to eq expected_content_disposition_header
+            expect(last_response.body).to eq dead_jobs_set.map { |t| t.job.item }.to_json
+          end
+
+          context "when there are more jobs than the current CHUNK_SIZE" do
+            before do
+              stub_const("Sidekiq::Undertaker::WebExtension::APIHelpers::EXPORT_CHUNK_SIZE", 1)
+            end
+
+            let(:expected_content_disposition_header) { "attachment; filename=\"HardWorker_2018-12-16_20-57.zip\"" }
+
+            it "exports the dead jobs" do
+              subject
+              expect(last_response.status).to eq 200
+              expect(last_response.content_type).to eq "application/zip"
+              expect(last_response.headers["Content-Disposition"]).to eq expected_content_disposition_header
+            end
+          end
+        end
+      end
+
       describe "specific jobs" do
         let(:dead_job) { Sidekiq::DeadSet.new.find_job(jid1) }
 
@@ -280,6 +324,15 @@ module Sidekiq
         it "retries specific dead job now" do
           expect(dead_job).to receive(:retry)
           post "/undertaker/morgue", "key[]=#{job_refs[0]}&retry=Retry+Now"
+        end
+
+        it "exports specific dead job now" do
+          post "/undertaker/morgue", "key[]=#{job_refs[0]}&export=now"
+
+          expect(last_response.status).to eq 200
+          expect(last_response.content_type).to eq "application/json"
+          expect(last_response.headers["Content-Disposition"]).to eq "attachment; filename=\"2018-12-16_20-57.json\""
+          expect(last_response.body).to eq [dead_job.item].to_json
         end
 
         it "redirects on specific retry post" do
