@@ -278,12 +278,18 @@
         
       </table>
       <input class="btn btn-primary btn-xs pull-left" type="submit" name="retry" value="Revive" />
+      <input class="btn btn-secondary btn-xs pull-left" type="submit" name="export" value="Export" />
       <input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="Bury" />
     </form>
 
     <form action="/sidekiq/undertaker/morgue/all/all/total_dead/delete" method="post">
       <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Bury All" data-confirm="Are you sure?" />
+    </form>
+
+    <form action="/sidekiq/undertaker/morgue/all/all/total_dead/export" method="post">
+      <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
+      <input class="btn btn-secondary btn-xs pull-right" type="submit" name="export" value="Export All" />
     </form>
 
     <form action="/sidekiq/undertaker/morgue/all/all/total_dead/retry" method="post">
