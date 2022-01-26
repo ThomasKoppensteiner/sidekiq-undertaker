@@ -97,7 +97,7 @@ module Sidekiq
         end
 
         def post_import_jobs
-          file = param["upload_file"]
+          file = params["upload_file"]
           raise ::ArgumentError.new("The file is not a json") if file.nil? || file[:type] != "application/json"
 
           data = params["upload_file"][:tempfile].read

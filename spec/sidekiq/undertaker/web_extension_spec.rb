@@ -6,6 +6,7 @@ require "sidekiq/api"
 require "sidekiq/web"
 require "sinatra"
 require "rack/test"
+require "stringio"
 
 module Sidekiq
   # rubocop:disable Metrics/ModuleLength
@@ -201,6 +202,67 @@ module Sidekiq
               subject
               expect(last_response.status).to eq 400
             end
+          end
+        end
+      end
+
+      describe "import" do
+        subject { post "/undertaker/import_jobs", "upload_file" => file }
+
+        let(:file) do
+          Rack::Test::UploadedFile.new(StringIO.new(file_content), file_content_type, original_filename: file_name)
+        end
+        let(:job) do
+          opts = default_job_opts.merge({ "class" => "SuperHardWorking" })
+
+          build_job(opts)
+        end
+
+        context "when the file is valid" do
+          let(:file_content) { [job.item].to_json }
+          let(:file_name) { "jobs.json" }
+          let(:file_content_type) { "application/json" }
+
+          it "redirects the response" do
+            subject
+            expect(last_response.status).to eq 302
+          end
+
+          it "adds the jobs to the deadset" do
+            expect { subject }.to change { Sidekiq::DeadSet.new.size }.from(4).to(5)
+          end
+        end
+
+        context "when the file type is not valid" do
+          let(:file_content) { "" }
+          let(:file_name) { "jobs.zip" }
+          let(:file_content_type) { "application/zip" }
+
+          it "returns status 400" do
+            subject
+            expect(last_response.status).to eq 400
+          end
+        end
+
+        context "when the file type is a json but not a Sidekiq Job" do
+          let(:file_content) { "{am_i_a_job: \"no\"}" }
+          let(:file_name) { "jobs.json" }
+          let(:file_content_type) { "application/json" }
+
+          it "returns status 400" do
+            subject
+            expect(last_response.status).to eq 400
+          end
+        end
+
+        context "when the content of the file is not a json" do
+          let(:file_content) { "DEFINETLY NOT A JSON" }
+          let(:file_name) { "jobs.json" }
+          let(:file_content_type) { "application/json" }
+
+          it "returns status 400" do
+            subject
+            expect(last_response.status).to eq 400
           end
         end
       end
