@@ -213,6 +213,22 @@
   
 </table>
 
+<header class="row header">
+  <div class="col-sm-12">
+    <h3>
+      Import Jobs
+    </h3>
+  </div>
+</header>
+
+<form enctype="multipart/form-data" method="post" action='/sidekiq/undertaker/import_jobs'>
+  <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
+    <input type="file" id=upload_file" name="upload_file" >
+    <button class="btn btn-danger" style="margin-top: 10px" type="submit">
+      Import
+    </button>
+</form>
+
           </div>
         </div>
       </div>
