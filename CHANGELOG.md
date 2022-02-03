@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## [1.2.0] - 2022-02-03
+### Changed
+- Updated sidekiq dependency to 6.4.0
+
 ## [1.1.1] - 2022-02-03
 ### Added
 - Added CHANGELOG.md
