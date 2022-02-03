@@ -2,58 +2,29 @@
 
 ## Unreleased
 
+## [1.1.0] - 2022-01-19
 ### Added
+- Added renovate.json
+- Added ruby-build github workflow
+- Added .rspec config file
 
 ### Changed
+- Updated support for Sidekiq 6.2.2 and higher
+- Updated travis CI config to use latest ruby versions
+- Updated to use GitHub-native Dependabot
+- Updated spech_helper
+- Updated approvals to version 0.0.25
 
-### Deprecated
+## [1.0.2] - 2021-01-27
+### Added
+- Consider also explicitly stating that PRs must pass RuboCop to be accepted
+- Added rubocop badge to README.md
 
-### Removed
-
-### Fixed
-
-### Security
-
-Upgrade approvals to version 0.0.25
-
-Add .rspec config file
-
-Update spech_helper
-
-Update ruby-build github workflow
-
-Add ruby-build github workflow
-
-Update sidekiq to 6.2.2
-
-Add renovate.json
-
-Upgrade to GitHub-native Dependabot
-
-Update travis CI config to use latest ruby versions
-
-Update support Sidekiq 6.2 and higher
-
-Upgrade rubocop and rt_rubocop_defaults
-
-Update Travis CI setup
-
-Add rubocop badge to README.md #35
-
-Update README to clarify RuboCop install
-
-Consider also explicitly stating that PRs must pass RuboCop to be accepted.
-
-Update travis ci to use JRuby-9.2.10.0
-
-Update rake requirement from ~> 12.3 to ~> 13.0
-
-  Updates the requirements on [rake](https://github.com/ruby/rake) to permit the latest version.
-  - [Release notes](https://github.com/ruby/rake/releases)
-  - [Changelog](https://github.com/ruby/rake/blob/master/History.rdoc)
-  - [Commits](https://github.com/ruby/rake/compare/v12.3.0...v13.0.1)
-
-  Signed-off-by: dependabot-preview[bot] <support@dependabot.com>
+### Changed
+- Upgraded rubocop and rt_rubocop_defaults
+- Updated rake requirement from ~> 12.3 to ~> 13.0
+- Updated Travis CI to use JRuby-9.2.10.0
+- Updated README to clarify RuboCop install
 
 ## [1.0.1] - 2020-02-03
 ### Added
@@ -61,6 +32,7 @@ Update rake requirement from ~> 12.3 to ~> 13.0
 
 ### Changed
 - Updated codeclimate.yml to enable rubocop
+
 ### Fixed
 - Fixed pagination on morgue page
 - Fixed rubocopo issues
