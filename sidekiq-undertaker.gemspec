@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.metadata      = {
     "homepage_uri"          => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker",
     "source_code_uri"       => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker",
+    "changelog_uri"         => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker/blob/master/CHANGELOG.md",
     "bug_tracker_uri"       => "https://github.com/ThomasKoppensteiner/sidekiq-undertaker/issues",
     "build_status_uri"      => "https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker",
     "rubygems_mfa_required" => "true"
