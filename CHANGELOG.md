@@ -3,10 +3,15 @@
 ## Unreleased
 
 ### Added
+
 ### Changed
+
 ### Deprecated
+
 ### Removed
+
 ### Fixed
+
 ### Security
 
 Upgrade approvals to version 0.0.25
@@ -50,186 +55,66 @@ Update rake requirement from ~> 12.3 to ~> 13.0
 
   Signed-off-by: dependabot-preview[bot] <support@dependabot.com>
 
-## 1.0.1 (2020-02-03)
-
-### Bug fixes
-- Fix pagination on morgue page
-
-### Development
--  Fix rubocopo issues
--  Add ruby 2.7.0 to travis file and mark ruby 2.4.9 as optional
--  Update codeclimate.yml to enable rubocop
-
-## 1.0.0 (2019-12-24)
-
-### Development
-- Update README.md to fix broken members link
-- Remove before install steps from .travis.yml
-- Fix approvals specs after sidekiq ref update
-
-commit a2023d7999bb53d2fd313c6d077b4a4fd74eb1ee
-Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
-Date:   Mon Dec 16 12:36:44 2019 +0100
-
-    Bump version (1.0.0.rc04)
-
-    fix sidekiq dependency in gemspec
-
-    commit fbcb83420acc816ffcd0e00c4d225d7d9dfdde16
-    Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
-    Date:   Wed Dec 11 22:09:57 2019 +0100
-
-        Bump version (rc03)
-
-        Update do not show 'all' as job or error name in titles
-
-        Fix broken links in filter view
-
-        commit 2134c9fd358bddda33cf9b47fa61e0886949292e
-        Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
-        Date:   Tue Dec 10 22:15:12 2019 +0100
-
-            Bump version (rc02)
-
-            Merge branch 'master' of github.com:ThomasKoppensteiner/sidekiq-cleaner
-
-            Update gemspec
-
-            Update README.md
-
-            Add RubyGems badge
-
-            Update README.md
-
-            Update .travis.yml
-
-            Update CC_TEST_REPORTER_ID
-
-            Update .travis.yml
-
-            Update README.md
-
-            Update CC_TEST_REPORTER_ID in travis.yml
-
-            Update README.md
-
-            Fix Travis link
-
-            Update README.md
-
-            Update rename buckets and add the 'older' bucket
-
-            Rename JobAggregator to JobDistributor
-
-            Update transaltions
-
-            Update paths in views
-
-            Refactor move sort into JobAggregator
-
-            Update add '/filter' and '/morgue' prefixes to URLs
-
-            Rename Helpers to APIHelpers
-
-            Move view files to top level web folder
-
-            Rename views
-
-            Move WebExtension::Helper into separate file
-
-            Add custom locales
-
-            Rename gem from sidekiq-cleaner to sidekiq-undertaker
-
-
-## [0.x]
-
-
----
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
-Date:   Wed Dec 4 21:35:06 2019 +0100
-
-    Bump version (0.3.6)
-
-    Update travis config
-
-    Update Rubocop and RtRubocopDefaults gems
-
-    Fix typo in README.md
-
-    Update README.md
-
-    Add Test Coverage Badge
-
-    Add CodeClimate configuration (#12)
-
-    Add CodeClimate configuration
-
----
-    Bump version (0.3.5)
-
-    Add support for JRuby
-
----
-    Bump version (0.3.4)
-
-    Update gemspec
-
-    Rename approvals specs to shorten file path
-
-
-    Bump version (0.3.3)
-
-    Update README and gemspec
-
-    Bump version (0.3.2)
-
-    Fix "Retry All" and "Delete All" function
-
-    Add .travis.yml
-
-    Update approval specs to exclude Sidekiq::VERSION
-
-    Bump version (0.3.1)
-
-    Refactor code base
-
-      Fix specs
-      Add Rubocop
-      Add SimpleCov
-
-    Fix strange version
-
-    Remove celluloid dependency
-
-    Csrf fix and sidekiq version compatibility
-
-    Bump version (0.2.0)
-
-    Add support for csrf and allow this to be used with newer versions of sidekiq
-
-    Allow developers to use other Rubies
-
-    Remove .ruby-version and add .ruby-version and .rvmrc to the .gitignore
-
-    Fix Cleaner Redirect Bug
-
-    Updating screenshots
-
-    Cleanup README.md
-
-    Initial commit sidekiq cleaner
+## [1.0.1] - 2020-02-03
+### Added
+- Added ruby 2.7.0 to travis file and mark ruby 2.4.9 as optional
+
+### Changed
+- Updated codeclimate.yml to enable rubocop
+### Fixed
+- Fixed pagination on morgue page
+- Fixed rubocopo issues
+
+## [1.0.0] - 2019-12-24
+### Added
+- Added RubyGems badge
+- Added custom locales
+
+### Changed
+- Renamed gem from sidekiq-cleaner to sidekiq-undertaker
+- Updated do not show 'all' as job or error name in titles
+- Updated gemspec, .travis.yml and README.md
+- Updated rename buckets and add the 'older' bucket
+- Refactored move sort into JobAggregator
+- Renamed JobAggregator to JobDistributor
+- Updated translations
+- Updated add '/filter' and '/morgue' prefixes to URLs
+- Renamed Helpers to APIHelpers
+- Moved view files to top level web folder
+- Renamed views
+- Moved WebExtension::Helper into separate file
+
+### Removed
+- Removed before install steps from .travis.yml
+
+### Fixed
+- Updated README.md to fix broken members link
+- Fixed approvals specs after sidekiq ref update
+- Fixed sidekiq dependency in gemspec
+- Fixed broken links in filter view
+- Fixed Travis link
+- Fixed paths in views
+
+## [0.3.6] - 2019-12-04
+### Added
+- Added Test Coverage Badge
+- Added CodeClimate configuration
+- Added support for JRuby
+- Added .travis.yml
+- Added support for csrf and allowed this to be used with newer versions of sidekiq
+
+### Changed
+- Updated travis config
+- Updated Rubocop and RtRubocopDefaults gems
+- Updated README.md
+- Updated gemspec
+- Renamed approvals specs to shorten file path
+- Updated approval specs to exclude Sidekiq::VERSION
+- Removed celluloid dependency
+- Allowed developers to use other Rubies
+- Removed .ruby-version and added .ruby-version and .rvmrc to the .gitignore
+
+### Fixed
+- Fixed "Retry All" and "Delete All" function
+- Fixed Csrf and sidekiq version compatibility
+- Fixed Cleaner Redirect Bug
