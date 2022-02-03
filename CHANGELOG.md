@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## [1.1.1] - 2022-02-03
+### Added
+- Added CHANGELOG.md
+
 ## [1.1.0] - 2022-01-19
 ### Added
 - Added renovate.json
