@@ -81,6 +81,8 @@ this fork was renamed to `sidekiq-undertaker`.
 
 The [Sidekiq-Cleaner](https://github.com/HackingHabits/sidekiq-cleaner) gem was originally created by [Madan Thangavelu](https://github.com/HackingHabits).
 [Tout](https://github.com/Tout/sidekiq-cleaner) and [TheWudu](https://github.com/TheWudu/sidekiq-cleaner) also contributed to it.
+Thank you [Zlatko Rednjak](https://github.com/Rednjak) for adding the initial version of the `CHANGELOG.md`.
+
 For the complete list of network members have a look at the [fork overview](https://github.com/ThomasKoppensteiner/sidekiq-undertaker/network/members).
 
 ## Alternative Projects
