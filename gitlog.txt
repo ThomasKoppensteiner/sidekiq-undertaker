@@ -1,0 +1,531 @@
+commit 03154ce5f243d1acd21dd084c2ec5714b6c7d49a
+Author: Thomas Koppensteiner <thomas.koppensteiner@runtastic.com>
+Date:   Wed Jan 19 10:45:29 2022 +0100
+
+    Upgrade approvals to version 0.0.25
+
+commit f25bde9c5302057e0ec6d0e92b7d9c6d066c39b7
+Author: Thomas Koppensteiner <thomas.koppensteiner@runtastic.com>
+Date:   Wed Jan 19 10:44:49 2022 +0100
+
+    Add .rspec config file
+
+commit dce112175953d5799b51c7e976b9573bdf46587f
+Author: Thomas Koppensteiner <thomas.koppensteiner@runtastic.com>
+Date:   Wed Jan 19 10:44:12 2022 +0100
+
+    Update spech_helper
+
+commit ff2e647c2bc487c1285d9b817ceb657c13871649
+Author: Thomas Koppensteiner <thomas.koppensteiner@runtastic.com>
+Date:   Wed Jan 19 10:43:19 2022 +0100
+
+    Update ruby-build github workflow
+
+commit fc5aa53f53f6bd2561cfd34c2a1d2c5859ff55a7
+Author: Thomas Koppensteiner <thomas.koppensteiner@runtastic.com>
+Date:   Tue Oct 5 21:18:06 2021 +0200
+
+    Add ruby-build github workflow
+
+commit b1c75a266971cf054009c745a7ca6c985b1f6358
+Author: Thomas Koppensteiner <thomas.koppensteiner@runtastic.com>
+Date:   Tue Oct 5 21:15:53 2021 +0200
+
+    Update sidekiq to 6.2.2
+
+commit a691fea9e89b4101a7634ce13d62e0609b9adcd8
+Author: Renovate Bot <bot@renovateapp.com>
+Date:   Wed Jul 28 09:50:51 2021 +0000
+
+    Add renovate.json
+
+commit 0326fef9948723fe4c9ae7a8ce313c104c27be96
+Author: dependabot-preview[bot] <27856297+dependabot-preview[bot]@users.noreply.github.com>
+Date:   Wed Apr 28 22:13:27 2021 +0000
+
+    Upgrade to GitHub-native Dependabot
+
+commit 409f7a4e40617328919437a9a7080214895b30d5
+Author: Thomas Koppensteiner <thomas.koppensteiner@runtastic.com>
+Date:   Sat May 22 17:56:19 2021 +0200
+
+    Update travis CI config to use latest ruby versions
+
+commit 60c637550d6076dd41fe0a4fbef50dc6ba0686a6
+Author: Thomas Koppensteiner <thomas.koppensteiner@runtastic.com>
+Date:   Sat May 22 17:23:38 2021 +0200
+
+    Update support Sidekiq 6.2 and higher
+
+commit e8f52c1eac971f12365437345286ca962fd69f05
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Tue Jan 26 21:11:40 2021 +0100
+
+    Upgrade rubocop and rt_rubocop_defaults
+
+commit bb063a6b76375bcb00accf5c8c5a7c1a2647b359
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Tue Jan 26 21:53:43 2021 +0100
+
+    Update Travis CI setup
+
+commit cda819b0c198a248444348471b6779e7e664eebe
+Author: Thomas Koppensteiner <ThomasKoppensteiner@users.noreply.github.com>
+Date:   Tue Dec 1 00:57:04 2020 +0100
+
+    Add rubocop badge to README.md #35
+
+commit 4ac9fd82c476a356a7b65187b62eb003ddbd4778
+Author: Les Hill <leshill@gmail.com>
+Date:   Mon Nov 2 11:19:43 2020 -0800
+
+    Update README to clarify RuboCop install
+    
+    Consider also explicitly stating that PRs must pass RuboCop to be accepted.
+
+commit 116895236b696546decf1e9c5fdd214e84610df8
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Wed Feb 19 12:17:24 2020 +0100
+
+    Update travis ci to use JRuby-9.2.10.0
+
+commit faa2f05b95bf87d2a63bf51e699dfc5fec20e31c
+Author: dependabot-preview[bot] <27856297+dependabot-preview[bot]@users.noreply.github.com>
+Date:   Wed Feb 12 11:36:46 2020 +0000
+
+    Update rake requirement from ~> 12.3 to ~> 13.0
+    
+    Updates the requirements on [rake](https://github.com/ruby/rake) to permit the latest version.
+    - [Release notes](https://github.com/ruby/rake/releases)
+    - [Changelog](https://github.com/ruby/rake/blob/master/History.rdoc)
+    - [Commits](https://github.com/ruby/rake/compare/v12.3.0...v13.0.1)
+    
+    Signed-off-by: dependabot-preview[bot] <support@dependabot.com>
+
+commit 35fa451ca65ea594584e6469c2c923c389e1eb10
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Mon Feb 3 21:39:30 2020 +0100
+
+    Bump version
+
+commit 7d2847ab9d343b12bae854a109fbb2c8407d24dc
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Mon Feb 3 21:08:59 2020 +0100
+
+    Fix rubocopo issues
+
+commit 64fc9b5c67154f38d95171a471bc8b7c5b46a00c
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Mon Feb 3 20:42:05 2020 +0100
+
+    Fix pagination on morgue page
+
+commit 2177299e8bc01990b832bdb031a5953fc64d9395
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Fri Jan 31 13:54:06 2020 +0100
+
+    Add ruby 2.7.0 to travis file and mark ruby 2.4.9 as optional
+
+commit e14ebcb1150a47e3d68a4b05eeb7e288691bf0ce
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Mon Dec 9 20:38:40 2019 +0100
+
+    Update codeclimate.yml to enable rubocop
+
+commit f541dc870a5ec22a043249b6d0d3bd3d8c2ca4f1
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Tue Dec 24 11:48:34 2019 +0100
+
+    Bump version
+
+commit 3a341a84368f2e3414831f897e2bdfdc79b0f564
+Author: Thomas Koppensteiner <ThomasKoppensteiner@users.noreply.github.com>
+Date:   Wed Dec 18 01:00:00 2019 +0100
+
+    Update README.md to fix broken members link
+
+commit b81bd5f02c4852cf279e69a28599a8cccea7e56d
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Mon Dec 16 21:32:23 2019 +0100
+
+    Remove before install steps from .travis.yml
+
+commit 4444b48b0d1ba45651a0621af839ff5fc930c3ef
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Mon Dec 16 20:59:13 2019 +0100
+
+    Fix approvals specs after sidekiq ref update
+
+commit a2023d7999bb53d2fd313c6d077b4a4fd74eb1ee
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Mon Dec 16 12:36:44 2019 +0100
+
+    Bump version
+
+commit 77aec2a4bf51e77aba7e4cb005e253fdca4f1ca5
+Author: Andreas Eger <github@eger-andreas.de>
+Date:   Mon Dec 16 11:00:08 2019 +0100
+
+    fix sidekiq dependency in gemspec
+
+commit fbcb83420acc816ffcd0e00c4d225d7d9dfdde16
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Wed Dec 11 22:09:57 2019 +0100
+
+    Bump version
+
+commit 99344482b2cec6c00678434e45730899e5b2beae
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Wed Dec 11 21:31:41 2019 +0100
+
+    Update do not show 'all' as job or error name in titles
+
+commit 9c998be18396d3951fe92f72422273c6b43c011d
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Wed Dec 11 21:23:50 2019 +0100
+
+    Fix broken links in filter view
+
+commit 2134c9fd358bddda33cf9b47fa61e0886949292e
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Tue Dec 10 22:15:12 2019 +0100
+
+    Bump version
+
+commit 990249662e50e410d3474b061af7d72a0a2039a6
+Merge: 3d6e641 9f3774b
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Tue Dec 10 22:12:38 2019 +0100
+
+    Merge branch 'master' of github.com:ThomasKoppensteiner/sidekiq-cleaner
+
+commit 3d6e641d1bc01c7c236f229caa91192b777b764d
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Tue Dec 10 22:12:04 2019 +0100
+
+    Update gemspec
+
+commit 9f3774bc577ac129a287dfcee604ff819f1869ee
+Author: Thomas Koppensteiner <ThomasKoppensteiner@users.noreply.github.com>
+Date:   Tue Dec 10 22:06:57 2019 +0100
+
+    Update README.md
+    
+    Add RubyGems badge
+
+commit 1423bcaa0fe2f147bdaafd97c46841f08db208ae
+Author: Thomas Koppensteiner <ThomasKoppensteiner@users.noreply.github.com>
+Date:   Tue Dec 10 21:25:50 2019 +0100
+
+    Update README.md
+
+commit b4ea2ec6c85a3132318abc079314de9d9550dc97
+Author: Thomas Koppensteiner <ThomasKoppensteiner@users.noreply.github.com>
+Date:   Tue Dec 10 21:24:50 2019 +0100
+
+    Update .travis.yml
+    
+    Update CC_TEST_REPORTER_ID
+
+commit 4ede90899603fdc9224ed03aed430f5e5d15fd6b
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Tue Dec 10 19:07:15 2019 +0100
+
+    Update .travis.yml
+
+commit 6fb8c628026b94992835f8e5146115437c2a23c3
+Author: Thomas Koppensteiner <ThomasKoppensteiner@users.noreply.github.com>
+Date:   Tue Dec 10 19:55:20 2019 +0100
+
+    Update README.md
+
+commit 9685070fa03051849f60ace9aafd9803dd498987
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Tue Dec 10 18:35:31 2019 +0100
+
+    Update CC_TEST_REPORTER_ID in travis.yml
+
+commit 8dc34109f01bde3b46c2619ebf30f3722f21b085
+Author: Thomas Koppensteiner <ThomasKoppensteiner@users.noreply.github.com>
+Date:   Mon Dec 9 09:42:03 2019 +0100
+
+    Update README.md
+    
+    Fix Travis link
+
+commit 292ccf84b5fa2ed00c6e9ab5628b8be7f5af6983
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sun Dec 8 20:58:49 2019 +0100
+
+    Update README.md
+
+commit 40663a52e566e0b1759b87a6a7bd88700c5abc49
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sun Dec 8 19:49:41 2019 +0100
+
+    Update rename buckets and add the 'older' bucket
+
+commit 9186fc57d8116e9bf5aa4fe866c4e01f5ad6058b
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Dec 7 18:17:24 2019 +0100
+
+    Rename JobAggregator to JobDistributor
+
+commit 15dcb5a4dee986610d4604c40bbb48bb84e1771a
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Dec 7 18:11:41 2019 +0100
+
+    Update transaltions
+
+commit aec2c8375294f569c824de0b11567064bad5f5a1
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Dec 7 18:08:07 2019 +0100
+
+    Update paths in views
+
+commit e27dc573ef1aba20e04cae67dc70887e2831ed20
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Dec 7 00:26:39 2019 +0100
+
+    Refactor move sort into JobAggregator
+
+commit a1c6246f8f135653531b179a0d681bd59f6e95e4
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Fri Dec 6 23:55:38 2019 +0100
+
+    Update add '/filter' and '/morgue' prefixes to URLs
+
+commit 2238381372cfd07a43420dbc58e793fd00d6b5e4
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Fri Dec 6 22:53:56 2019 +0100
+
+    Rename Helpers to APIHelpers
+
+commit 04395b34d610c45d7081f6988a48d2c5eb5d421f
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Fri Dec 6 22:09:52 2019 +0100
+
+    Move view files to top level web folder
+
+commit 4e5cb8b67bc1fa7b04202391238ed353ce9d934d
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Fri Dec 6 21:53:08 2019 +0100
+
+    Rename views
+
+commit 7fc40b3048e7f1be68aeeeddfbb496d6931f3eeb
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Fri Dec 6 21:33:58 2019 +0100
+
+    Move WebExtension::Helper into separate file
+
+commit 0ac59ee6b1f12db43d1add4f8323b384ce2dbbac
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Thu Dec 5 17:33:16 2019 +0100
+
+    Add custom locales
+
+commit 1eaa8daed8265539a304a8ae0765bbd57f1bd95c
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Thu Dec 5 16:42:17 2019 +0100
+
+    Rename gem from sidekiq-cleaner to sidekiq-undertaker
+
+commit af75ff3a76a99bc23af06e54d4e4e319fb59bba9
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Wed Dec 4 21:35:06 2019 +0100
+
+    Bump version
+
+commit e5cfaec8056cc60e561ce0fbb552995124d4e93d
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Wed Dec 4 21:08:24 2019 +0100
+
+    Update travis config
+
+commit 6c660c38f81e07841d86bf94d3185bfd985ba0b7
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Wed Dec 4 20:57:33 2019 +0100
+
+    Update Rubocop and RtRubocopDefaults gems
+
+commit da8c0e24c7b539848f621ee4d1f8a703f845bd6b
+Author: Thomas Koppensteiner <ThomasKoppensteiner@users.noreply.github.com>
+Date:   Thu Sep 12 23:44:24 2019 +0200
+
+    Fix typo in README.md
+
+commit 146a08f04f24a65cfe74eb9397dd1f9732f076a4
+Author: Thomas Koppensteiner <ThomasKoppensteiner@users.noreply.github.com>
+Date:   Fri Feb 15 22:21:27 2019 +0100
+
+    Update README.md
+    
+    Add Test Coverage Badge
+
+commit 752b2b729d3bbafcf793b700d6aa4eb8f681b9ba
+Author: Thomas Koppensteiner <ThomasKoppensteiner@users.noreply.github.com>
+Date:   Fri Feb 15 21:53:09 2019 +0100
+
+    Add CodeClimate configuration (#12)
+
+commit 7fada3f8cae4f888fcb90ccc86afa88778d1d3f1
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Wed Feb 13 22:17:08 2019 +0100
+
+    Add CodeClimate configuration
+
+commit 7ee9d1f80a344f0e60ac619eec545cb5fbc1063d
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Wed Feb 13 21:06:49 2019 +0100
+
+    Bump version
+
+commit 4999e86baf4a01b51f3d52a65d86228c4a9d99d7
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Wed Feb 13 00:00:51 2019 +0100
+
+    Add support for JRuby
+
+commit 9c88d491456e63067cb2d9481b5a712f4271e5d3
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Feb 9 22:31:55 2019 +0100
+
+    Bump version
+
+commit b9838e989db4dc214f74067354c0f6e3d053b3ae
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Feb 9 22:22:51 2019 +0100
+
+    Update gemspec
+
+commit 1b84265bae24dbe11e30d65b448c31752bf46b13
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Feb 9 22:10:08 2019 +0100
+
+    Rename approvals specs to shorten file path
+
+commit 5e09a56b0d83f32919cfecefee6e5a8762f68895
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Feb 9 21:47:11 2019 +0100
+
+    Bump version
+
+commit 82638d359559c8b2da3ab1eb8406d8ec646155b1
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Feb 9 21:27:44 2019 +0100
+
+    Update README and gemspec
+
+commit 7ec9ffc9aa65b58b7a1a3bfa0f6e38a765e183e8
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Feb 9 11:02:15 2019 +0100
+
+    Bump version
+
+commit e33748eefa6ebd673b3e9ae747ba7976e0c21079
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Feb 9 10:37:56 2019 +0100
+
+    Fix "Retry All" and "Delete All" function
+
+commit 6bd4c1e57deab97cc07365f742753214d4bc398d
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Feb 9 00:10:35 2019 +0100
+
+    Add .travis.yml
+
+commit 2115d1622731299b5409f09954fc45da1d37e206
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sat Feb 9 00:51:32 2019 +0100
+
+    Update approval specs to exclude Sidekiq::VERSION
+
+commit 2331bf117e0dab0de50c04f83dbd587377c3c241
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Fri Feb 8 23:45:57 2019 +0100
+
+    Bump version
+
+commit 3203279df24da326e213a1ca9267d89ca0d67594
+Author: Thomas Koppensteiner <thomas.koppensteiner@space-4.me>
+Date:   Sun Dec 16 11:47:02 2018 +0100
+
+    Refactor code base
+    
+    Fix specs
+    Add Rubocop
+    Add SimpleCov
+
+commit 0ad4057d94afb4c44947f03c121b45681a39e352
+Author: maf <maf@runtastic.com>
+Date:   Wed Jun 13 10:56:05 2018 +0200
+
+    Fix strange version
+
+commit f5f6541fb274803fc942a4052a134bc8127c8c1f
+Author: maf <maf@runtastic.com>
+Date:   Wed Jun 13 10:30:00 2018 +0200
+
+    Remove celluloid dependency
+
+commit e5ec4b9e451384e28c4dc4b7636814ed3d895c31
+Merge: ca13468 972bb9f
+Author: Will Bryant <Will.T.Bryant@gmail.com>
+Date:   Fri Nov 3 15:04:11 2017 -0700
+
+    Merge pull request #1 from Tout/csrf_fix_and_sidekiq_version_compatibility
+    
+    Csrf fix and sidekiq version compatibility
+
+commit 972bb9f9bd97d955b095d73c1a46c74a1cf0531b
+Author: Will Bryant <william@tout.com>
+Date:   Fri Nov 3 15:03:38 2017 -0700
+
+    Bump version
+
+commit 947eb216fff50e39120d0ca649017d0846aa3937
+Author: Will Bryant <william@tout.com>
+Date:   Mon Jul 17 10:34:59 2017 -0700
+
+    Add support for csrf and allow this to be used with newer versions of sidekiq
+
+commit ca13468fc74d25ae549a51899c83c4c377305d9d
+Merge: 13252ee 50eb2ec
+Author: Madan Thangavelu <madankumar.t@gmail.com>
+Date:   Mon Sep 1 23:21:48 2014 -0500
+
+    Merge pull request #1 from petergoldstein/feature/remove_ruby_version
+    
+    Allow developers to use other Rubies
+
+commit 50eb2ec276431cc2a825d1df6f6ae1980fd4d3d7
+Author: Peter M. Goldstein <peter.m.goldstein@gmail.com>
+Date:   Mon Sep 1 18:53:31 2014 -0700
+
+    Remove .ruby-version and add .ruby-version and .rvmrc to the .gitignore
+
+commit 13252eec63a9fbdfac99677b1d2664718d97314e
+Author: Jaysen Le <jaysen.le@lookout.com>
+Date:   Tue Jun 17 14:01:03 2014 -0700
+
+    Fix Cleaner Redirect Bug
+
+commit dabbea595d09411955a2e430283b84bf6755f37d
+Author: Madan Thangavelu <madan.thangavelu@lookout.com>
+Date:   Thu Jun 5 13:47:40 2014 -0700
+
+    Updating screenshots
+
+commit a0a4a7d78714b0cf905aba4756788847f8bfef25
+Author: Madan Thangavelu <madan.thangavelu@lookout.com>
+Date:   Thu Jun 5 13:24:51 2014 -0700
+
+    Cleanup README.md
+
+commit 63be7ff78732c57857fc9e3203292c21117b8c73
+Author: Madan Thangavelu <madan.thangavelu@lookout.com>
+Date:   Sun Apr 27 19:45:48 2014 -0700
+
+    Initial commit sidekiq cleaner
