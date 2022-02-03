@@ -18,7 +18,7 @@
     <meta name="google" content="notranslate" />
     
   </head>
-  <body class="admin" data-poll-path="" data-locale="en">
+  <body class="admin" data-locale="en">
     <div class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header" data-navbar="static">
@@ -29,9 +29,8 @@
       </button>
       <div class="navbar-toggle collapsed navbar-livereload">
         
-  
-    <a id="live-poll" class="btn btn-primary" href="/sidekiq/undertaker/filter?poll=true">Live Poll</a>
-  
+    <a class="live-poll-start live-poll btn btn-primary">Live Poll</a>
+    <a class="live-poll-stop live-poll btn btn-primary active">Stop Polling</a>
 
 
         
@@ -95,9 +94,8 @@
         <li class="navbar-livereload">
           <div class="poll-wrapper">
             
-  
-    <a id="live-poll" class="btn btn-primary" href="/sidekiq/undertaker/filter?poll=true">Live Poll</a>
-  
+    <a class="live-poll-start live-poll btn btn-primary">Live Poll</a>
+    <a class="live-poll-stop live-poll btn btn-primary active">Stop Polling</a>
 
 
             
@@ -114,40 +112,40 @@
           <div class="col-sm-12 summary_bar">
             <ul class="list-unstyled summary row">
   <li class="processed col-sm-1">
-    <span class="count">0</span>
+    <span id="txtProcessed" class="count">0</span>
     <span class="desc">Processed</span>
   </li>
   <li class="failed col-sm-1">
-    <span class="count">0</span>
+    <span id="txtFailed" class="count">0</span>
     <span class="desc">Failed</span>
   </li>
   <li class="busy col-sm-1">
     <a href="/sidekiq/busy">
-      <span class="count">0</span>
+      <span id="txtBusy" class="count">0</span>
       <span class="desc">Busy</span>
     </a>
   </li>
   <li class="enqueued col-sm-1">
     <a href="/sidekiq/queues">
-      <span class="count">0</span>
+      <span id="txtEnqueued" class="count">0</span>
       <span class="desc">Enqueued</span>
     </a>
   </li>
   <li class="retries col-sm-1">
     <a href="/sidekiq/retries">
-      <span class="count">0</span>
+      <span id="txtRetries" class="count">0</span>
       <span class="desc">Retries</span>
     </a>
   </li>
   <li class="scheduled col-sm-1">
     <a href="/sidekiq/scheduled">
-      <span class="count">0</span>
+      <span id="txtScheduled" class="count">0</span>
       <span class="desc">Scheduled</span>
     </a>
   </li>
   <li class="dead col-sm-1">
     <a href="/sidekiq/morgue">
-      <span class="count">4</span>
+      <span id="txtDead" class="count">4</span>
       <span class="desc">Dead</span>
     </a>
   </li>
@@ -228,7 +226,7 @@
             <p class="navbar-text redis-url" title="redis://127.0.0.1:6379/0">redis://127.0.0.1:6379/0</p>
           </li>
           <li>
-            <p class="navbar-text server-utc-time">20:57:00 UTC</p>
+            <p id="serverUtcTime" class="navbar-text server-utc-time">20:57:00 UTC</p>
           </li>
           <li>
             <p class="navbar-text"><a style="color: gray;" href="https://github.com/mperham/sidekiq/wiki">docs</a></p>
