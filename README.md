@@ -45,24 +45,24 @@ Or install it yourself as:
 
 The filter page shows a table with time-buckets as columns and rows for each job class.
 
-![Sidekiq Undertaker](Demo_Filter.png)
+![Sidekiq Undertaker](assets/Undertaker_demo_all_jobs.png)
 
 #### Job Filter View
 
 For each job class, you can drill down to view error distribution based on
 error class.
 
-![Sidekiq Undertaker](Demo_Job_Filter.png)
+![Sidekiq Undertaker](assets/Undertaker_demo_1_job_all_errors.png)
 
 #### Morgue View
 Finally, click on the individual error counts to display details of the
 errors in a list form.
 
-![Sidekiq Undertaker](Demo_Morgue_1_Job.png)
+![Sidekiq Undertaker](assets/Undertaker_demo_1_job_1_error.png)
 
 The morgue view can, for example, also show an error distribution over all job classes.
 
-![Sidekiq Undertaker](Demo_Morgue_all.png)
+![Sidekiq Undertaker](assets/Undertaker_demo_all_jobs_1_error.png)
 
 ## Contributing
 
