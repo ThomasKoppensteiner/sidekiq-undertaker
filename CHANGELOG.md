@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## [1.2.0.rc01] - 2022-04-27
+### Added
+- Added option to export and re-import dead jobs
+
 ## [1.1.1] - 2022-02-03
 ### Added
 - Added CHANGELOG.md
