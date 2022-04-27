@@ -19,6 +19,10 @@ require "timecop"
 
 if ENV["COVERAGE"]
   require "simplecov"
+  require "simplecov_json_formatter"
+
+  SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
+
   SimpleCov.start do
     add_group "lib", "lib"
     add_group "spec", "spec"
