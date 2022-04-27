@@ -57,7 +57,7 @@ jobs:
       if: ${{ matrix.ruby-version == 'ruby' }}
       with:
         name: coverage-report
-        path: ./coverage/.resultset.json
+        path: ./coverage
         retention-days: 1
 
   coverage:
@@ -71,9 +71,9 @@ jobs:
       with:
         name: coverage-report
         path: ./coverage
-    - uses: paambaati/codeclimate-action@v2.7.1
+    - uses: paambaati/codeclimate-action@v3.0.0
       env:
         # Set CC_TEST_REPORTER_ID as secret of your repo
         CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
       with:
-        debug: false
+        debug: true
