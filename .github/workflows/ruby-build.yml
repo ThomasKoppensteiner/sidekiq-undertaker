@@ -34,9 +34,12 @@ jobs:
           - '2.7'
           - 'jruby'
           - 'jruby-9.3.2.0'
-          - 'jruby-9.2.20.0'
+          - 'jruby-9.2.20.1'
           - 'truffleruby'
           - 'truffleruby+graalvm'
+
+    env:
+      JRUBY_OPTS: '--debug'
 
     steps:
     - uses: actions/checkout@v3
@@ -48,4 +51,29 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
-      run: bundle exec rspec spec
+      run: COVERAGE=true bundle exec rspec
+    - name: 'Upload Coverage Report'
+      uses: actions/upload-artifact@v3
+      if: ${{ matrix.ruby-version == 'ruby' }}
+      with:
+        name: coverage-report
+        path: ./coverage/.resultset.json
+        retention-days: 1
+
+  coverage:
+    needs: [ test ]
+    name: coverage
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Download Coverage Report
+      uses: actions/download-artifact@v3
+      with:
+        name: coverage-report
+        path: ./coverage
+    - uses: paambaati/codeclimate-action@v2.7.1
+      env:
+        # Set CC_TEST_REPORTER_ID as secret of your repo
+        CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+      with:
+        debug: false
