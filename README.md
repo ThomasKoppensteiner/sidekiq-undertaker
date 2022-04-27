@@ -1,7 +1,7 @@
 # Sidekiq::Undertaker
 
 [![Gem Version](https://badge.fury.io/rb/sidekiq-undertaker.svg)](https://badge.fury.io/rb/sidekiq-undertaker)
-[![Build Status](https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker.svg?branch=master)](https://travis-ci.org/ThomasKoppensteiner/sidekiq-undertaker)
+[![Ruby-Build](https://github.com/ThomasKoppensteiner/sidekiq-undertaker/actions/workflows/ruby-build.yml/badge.svg)](https://github.com/ThomasKoppensteiner/sidekiq-undertaker/actions/workflows/ruby-build.yml)
 [![Code Climate](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-undertaker.svg)](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-undertaker)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d442eb0a323d8911661f/test_coverage)](https://codeclimate.com/github/ThomasKoppensteiner/sidekiq-undertaker/test_coverage)
 [![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop-hq/rubocop)

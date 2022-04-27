@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Removed Travis CI integration
 
 ## [1.3.0] - 2022-04-27
 ### Added

@@ -1,5 +1,14 @@
 require:
+  - rubocop-rake
   - rubocop-rspec
+
 inherit_from:
   - .rt_rubocop_defaults.yml
   - .rubocop_todo.yml
+
+AllCops:
+  TargetRubyVersion: 2.5
+
+Layout/LineLength:
+  Exclude:
+    - 'sidekiq-undertaker.gemspec'
