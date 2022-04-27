@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## [1.3.0] - 2022-04-27
+### Added
+- Added option to export and re-import dead jobs
+
 ## [1.2.0] - 2022-02-03
 ### Changed
 - Updated sidekiq dependency to 6.4.0
