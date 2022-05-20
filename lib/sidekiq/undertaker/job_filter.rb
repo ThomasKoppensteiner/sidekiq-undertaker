@@ -7,7 +7,7 @@ module Sidekiq
     class JobFilter
       class << self
         def filter_dead_jobs(filters = {})
-          # filters can have keys in (job_class, error_class, bucket_name)
+          # filters can have keys in (job_class, error_class, error_msg, bucket_name)
           dead_jobs = []
           Sidekiq::Undertaker::DeadJob.for_each do |dead_job|
             filter_passed = true
@@ -26,7 +26,8 @@ module Sidekiq
           value.nil? ||
             total_dead_bucket?(filter, value) ||
             all_jobs?(filter, value) ||
-            all_errors?(filter, value)
+            all_errors?(filter, value) ||
+            all_error_msgs?(filter, value)
         end
 
         def total_dead_bucket?(filter, value)
@@ -39,6 +40,10 @@ module Sidekiq
 
         def all_errors?(filter, value)
           filter == "error_class" && value == "all"
+        end
+
+        def all_error_msgs?(filter, value)
+          filter == "error_msg" && value == "all"
         end
       end
     end

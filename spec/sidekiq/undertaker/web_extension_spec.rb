@@ -33,12 +33,14 @@ module Sidekiq
           "class"         => "HardWorker",
           "args"          => ["asdf", 1234],
           "queue"         => "foo",
-          "error_message" => "Some fake message",
+          "error_message" => "Option 'data/file_name' is required",
           "error_class"   => "RuntimeError",
           "retry_count"   => 0,
           "failed_at"     => Time.now.utc
         }
       end
+
+      let(:encoded_error_msg) { "T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=" }
 
       # rubocop:disable RSpec/AnyInstance
       before do
@@ -101,6 +103,20 @@ module Sidekiq
 
           it_behaves_like "a page"
         end
+
+        # /undertaker/filter/:job_class/:error_class/:bucket_name
+        context "when job-class/error-class/bucket page is called" do
+          subject { get "/undertaker/filter/HardWorker/RuntimeError/1_hour" }
+
+          it_behaves_like "a page"
+        end
+
+        # /undertaker/filter/:job_class/:error_class/:bucket_name?poll=true
+        context "when job-class/error-class/bucket page is polled" do
+          subject { get "/undertaker/filter/HardWorker/RuntimeError/1_hour?poll=true" }
+
+          it_behaves_like "a page"
+        end
       end
 
       describe "show morgue" do
@@ -108,10 +124,28 @@ module Sidekiq
           allow_any_instance_of(Sidekiq::Web::CsrfProtection).to receive(:mask_token).and_return("stubbed-csrf-token")
         end
 
-        # /undertaker/morgue/:job_class/:error_class/:bucket_name
+        # /undertaker/morgue/:job_class/:error_class/:error_msg/:bucket_name
         context "when job-class/error/bucket is called" do
           context "with specific job-class and a specific error" do
-            subject { get "/undertaker/morgue/HardWorker/RuntimeError/1_hour" }
+            subject { get "/undertaker/morgue/HardWorker/RuntimeError/all/1_hour" }
+
+            it_behaves_like "a page"
+
+            context "with pagination" do
+              before do
+                50.times do |i|
+                  job_refs.push add_dead("jid" => i.to_s)
+                end
+              end
+
+              it_behaves_like "a page"
+            end
+          end
+
+          context "with specific job-class, specific error and specific error message" do
+            subject do
+              get "/undertaker/morgue/HardWorker/RuntimeError/#{encoded_error_msg}/1_hour"
+            end
 
             it_behaves_like "a page"
 
@@ -127,7 +161,7 @@ module Sidekiq
           end
 
           context "with all failures and errors" do
-            subject { get "/undertaker/morgue/all/all/total_dead" }
+            subject { get "/undertaker/morgue/all/all/all/total_dead" }
 
             it_behaves_like "a page"
           end
@@ -136,12 +170,17 @@ module Sidekiq
       # rubocop:enable RSpec/AnyInstance
 
       describe "delete" do
-        context "when job-class, error and bucket are given" do
-          subject { post "/undertaker/morgue/HardWorker/RuntimeError/1_hour/delete" }
+        context "when job-class, error, error message and bucket are given" do
+          subject do
+            post "/undertaker/morgue/HardWorker/RuntimeError/#{encoded_error_msg}/1_hour/delete"
+          end
 
-          let(:expected_redirect_url) { "http://example.org/undertaker/morgue/HardWorker/RuntimeError/1_hour" }
+          let(:expected_redirect_url) { "http://example.org/undertaker/morgue/HardWorker/RuntimeError/#{encoded_error_msg}/1_hour" }
 
-          let(:params) { { "job_class" => "HardWorker", "error_class" => "RuntimeError", "bucket_name" => "1_hour" } }
+          let(:params) do
+            { "job_class" => "HardWorker", "error_class" => "RuntimeError", "bucket_name" => "1_hour",
+           "error_msg" => "Option 'data/file_name' is required" }
+          end
           let(:dead_jobs_set) { [dead_job1, dead_job2] }
           let(:dead_job1) { Sidekiq::Undertaker::DeadJob.to_dead_job(Sidekiq::DeadSet.new.find_job(jid1)) }
           let(:dead_job2) { Sidekiq::Undertaker::DeadJob.to_dead_job(Sidekiq::DeadSet.new.find_job(jid2)) }
@@ -161,7 +200,7 @@ module Sidekiq
             expect { subject }.to change { Sidekiq::DeadSet.new.size }.from(4).to(2)
           end
 
-          it "redirects to /undertaker/morgue/HardWorker/RuntimeError/1_hour after the delete" do
+          it "redirects to morgue view after the delete" do
             subject
             expect(last_response.status).to eq 302
 
@@ -269,11 +308,14 @@ module Sidekiq
 
       describe "retry" do
         context "when job class, error and bucket are given" do
-          subject { post "/undertaker/morgue/HardWorker/RuntimeError/1_hour/retry" }
+          subject { post "/undertaker/morgue/HardWorker/RuntimeError/all/1_hour/retry" }
 
-          let(:expected_redirect_url) { "http://example.org/undertaker/morgue/HardWorker/RuntimeError/1_hour" }
+          let(:expected_redirect_url) { "http://example.org/undertaker/morgue/HardWorker/RuntimeError/all/1_hour" }
 
-          let(:params) { { "job_class" => "HardWorker", "error_class" => "RuntimeError", "bucket_name" => "1_hour" } }
+          let(:params) do
+            { "job_class" => "HardWorker", "error_class" => "RuntimeError", "bucket_name" => "1_hour",
+              "error_msg" => "all" }
+          end
           let(:dead_jobs_set) { [dead_job1, dead_job2] }
           let(:dead_job1) { Sidekiq::Undertaker::DeadJob.to_dead_job(Sidekiq::DeadSet.new.find_job(jid1)) }
           let(:dead_job2) { Sidekiq::Undertaker::DeadJob.to_dead_job(Sidekiq::DeadSet.new.find_job(jid2)) }
@@ -326,13 +368,14 @@ module Sidekiq
 
       describe "export" do
         context "when job class, error and bucket are given" do
-          subject { post "/undertaker/morgue/HardWorker/RuntimeError/1_hour/export" }
+          subject { post "/undertaker/morgue/HardWorker/RuntimeError/all/1_hour/export" }
 
-          let(:expected_redirect_url) { "http://example.org/undertaker/morgue/HardWorker/RuntimeError/1_hour" }
+          let(:expected_redirect_url) { "http://example.org/undertaker/morgue/HardWorker/RuntimeError/all/1_hour" }
           let(:expected_content_disposition_header) { "attachment; filename=\"2018-12-16_20-57.json\"" }
 
           let(:params) do
-            { "job_class" => "HardWorker", "error_class" => "RuntimeError", "bucket_name" => "1_hour" }
+            { "job_class" => "HardWorker", "error_class" => "RuntimeError", "bucket_name" => "1_hour",
+              "error_msg" => "all" }
           end
           let(:dead_jobs_set) { [dead_job1, dead_job2] }
           let(:dead_job1) { Sidekiq::Undertaker::DeadJob.to_dead_job(Sidekiq::DeadSet.new.find_job(jid1)) }
@@ -400,9 +443,9 @@ module Sidekiq
         it "redirects on specific retry post" do
           post("/undertaker/morgue",
                "key[]=#{job_refs[0]}&retry=Retry+Now",
-               "HTTP_REFERER" => "/undertaker/morgue/all/all/total_dead")
+               "HTTP_REFERER" => "/undertaker/morgue/all/all/all/total_dead")
           expect(last_response.status).to eq 302
-          expect(last_response.header["Location"]).to include("/undertaker/morgue/all/all/total_dead")
+          expect(last_response.header["Location"]).to include("/undertaker/morgue/all/all/all/total_dead")
         end
       end
     end

@@ -160,6 +160,7 @@
       <b>4</b> dead jobs
       
       
+      
        in <b>total_dead</b> bucket
     </h3>
   </div>
@@ -207,7 +208,7 @@
               <div class="args">&quot;asdf&quot;, 1234</div>
             </td>
             <td>
-              <div>NoMethodError: Some fake message</div>
+              <div>NoMethodError: Option &#x27;data&#x2F;file_name&#x27; is required</div>
             </td>
           </tr>
         
@@ -228,7 +229,7 @@
               <div class="args">&quot;asdf&quot;, 1234</div>
             </td>
             <td>
-              <div>RuntimeError: Some fake message</div>
+              <div>RuntimeError: Option &#x27;data&#x2F;file_name&#x27; is required</div>
             </td>
           </tr>
         
@@ -249,7 +250,7 @@
               <div class="args">&quot;asdf&quot;, 1234</div>
             </td>
             <td>
-              <div>RuntimeError: Some fake message</div>
+              <div>RuntimeError: Option &#x27;data&#x2F;file_name&#x27; is required</div>
             </td>
           </tr>
         
@@ -270,7 +271,7 @@
               <div class="args">&quot;asdf&quot;, 1234</div>
             </td>
             <td>
-              <div>NoMethodError: Some fake message</div>
+              <div>NoMethodError: Option &#x27;data&#x2F;file_name&#x27; is required</div>
             </td>
           </tr>
         
@@ -280,17 +281,17 @@
       <input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="Bury" />
     </form>
 
-    <form action="/sidekiq/undertaker/morgue/all/all/total_dead/delete" method="post">
+    <form action="/sidekiq/undertaker/morgue/all/all/YWxs/total_dead/delete" method="post">
       <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Bury All" data-confirm="Are you sure?" />
     </form>
 
-    <form action="/sidekiq/undertaker/morgue/all/all/total_dead/export" method="post">
+    <form action="/sidekiq/undertaker/morgue/all/all/YWxs/total_dead/export" method="post">
       <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
       <input class="btn btn-secondary btn-xs pull-right" type="submit" name="export" value="Export All" />
     </form>
 
-    <form action="/sidekiq/undertaker/morgue/all/all/total_dead/retry" method="post">
+    <form action="/sidekiq/undertaker/morgue/all/all/YWxs/total_dead/retry" method="post">
       <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="Revive All" data-confirm="Are you sure?" />
     </form>

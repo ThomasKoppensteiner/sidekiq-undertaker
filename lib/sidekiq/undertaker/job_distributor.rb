@@ -19,6 +19,10 @@ module Sidekiq
         group_by(:error_class)
       end
 
+      def group_by_error_msg
+        group_by(:error_msg)
+      end
+
       private
 
       def distribute
