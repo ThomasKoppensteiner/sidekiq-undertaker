@@ -7,10 +7,11 @@ module Sidekiq
     describe DeadJob do
       let(:job) do
         build_job(
-          "class"       => "HardWorkTask",
-          "failed_at"   => Time.now,
-          "error_class" => "NoMethodError",
-          "queue"       => "SomeQueue"
+          "class"         => "HardWorkTask",
+          "failed_at"     => Time.now,
+          "error_class"   => "NoMethodError",
+          "queue"         => "SomeQueue",
+          "error_message" => "undefined method `pause` for HardWork:Class"
         )
       end
 
@@ -20,6 +21,7 @@ module Sidekiq
             job_class:                  "HardWorkTask",
             time_elapsed_since_failure: 9,
             error_class:                "NoMethodError",
+            error_msg:                  "undefined method `pause` for HardWork:Class",
             bucket_name:                "1_hour",
             job:                        job
           }
@@ -54,6 +56,7 @@ module Sidekiq
             job_class:                  "HardWorkTask",
             time_elapsed_since_failure: time_elapsed,
             error_class:                "NoMethodError",
+            error_msg:                  "undefined method `pause` for HardWork:Class",
             bucket_name:                "1_hour",
             job:                        killed_job
           )

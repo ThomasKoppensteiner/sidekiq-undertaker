@@ -15,25 +15,27 @@ module Sidekiq
         app.get "/undertaker/filter/:job_class/:bucket_name" do
           show_filter_by_job_class_bucket_name
         end
-
-        app.get "/undertaker/morgue/:job_class/:error_class/:bucket_name" do
-          show_undertaker_by_job_class_error_class_bucket_name
+        app.get "/undertaker/filter/:job_class/:error_class/:bucket_name" do
+          show_filter_by_job_class_error_class_bucket_name
+        end
+        app.get "/undertaker/morgue/:job_class/:error_class/:error_msg/:bucket_name" do
+          show_undertaker_by_job_class_error_class_error_msg_bucket_name
         end
 
         app.post "/undertaker/morgue" do
           post_undertaker
         end
 
-        app.post "/undertaker/morgue/:job_class/:error_class/:bucket_name/delete" do
-          post_undertaker_job_class_error_class_buckent_name_delete
+        app.post "/undertaker/morgue/:job_class/:error_class/:error_msg/:bucket_name/delete" do
+          post_undertaker_job_class_error_class_error_msg_bucket_name_delete
         end
 
-        app.post "/undertaker/morgue/:job_class/:error_class/:bucket_name/retry" do
-          post_undertaker_job_class_error_class_buckent_name_retry
+        app.post "/undertaker/morgue/:job_class/:error_class/:error_msg/:bucket_name/retry" do
+          post_undertaker_job_class_error_class_error_msg_bucket_name_retry
         end
 
-        app.post "/undertaker/morgue/:job_class/:error_class/:bucket_name/export" do
-          post_undertaker_job_class_error_class_buckent_name_export
+        app.post "/undertaker/morgue/:job_class/:error_class/:error_msg/:bucket_name/export" do
+          post_undertaker_job_class_error_class_error_msg_bucket_name_export
         end
 
         app.post "/undertaker/import_jobs" do

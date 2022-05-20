@@ -4,6 +4,7 @@
       <%= "<b>#{@total_dead}</b> dead #{@total_dead == 1 ? 'job' : 'jobs'}" %>
       <%= " of <b>#{@req_job_class}</b> class" unless @req_job_class == "all" %>
       <%= " with <b>#{@req_error_class}</b> exception" unless @req_error_class == "all" %>
+      <%= " with <b>#{@req_error_msg}</b> message" unless @req_error_msg == "all" %>
       <%= " in <b>#{@req_bucket_name}</b> bucket"  %>
     </h3>
   </div>
@@ -60,17 +61,17 @@
       <input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="<%= t('UndertakerBury') %>" />
     </form>
 
-    <form action="<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{@req_error_class}/#{@req_bucket_name}/delete" %>" method="post">
+    <form action="<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{@req_error_class}/#{Base64.urlsafe_encode64(@req_error_msg)}/#{@req_bucket_name}/delete" %>" method="post">
       <%= respond_to?(:csrf_tag) && csrf_tag %>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="<%= t('UndertakerBuryAll') %>" data-confirm="<%= t('AreYouSure') %>" />
     </form>
 
-    <form action="<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{@req_error_class}/#{@req_bucket_name}/export" %>" method="post">
+    <form action="<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{@req_error_class}/#{Base64.urlsafe_encode64(@req_error_msg)}/#{@req_bucket_name}/export" %>" method="post">
       <%= respond_to?(:csrf_tag) && csrf_tag %>
       <input class="btn btn-secondary btn-xs pull-right" type="submit" name="export" value="<%= t('UndertakerExportAll') %>" />
     </form>
 
-    <form action="<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{@req_error_class}/#{@req_bucket_name}/retry" %>" method="post">
+    <form action="<%= "#{root_path}undertaker/morgue/#{@req_job_class}/#{@req_error_class}/#{Base64.urlsafe_encode64(@req_error_msg)}/#{@req_bucket_name}/retry" %>" method="post">
       <%= respond_to?(:csrf_tag) && csrf_tag %>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="<%= t('UndertakerReviveAll') %>" data-confirm="<%= t('AreYouSure') %>" />
     </form>

@@ -8,25 +8,28 @@ module Sidekiq
       describe ".filter_dead_jobs" do
         let(:job1) do
           instance_double(Sidekiq::JobRecord, item: {
-                            "class"       => "HardWorkTask",
-                            "failed_at"   => Time.now.to_i - (5 * 60),
-                            "error_class" => "NoMethodError"
+                            "class"         => "HardWorkTask",
+                            "failed_at"     => Time.now.to_i - (5 * 60),
+                            "error_class"   => "NoMethodError",
+                            "error_message" => "undefined method `pause` for HardWork:Class"
                           })
         end
 
         let(:job2) do
           instance_double(Sidekiq::JobRecord, item: {
-                            "class"       => "HardWorkTask",
-                            "failed_at"   => Time.now.to_i - (2 * 60 * 60),
-                            "error_class" => "RandomError"
+                            "class"         => "HardWorkTask",
+                            "failed_at"     => Time.now.to_i - (2 * 60 * 60),
+                            "error_class"   => "RandomError",
+                            "error_message" => "random error message"
                           })
         end
 
         let(:job3) do
           instance_double(Sidekiq::JobRecord, item: {
-                            "class"       => "LazyWorkTask",
-                            "failed_at"   => Time.now.to_i - (2 * 60 * 60),
-                            "error_class" => "NoMethodError"
+                            "class"         => "LazyWorkTask",
+                            "failed_at"     => Time.now.to_i - (2 * 60 * 60),
+                            "error_class"   => "NoMethodError",
+                            "error_message" => "undefined method `work_hard` for LazyWork:Class"
                           })
         end
 
@@ -83,6 +86,20 @@ module Sidekiq
           end
 
           it { expect(dead_jobs.size).to eq 2 }
+        end
+
+        context "when the error_msg filter is given" do
+          subject(:dead_jobs) do
+            described_class.filter_dead_jobs("error_msg" => "undefined method `pause` for HardWork:Class")
+          end
+
+          it "filters jobs based on error_message" do
+            dead_jobs.each do |dead_job|
+              expect(dead_job.error_msg).to eq "undefined method `pause` for HardWork:Class"
+            end
+          end
+
+          it { expect(dead_jobs.size).to eq 1 }
         end
 
         context "when no filters are applied" do

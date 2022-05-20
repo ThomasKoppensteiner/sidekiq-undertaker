@@ -177,7 +177,7 @@
   </thead>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/all/all/total_dead'> all</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/all/all/all/total_dead'> all</a></td>
         <td><a href='/sidekiq/undertaker/filter/all/total_dead'>4</a></td>
         <td><a href='/sidekiq/undertaker/filter/all/1_hour'>4</a></td>
         <td><a href='/sidekiq/undertaker/filter/all/3_hours'>0</a></td>
@@ -188,7 +188,7 @@
       </tr>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/total_dead'> HardWorker</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/all/total_dead'> HardWorker</a></td>
         <td><a href='/sidekiq/undertaker/filter/HardWorker/total_dead'>3</a></td>
         <td><a href='/sidekiq/undertaker/filter/HardWorker/1_hour'>3</a></td>
         <td><a href='/sidekiq/undertaker/filter/HardWorker/3_hours'>0</a></td>
@@ -199,7 +199,7 @@
       </tr>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker1/all/total_dead'> HardWorker1</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker1/all/all/total_dead'> HardWorker1</a></td>
         <td><a href='/sidekiq/undertaker/filter/HardWorker1/total_dead'>1</a></td>
         <td><a href='/sidekiq/undertaker/filter/HardWorker1/1_hour'>1</a></td>
         <td><a href='/sidekiq/undertaker/filter/HardWorker1/3_hours'>0</a></td>
