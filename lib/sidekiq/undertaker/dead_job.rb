@@ -27,7 +27,7 @@ module Sidekiq
         end
       end
 
-      attr_reader :job_class, :time_elapsed_since_failure, :error_class, :bucket_name, :job
+      attr_reader :job_class, :time_elapsed_since_failure, :error_class, :error_msg, :bucket_name, :job
 
       def initialize(args)
         @job                        = args.fetch(:job)
@@ -35,12 +35,14 @@ module Sidekiq
         @bucket_name                = args.fetch(:bucket_name)
         @job_class                  = args.fetch(:job_class, job.item["class"])
         @error_class                = args.fetch(:error_class, job.item["error_class"])
+        @error_msg                  = args.fetch(:error_message, job.item["error_message"])
       end
 
       def ==(other)
         job_class == other.job_class &&
           time_elapsed_since_failure == other.time_elapsed_since_failure &&
           error_class                == other.error_class &&
+          error_msg                  == other.error_msg &&
           bucket_name                == other.bucket_name &&
           job_eql?(other.job)
       end
@@ -48,7 +50,7 @@ module Sidekiq
 
       private
 
-      attr_writer :job_class, :time_elapsed_since_failure, :error_class, :bucket_name, :job
+      attr_writer :job_class, :time_elapsed_since_failure, :error_class, :error_message, :bucket_name, :job
 
       def job_eql?(other_job) # rubocop:disable Metrics/AbcSize
         job.jid == other_job.jid &&

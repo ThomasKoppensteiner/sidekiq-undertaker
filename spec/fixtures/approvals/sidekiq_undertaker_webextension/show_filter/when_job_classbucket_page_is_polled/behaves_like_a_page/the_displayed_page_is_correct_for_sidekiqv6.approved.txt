@@ -178,36 +178,36 @@
   </thead>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/total_dead'>all</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/total_dead'>3</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/1_hour'>3</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/3_hours'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/1_day'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/3_days'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/1_week'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/older'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/all/all/total_dead'>all</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/all/total_dead'>3</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/all/1_hour'>3</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/all/3_hours'>0</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/all/1_day'>0</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/all/3_days'>0</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/all/1_week'>0</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/all/older'>0</a></td>
       </tr>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/total_dead'>RuntimeError</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/total_dead'>2</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_hour'>2</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/3_hours'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_day'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/3_days'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/1_week'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/older'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/all/total_dead'>RuntimeError</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/RuntimeError/total_dead'>2</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/RuntimeError/1_hour'>2</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/RuntimeError/3_hours'>0</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/RuntimeError/1_day'>0</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/RuntimeError/3_days'>0</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/RuntimeError/1_week'>0</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/RuntimeError/older'>0</a></td>
       </tr>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/total_dead'>NoMethodError</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/total_dead'>1</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/1_hour'>1</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/3_hours'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/1_day'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/3_days'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/1_week'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/older'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/NoMethodError/all/total_dead'>NoMethodError</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/NoMethodError/total_dead'>1</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/NoMethodError/1_hour'>1</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/NoMethodError/3_hours'>0</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/NoMethodError/1_day'>0</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/NoMethodError/3_days'>0</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/NoMethodError/1_week'>0</a></td>
+        <td><a href='/sidekiq/undertaker/filter/HardWorker/NoMethodError/older'>0</a></td>
       </tr>
   
 </table>

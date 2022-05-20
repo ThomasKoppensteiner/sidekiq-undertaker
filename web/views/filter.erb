@@ -21,7 +21,7 @@
   </thead>
   <% @distribution.each do |group, bucket_counts| %>
       <tr>
-        <td><a href='<%= "#{root_path}undertaker/morgue/#{group}/all/total_dead" %>'> <%= group %></a></td>
+        <td><a href='<%= "#{root_path}undertaker/morgue/#{group}/all/all/total_dead" %>'> <%= group %></a></td>
         <td><a href='<%= "#{root_path}undertaker/filter/#{group}/total_dead" %>'><%= bucket_counts['total_dead']%></a></td>
         <td><a href='<%= "#{root_path}undertaker/filter/#{group}/1_hour" %>'><%= bucket_counts['1_hour']%></a></td>
         <td><a href='<%= "#{root_path}undertaker/filter/#{group}/3_hours" %>'><%= bucket_counts['3_hours']%></a></td>

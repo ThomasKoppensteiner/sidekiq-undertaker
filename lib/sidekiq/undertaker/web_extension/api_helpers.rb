@@ -2,6 +2,7 @@
 
 require "sidekiq/undertaker/job_distributor"
 require "sidekiq/undertaker/job_filter"
+require "base64"
 require "json"
 require "zip"
 
@@ -15,7 +16,7 @@ module Sidekiq
         def show_filter
           store_request_params
 
-          @dead_jobs    = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
+          @dead_jobs    = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(parsed_params)
           @distribution = Sidekiq::Undertaker::JobDistributor.new(@dead_jobs).group_by_job_class
           @total_dead   = @dead_jobs.size
 
@@ -25,17 +26,27 @@ module Sidekiq
         def show_filter_by_job_class_bucket_name
           store_request_params
 
-          @dead_jobs    = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
+          @dead_jobs    = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(parsed_params)
           @distribution = Sidekiq::Undertaker::JobDistributor.new(@dead_jobs).group_by_error_class
           @total_dead   = @dead_jobs.size
 
           render_result("filter_job_class.erb")
         end
 
-        def show_undertaker_by_job_class_error_class_bucket_name
+        def show_filter_by_job_class_error_class_bucket_name
           store_request_params
 
-          @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
+          @dead_jobs    = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(parsed_params)
+          @distribution = Sidekiq::Undertaker::JobDistributor.new(@dead_jobs).group_by_error_msg
+          @total_dead   = @dead_jobs.size
+
+          render_result("filter_job_class_error_class.erb")
+        end
+
+        def show_undertaker_by_job_class_error_class_error_msg_bucket_name
+          store_request_params
+
+          @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(parsed_params)
 
           # Display dead jobs as list
           @dead_jobs = @dead_jobs.map(&:job)
@@ -44,7 +55,7 @@ module Sidekiq
 
           # Pagination
           @total_dead   = @dead_jobs.size
-          @current_page = (params[:page] || 1).to_i
+          @current_page = (parsed_params[:page] || 1).to_i
           @count        = 50 # per page
           @dead_jobs    = @dead_jobs[((@current_page - 1) * @count), @count]
 
@@ -57,14 +68,15 @@ module Sidekiq
           params.delete("job_class")
           params.delete("bucket_name")
           params.delete("error_class")
+          params.delete("error_msg")
 
           render_result("morgue.erb")
         end
 
         def post_undertaker
-          raise ::ArgumentError.new("Key missing") unless params["key"]
+          raise ::ArgumentError.new("Key missing") unless parsed_params["key"]
 
-          jobs = params["key"].map { |k| Sidekiq::DeadSet.new.fetch(*parse_params(k)).first }.compact
+          jobs = parsed_params["key"].map { |k| Sidekiq::DeadSet.new.fetch(*parse_params(k)).first }.compact
 
           handle_selected_jobs jobs
         rescue ::ArgumentError
@@ -72,20 +84,20 @@ module Sidekiq
         end
 
         def handle_selected_jobs(jobs)
-          return send_data(*prepare_data(jobs.map(&:item), EXPORT_CHUNK_SIZE)) if params["export"]
+          return send_data(*prepare_data(jobs.map(&:item), EXPORT_CHUNK_SIZE)) if parsed_params["export"]
 
-          if params["retry"]
+          if parsed_params["retry"]
             jobs.each(&:retry)
-          elsif params["delete"]
+          elsif parsed_params["delete"]
             jobs.each(&:delete)
           end
 
           redirect redirect_path(request)
         end
 
-        def post_undertaker_job_class_error_class_buckent_name_delete
+        def post_undertaker_job_class_error_class_error_msg_bucket_name_delete
           store_request_params
-          @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
+          @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(parsed_params)
           @dead_jobs.each do |dead_job|
             dead_job.job.delete
           end
@@ -93,10 +105,10 @@ module Sidekiq
           redirect redirect_path(request)
         end
 
-        def post_undertaker_job_class_error_class_buckent_name_retry
+        def post_undertaker_job_class_error_class_error_msg_bucket_name_retry
           store_request_params
 
-          @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
+          @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(parsed_params)
           @dead_jobs.each do |dead_job|
             dead_job.job.retry
           end
@@ -104,18 +116,18 @@ module Sidekiq
           redirect redirect_path(request)
         end
 
-        def post_undertaker_job_class_error_class_buckent_name_export
+        def post_undertaker_job_class_error_class_error_msg_bucket_name_export
           store_request_params
 
-          @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(params)
+          @dead_jobs = Sidekiq::Undertaker::JobFilter.filter_dead_jobs(parsed_params)
           send_data(*prepare_data(@dead_jobs.map { |j| j.job.item }, EXPORT_CHUNK_SIZE))
         end
 
         def post_import_jobs
-          file = params["upload_file"]
+          file = parsed_params["upload_file"]
           raise ::ArgumentError.new("The file is not a json") if file.nil? || file[:type] != "application/json"
 
-          data = params["upload_file"][:tempfile].read
+          data = parsed_params["upload_file"][:tempfile].read
           dead_set = Sidekiq::DeadSet.new
 
           JSON.parse(data).each do |job|
@@ -131,9 +143,18 @@ module Sidekiq
         end
 
         def store_request_params
-          @req_job_class   = params["job_class"]
-          @req_bucket_name = params["bucket_name"]
-          @req_error_class = params["error_class"]
+          @req_job_class   = parsed_params["job_class"]
+          @req_bucket_name = parsed_params["bucket_name"]
+          @req_error_class = parsed_params["error_class"]
+          @req_error_msg   = parsed_params["error_msg"]
+        end
+
+        def parsed_params
+          @parsed_params ||= if params["error_msg"] && params["error_msg"] != "all"
+                               params.merge("error_msg" => Base64.urlsafe_decode64(params["error_msg"]))
+                             else
+                               params
+                             end
         end
 
         def view_path
