@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## [1.4.1] - 2022-06-03
+### Fixed
+- Fix downgrade rubocop to '1.28' to keep support for JRuby '9.2.20.1'
+
 ## [1.4.0] - 2022-06-03
 ### Added
 - Added a filter based on error messages
