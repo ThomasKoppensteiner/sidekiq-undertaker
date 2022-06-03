@@ -11,7 +11,7 @@ module Sidekiq
                             "class"         => "HardWorkTask",
                             "failed_at"     => Time.now.to_i - (5 * 60),
                             "error_class"   => "NoMethodError",
-                            "error_message" => "undefined method `pause` for HardWork:Class"
+                            "error_message" => "undefined method `pause` for H..."
                           })
         end
 
@@ -90,12 +90,12 @@ module Sidekiq
 
         context "when the error_msg filter is given" do
           subject(:dead_jobs) do
-            described_class.filter_dead_jobs("error_msg" => "undefined method `pause` for HardWork:Class")
+            described_class.filter_dead_jobs("error_msg" => "undefined method `pause` for H...")
           end
 
           it "filters jobs based on error_message" do
             dead_jobs.each do |dead_job|
-              expect(dead_job.error_msg).to eq "undefined method `pause` for HardWork:Class"
+              expect(dead_job.error_msg).to eq "undefined method `pause` for H..."
             end
           end
 

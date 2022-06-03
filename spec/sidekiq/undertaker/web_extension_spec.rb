@@ -33,14 +33,14 @@ module Sidekiq
           "class"         => "HardWorker",
           "args"          => ["asdf", 1234],
           "queue"         => "foo",
-          "error_message" => "Option 'data/file_name' is required",
+          "error_message" => "Option 'data/file_name' is required! This is an extra long error message.",
           "error_class"   => "RuntimeError",
           "retry_count"   => 0,
           "failed_at"     => Time.now.utc
         }
       end
 
-      let(:encoded_error_msg) { "T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=" }
+      let(:encoded_error_msg) { "T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u" }
 
       # rubocop:disable RSpec/AnyInstance
       before do
@@ -179,7 +179,7 @@ module Sidekiq
 
           let(:params) do
             { "job_class" => "HardWorker", "error_class" => "RuntimeError", "bucket_name" => "1_hour",
-           "error_msg" => "Option 'data/file_name' is required" }
+           "error_msg" => "Option 'data/file_name' is req..." }
           end
           let(:dead_jobs_set) { [dead_job1, dead_job2] }
           let(:dead_job1) { Sidekiq::Undertaker::DeadJob.to_dead_job(Sidekiq::DeadSet.new.find_job(jid1)) }

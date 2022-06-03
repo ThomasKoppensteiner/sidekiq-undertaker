@@ -21,7 +21,7 @@ module Sidekiq
             job_class:                  "HardWorkTask",
             time_elapsed_since_failure: 9,
             error_class:                "NoMethodError",
-            error_msg:                  "undefined method `pause` for HardWork:Class",
+            error_msg:                  "undefined method `pause` for H...",
             bucket_name:                "1_hour",
             job:                        job
           }
@@ -56,7 +56,7 @@ module Sidekiq
             job_class:                  "HardWorkTask",
             time_elapsed_since_failure: time_elapsed,
             error_class:                "NoMethodError",
-            error_msg:                  "undefined method `pause` for HardWork:Class",
+            error_msg:                  "undefined method `pause` for H...",
             bucket_name:                "1_hour",
             job:                        killed_job
           )

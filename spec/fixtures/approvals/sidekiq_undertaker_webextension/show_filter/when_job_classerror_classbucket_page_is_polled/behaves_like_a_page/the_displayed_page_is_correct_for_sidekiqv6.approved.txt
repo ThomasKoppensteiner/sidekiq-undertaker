@@ -179,14 +179,14 @@
   </thead>
   
       <tr>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=/total_dead'>Option 'data/file_name' is required</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=/total_dead'>2</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=/1_hour'>2</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=/3_hours'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=/1_day'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=/3_days'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=/1_week'>0</a></td>
-        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=/older'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/total_dead'>Option 'data/file_name' is req...</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/total_dead'>2</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/1_hour'>2</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/3_hours'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/1_day'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/3_days'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/1_week'>0</a></td>
+        <td><a href='/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/older'>0</a></td>
       </tr>
   
       <tr>
