@@ -46,7 +46,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-mocks", "~> 3.8"
   spec.add_development_dependency "rspec-sidekiq", "~> 3.0"
   spec.add_development_dependency "rt_rubocop_defaults", "~> 2.3"
-  spec.add_development_dependency "rubocop", "~> 1.8"
+  spec.add_development_dependency "rubocop", "~> 1.30"
   spec.add_development_dependency "rubocop-rake", "~> 0.5"
   spec.add_development_dependency "rubocop-rspec", "~> 2.0"
   spec.add_development_dependency "rubocop_runner", "~> 2.1"
