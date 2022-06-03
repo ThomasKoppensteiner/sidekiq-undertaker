@@ -1,6 +1,16 @@
 # Changelog
 
 ## Unreleased
+
+## [1.4.0] - 2022-06-03
+### Added
+- Added a filter based on error messages
+
+### Changed
+- Updated rubocop to version 1.30
+- Updated rubyzip to version 2.3
+
+### Removed
 - Removed Travis CI integration
 
 ## [1.3.0] - 2022-04-27

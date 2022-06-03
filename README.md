@@ -83,6 +83,7 @@ The [Sidekiq-Cleaner](https://github.com/HackingHabits/sidekiq-cleaner) gem was 
 [Tout](https://github.com/Tout/sidekiq-cleaner) and [TheWudu](https://github.com/TheWudu/sidekiq-cleaner) also contributed to it.
 [Zlatko Rednjak](https://github.com/Rednjak) added the initial version of the `CHANGELOG.md`.
 [Lucas Dell'Isola](https://github.com/ldellisola) added the export/import feature for dead jobs.
+[thoesl](https://github.com/thoesl) added the error message based filter.
 
 For the complete list of network members have a look at the [fork overview](https://github.com/ThomasKoppensteiner/sidekiq-undertaker/network/members).
 
