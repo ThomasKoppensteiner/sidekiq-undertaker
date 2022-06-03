@@ -55,6 +55,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "sinatra", "~> 2.0"
   spec.add_development_dependency "timecop", "~> 0.9"
 
-  spec.add_runtime_dependency "rubyzip"
+  spec.add_runtime_dependency "rubyzip", "~> 2.3"
   spec.add_runtime_dependency "sidekiq", ">= 6.4", "< 7"
 end
