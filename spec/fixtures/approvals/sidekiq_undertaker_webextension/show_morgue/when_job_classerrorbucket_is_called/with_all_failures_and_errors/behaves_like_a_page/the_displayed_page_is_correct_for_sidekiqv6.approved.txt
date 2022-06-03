@@ -208,7 +208,7 @@
               <div class="args">&quot;asdf&quot;, 1234</div>
             </td>
             <td>
-              <div>NoMethodError: Option &#x27;data&#x2F;file_name&#x27; is required</div>
+              <div>NoMethodError: Option &#x27;data&#x2F;file_name&#x27; is required! This is an extra long error message.</div>
             </td>
           </tr>
         
@@ -229,7 +229,7 @@
               <div class="args">&quot;asdf&quot;, 1234</div>
             </td>
             <td>
-              <div>RuntimeError: Option &#x27;data&#x2F;file_name&#x27; is required</div>
+              <div>RuntimeError: Option &#x27;data&#x2F;file_name&#x27; is required! This is an extra long error message.</div>
             </td>
           </tr>
         
@@ -250,7 +250,7 @@
               <div class="args">&quot;asdf&quot;, 1234</div>
             </td>
             <td>
-              <div>RuntimeError: Option &#x27;data&#x2F;file_name&#x27; is required</div>
+              <div>RuntimeError: Option &#x27;data&#x2F;file_name&#x27; is required! This is an extra long error message.</div>
             </td>
           </tr>
         
@@ -271,7 +271,7 @@
               <div class="args">&quot;asdf&quot;, 1234</div>
             </td>
             <td>
-              <div>NoMethodError: Option &#x27;data&#x2F;file_name&#x27; is required</div>
+              <div>NoMethodError: Option &#x27;data&#x2F;file_name&#x27; is required! This is an extra long error message.</div>
             </td>
           </tr>
         

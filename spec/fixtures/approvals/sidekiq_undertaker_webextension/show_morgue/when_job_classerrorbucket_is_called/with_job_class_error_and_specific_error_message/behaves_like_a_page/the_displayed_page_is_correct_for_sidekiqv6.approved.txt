@@ -160,7 +160,7 @@
       <b>2</b> dead jobs
        of <b>HardWorker</b> class
        with <b>RuntimeError</b> exception
-       with <b>Option 'data/file_name' is required</b> message
+       with <b>Option 'data/file_name' is req...</b> message
        in <b>1_hour</b> bucket
     </h3>
   </div>
@@ -208,7 +208,7 @@
               <div class="args">&quot;asdf&quot;, 1234</div>
             </td>
             <td>
-              <div>RuntimeError: Option &#x27;data&#x2F;file_name&#x27; is required</div>
+              <div>RuntimeError: Option &#x27;data&#x2F;file_name&#x27; is required! This is an extra long error message.</div>
             </td>
           </tr>
         
@@ -229,7 +229,7 @@
               <div class="args">&quot;asdf&quot;, 1234</div>
             </td>
             <td>
-              <div>RuntimeError: Option &#x27;data&#x2F;file_name&#x27; is required</div>
+              <div>RuntimeError: Option &#x27;data&#x2F;file_name&#x27; is required! This is an extra long error message.</div>
             </td>
           </tr>
         
@@ -239,17 +239,17 @@
       <input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="Bury" />
     </form>
 
-    <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=/1_hour/delete" method="post">
+    <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/1_hour/delete" method="post">
       <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Bury All" data-confirm="Are you sure?" />
     </form>
 
-    <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=/1_hour/export" method="post">
+    <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/1_hour/export" method="post">
       <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
       <input class="btn btn-secondary btn-xs pull-right" type="submit" name="export" value="Export All" />
     </form>
 
-    <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxdWlyZWQ=/1_hour/retry" method="post">
+    <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/1_hour/retry" method="post">
       <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="Revive All" data-confirm="Are you sure?" />
     </form>
