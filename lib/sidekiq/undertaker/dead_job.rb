@@ -53,7 +53,7 @@ module Sidekiq
       attr_writer :job_class, :time_elapsed_since_failure, :error_class, :error_message, :bucket_name, :job
 
       def shorten_error_msg(msg)
-        max_error_msg_length = 30
+        max_error_msg_length = Sidekiq::Undertaker.max_error_msg_length
 
         msg.length > max_error_msg_length ? "#{msg[0, max_error_msg_length]}..." : msg
       end
