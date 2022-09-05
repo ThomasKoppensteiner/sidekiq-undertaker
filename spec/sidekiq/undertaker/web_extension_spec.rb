@@ -72,6 +72,7 @@ module Sidekiq
           subject
 
           expect(last_response.status).to eq 200
+          puts last_response.body
           verify do
             apply_custom_excludes(last_response.body)
           end
