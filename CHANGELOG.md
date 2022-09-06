@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## [1.5.0] - 2022-09-06
+
+### Changed
+- Updated max error message length to be configurable
+- Updated rack-test requirement from ~> 1.1 to ~> 2.0
+
 ## [1.4.1] - 2022-06-03
 ### Fixed
 - Fix downgrade rubocop to '1.28' to keep support for JRuby '9.2.20.1'
