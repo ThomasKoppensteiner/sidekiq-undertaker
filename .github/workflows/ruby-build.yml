@@ -17,6 +17,7 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }} # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idcontinue-on-error
 
     services:
       redis:
@@ -28,15 +29,14 @@ jobs:
       fail-fast: false
       matrix:
         # SEE: https://github.com/ruby/setup-ruby#supported-versions
-        ruby-version:
-          - 'ruby'
-          - '3.1'
-          - '2.7'
-          - 'jruby'
-          - 'jruby-9.3.2.0'
-          - 'jruby-9.2.20.1'
-          - 'truffleruby'
-          - 'truffleruby+graalvm'
+        # https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#expanding-or-adding-matrix-configurations
+        ruby-version: ['ruby', '3.1', '2.7.6', 'jruby', 'jruby-9.3.9.0', 'jruby-9.2.21.0']
+        experimental: [false]
+        include: # HINT: Do not use arrays for values here
+          - ruby-version: 'truffleruby'
+            experimental: true
+          - ruby-version: 'truffleruby+graalvm'
+            experimental: true
 
     env:
       JRUBY_OPTS: '--debug'
