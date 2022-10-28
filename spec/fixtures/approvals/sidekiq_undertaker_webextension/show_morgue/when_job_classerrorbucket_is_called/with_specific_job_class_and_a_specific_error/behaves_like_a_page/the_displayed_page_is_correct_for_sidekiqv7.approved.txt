@@ -1,0 +1,293 @@
+<!doctype html>
+<html dir="ltr">
+  <head>
+    <title>[TEST] Sidekiq</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <link href="/sidekiq/stylesheets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+    
+
+    <link href="/sidekiq/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/sidekiq/stylesheets/application-dark.css" media="screen and (prefers-color-scheme: dark)" rel="stylesheet" type="text/css" />
+    
+
+    <link rel="apple-touch-icon" href="/sidekiq/images/apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/ico" href="/sidekiq/images/favicon.ico" />
+    <script type="text/javascript" src="/sidekiq/javascripts/application.js"></script>
+    <meta name="google" content="notranslate" />
+    
+  </head>
+  <body class="admin" data-locale="en">
+    <div class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header" data-navbar="static">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="navbar-menu" data-target="#navbar-menu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-toggle collapsed navbar-livereload">
+        
+    <a class="live-poll-start live-poll btn btn-primary">Live Poll</a>
+    <a class="live-poll-stop live-poll btn btn-primary active">Stop Polling</a>
+
+
+        
+      </div>
+      <a class="navbar-brand" href="/sidekiq/">
+        Sidekiq
+        <span class="status">
+  <i class="status-sprite status-idle"></i>
+  idle
+</span>
+
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-menu">
+      <ul class="nav navbar-nav" data-navbar="static">
+        
+          
+            <li class="">
+            <a href="/sidekiq/">Dashboard</a>
+            </li>
+          
+        
+          
+            <li class="">
+            <a href="/sidekiq/busy">Busy</a>
+            </li>
+          
+        
+          
+            <li class="">
+            <a href="/sidekiq/queues">Queues</a>
+            </li>
+          
+        
+          
+            <li class="">
+            <a href="/sidekiq/retries">Retries</a>
+            </li>
+          
+        
+          
+            <li class="">
+            <a href="/sidekiq/scheduled">Scheduled</a>
+            </li>
+          
+        
+          
+            <li class="">
+            <a href="/sidekiq/morgue">Dead</a>
+            </li>
+          
+        
+          
+            <li class="">
+            <a href="/sidekiq/metrics">Metrics</a>
+            </li>
+          
+        
+
+        
+          <li class="" data-navbar="custom-tab">
+            <a href="/sidekiq/undertaker/filter">Undertaker</a>
+          </li>
+        
+
+        <li class="navbar-livereload">
+          <div class="poll-wrapper">
+            
+    <a class="live-poll-start live-poll btn btn-primary">Live Poll</a>
+    <a class="live-poll-stop live-poll btn btn-primary active">Stop Polling</a>
+
+
+            
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+    <div id="page">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 summary_bar">
+            <ul class="list-unstyled summary row">
+  <li class="processed col-sm-1">
+    <span id="txtProcessed" class="count">0</span>
+    <span class="desc">Processed</span>
+  </li>
+  <li class="failed col-sm-1">
+    <span id="txtFailed" class="count">0</span>
+    <span class="desc">Failed</span>
+  </li>
+  <li class="busy col-sm-1">
+    <a href="/sidekiq/busy">
+      <span id="txtBusy" class="count">0</span>
+      <span class="desc">Busy</span>
+    </a>
+  </li>
+  <li class="enqueued col-sm-1">
+    <a href="/sidekiq/queues">
+      <span id="txtEnqueued" class="count">0</span>
+      <span class="desc">Enqueued</span>
+    </a>
+  </li>
+  <li class="retries col-sm-1">
+    <a href="/sidekiq/retries">
+      <span id="txtRetries" class="count">0</span>
+      <span class="desc">Retries</span>
+    </a>
+  </li>
+  <li class="scheduled col-sm-1">
+    <a href="/sidekiq/scheduled">
+      <span id="txtScheduled" class="count">0</span>
+      <span class="desc">Scheduled</span>
+    </a>
+  </li>
+  <li class="dead col-sm-1">
+    <a href="/sidekiq/morgue">
+      <span id="txtDead" class="count">4</span>
+      <span class="desc">Dead</span>
+    </a>
+  </li>
+</ul>
+
+          </div>
+
+          <div class="col-sm-12">
+            <header class="row head">
+  <div class="col-sm-12">
+    <h3>
+      <b>2</b> dead jobs
+       of <b>HardWorker</b> class
+       with <b>RuntimeError</b> exception
+      
+       in <b>1_hour</b> bucket
+    </h3>
+  </div>
+  <div class="col-sm-12">
+    <div class="col-sm-4">
+      
+
+    </div>
+  </div>
+</header>
+
+
+    <form action="/sidekiq/undertaker/morgue" method="post">
+      <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
+      <table class="table table-striped table-bordered table-white">
+        <thead>
+          <tr>
+            <th width="20px" class="table-checkbox">
+              <label>
+                <input type="checkbox" class="check_all" />
+              </label>
+            </th>
+            <th width="25%">Last Retry</th>
+            <th>Queue</th>
+            <th>Job</th>
+            <th>Arguments</th>
+            <th>Error</th>
+          </tr>
+        </thead>
+        
+          <tr>
+            <td class="table-checkbox">
+              <label>
+                <input type='checkbox' name='key[]' value='1544993820.0-4416aa76eb8cf03f56a49220' />
+              </label>
+            </td>
+            <td>
+              <a href="/sidekiq/morgue/1544993820.0-4416aa76eb8cf03f56a49220"><time class="ltr" dir="ltr" title="2018-12-16T20:57:00Z" datetime="2018-12-16T20:57:00Z">2018-12-16 20:57:00 UTC</time></a>
+            </td>
+            <td>
+              <a href="/sidekiq/queues/foo">foo</a>
+            </td>
+            <td>HardWorker</td>
+            <td>
+              <div class="args">&quot;asdf&quot;, 1234</div>
+            </td>
+            <td>
+              <div>RuntimeError: Option &#x27;data&#x2F;file_name&#x27; is required! This is an extra long error message.</div>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="table-checkbox">
+              <label>
+                <input type='checkbox' name='key[]' value='1544993820.0-34e79a46b1956d3a1180767b' />
+              </label>
+            </td>
+            <td>
+              <a href="/sidekiq/morgue/1544993820.0-34e79a46b1956d3a1180767b"><time class="ltr" dir="ltr" title="2018-12-16T20:57:00Z" datetime="2018-12-16T20:57:00Z">2018-12-16 20:57:00 UTC</time></a>
+            </td>
+            <td>
+              <a href="/sidekiq/queues/foo">foo</a>
+            </td>
+            <td>HardWorker</td>
+            <td>
+              <div class="args">&quot;asdf&quot;, 1234</div>
+            </td>
+            <td>
+              <div>RuntimeError: Option &#x27;data&#x2F;file_name&#x27; is required! This is an extra long error message.</div>
+            </td>
+          </tr>
+        
+      </table>
+      <input class="btn btn-primary btn-xs pull-left" type="submit" name="retry" value="Revive" />
+      <input class="btn btn-secondary btn-xs pull-left" type="submit" name="export" value="Export" />
+      <input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="Bury" />
+    </form>
+
+    <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/YWxs/1_hour/delete" method="post">
+      <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
+      <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Bury All" data-confirm="Are you sure?" />
+    </form>
+
+    <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/YWxs/1_hour/export" method="post">
+      <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
+      <input class="btn btn-secondary btn-xs pull-right" type="submit" name="export" value="Export All" />
+    </form>
+
+    <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/YWxs/1_hour/retry" method="post">
+      <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
+      <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="Revive All" data-confirm="Are you sure?" />
+    </form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-fixed-bottom navbar-inverse ltr">
+  <div class="navbar-inner">
+    <div class="container text-center">
+        <ul class="nav">
+          <li>
+            <p class="navbar-text product-version">Sidekiq v*EXCLUDED*</p>
+          </li>
+          <li>
+            <p class="navbar-text redis-url" title="redis://localhost:6379/0">redis://localhost:6379/0</p>
+          </li>
+          <li>
+            <p id="serverUtcTime" class="navbar-text server-utc-time">20:57:00 UTC</p>
+          </li>
+          <li>
+            <p class="navbar-text"><a rel=help href="https://github.com/mperham/sidekiq/wiki">docs</a></p>
+          </li>
+          <li>
+            <p class="navbar-text"><a rel=external href="https://github.com/mperham/sidekiq/tree/main/web/locales">en</a></p>
+          </li>
+        </ul>
+    </div>
+  </div>
+</div>
+
+  </body>
+</html>
