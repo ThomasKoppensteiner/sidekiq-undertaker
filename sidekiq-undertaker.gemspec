@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
     "rubygems_mfa_required" => "true"
   }
 
-  spec.required_ruby_version = ">= 2.5.0"
+  spec.required_ruby_version = ">= 2.6.0"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -45,11 +45,11 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec-core", "~> 3.8"
   spec.add_development_dependency "rspec-mocks", "~> 3.8"
   spec.add_development_dependency "rspec-sidekiq", "~> 3.0"
-  spec.add_development_dependency "rt_rubocop_defaults", "~> 2.3"
-  spec.add_development_dependency "rubocop", "~> 1.28"
-  spec.add_development_dependency "rubocop-rake", "~> 0.5"
-  spec.add_development_dependency "rubocop-rspec", "~> 2.0"
-  spec.add_development_dependency "rubocop_runner", "~> 2.1"
+  spec.add_development_dependency "rt_rubocop_defaults", "~> 2.4"
+  spec.add_development_dependency "rubocop", "~> 1.37"
+  spec.add_development_dependency "rubocop-rake", "~> 0.6"
+  spec.add_development_dependency "rubocop-rspec", "~> 2.14"
+  spec.add_development_dependency "rubocop_runner", "~> 2.2"
   spec.add_development_dependency "simplecov", "~> 0.21"
   spec.add_development_dependency "sinatra", "~> 2.0"
   spec.add_development_dependency "timecop", "~> 0.9"
