@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## [1.6.0] - 2022-11-02
+
+### Changed
+- Updated rubocop to version 1.37 and set the required_ruby_version to >= 2.6
+- Update sidekiq dependency to allow version 7
+
 ## [1.5.0] - 2022-09-06
 
 ### Changed
