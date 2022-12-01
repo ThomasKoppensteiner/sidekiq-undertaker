@@ -51,7 +51,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop-rspec", "~> 2.14"
   spec.add_development_dependency "rubocop_runner", "~> 2.2"
   spec.add_development_dependency "simplecov", "~> 0.21"
-  spec.add_development_dependency "sinatra", "~> 2.0"
+  spec.add_development_dependency "sinatra", "~> 3.0"
   spec.add_development_dependency "timecop", "~> 0.9"
 
   spec.add_runtime_dependency "rubyzip", "~> 2.3"
