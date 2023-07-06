@@ -71,7 +71,7 @@ jobs:
       with:
         name: coverage-report
         path: ./coverage
-    - uses: paambaati/codeclimate-action@v3.2.0
+    - uses: paambaati/codeclimate-action@v5.0.0
       env:
         # Set CC_TEST_REPORTER_ID as secret of your repo
         CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
