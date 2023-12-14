@@ -53,7 +53,7 @@ jobs:
     - name: Run tests
       run: COVERAGE=true bundle exec rspec
     - name: 'Upload Coverage Report'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: ${{ matrix.ruby-version == 'ruby' }}
       with:
         name: coverage-report
