@@ -4,6 +4,7 @@
 
 ## Changed
 - Remove Dependabot
+- Add Renovate dependency dashboard
 
 ## [1.7.0] - 2023-12-15
 
