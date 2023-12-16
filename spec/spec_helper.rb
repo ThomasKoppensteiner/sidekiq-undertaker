@@ -50,7 +50,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 
   config.before do
-    ::Sidekiq.redis(&:flushdb)
+    Sidekiq.redis(&:flushdb)
   end
 end
 

@@ -17,7 +17,7 @@ module Sidekiq
           job_time_elapsed_since_failure = Time.now.to_i - job_failed_at.to_i
           job_bucket_name                = Bucket.for_elapsed_time(job_time_elapsed_since_failure)
 
-          new(job:                        job,
+          new(job:,
               time_elapsed_since_failure: job_time_elapsed_since_failure,
               bucket_name:                job_bucket_name)
         end

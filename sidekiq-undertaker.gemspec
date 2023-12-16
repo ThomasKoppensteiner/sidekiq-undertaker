@@ -27,32 +27,11 @@ Gem::Specification.new do |spec|
     "rubygems_mfa_required" => "true"
   }
 
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 3.1.0"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib", "lib/sidekiq/undertaker"]
-
-  spec.add_development_dependency "bundler", ">= 1.17", "<3"
-  spec.add_development_dependency "rake", "~> 13.0"
-
-  spec.add_development_dependency "approvals", "~> 0.0.25"
-  spec.add_development_dependency "mock_redis", "~> 0.19"
-  spec.add_development_dependency "pry", "~> 0.12"
-  spec.add_development_dependency "rack-test", "~> 2.0"
-  spec.add_development_dependency "rb-readline", "~> 0.5"
-  spec.add_development_dependency "rspec", "~> 3.8"
-  spec.add_development_dependency "rspec-core", "~> 3.8"
-  spec.add_development_dependency "rspec-mocks", "~> 3.8"
-  spec.add_development_dependency "rspec-sidekiq", "~> 3.0"
-  spec.add_development_dependency "rt_rubocop_defaults", "~> 2.4"
-  spec.add_development_dependency "rubocop", "~> 1.37"
-  spec.add_development_dependency "rubocop-rake", "~> 0.6"
-  spec.add_development_dependency "rubocop-rspec", "~> 2.14"
-  spec.add_development_dependency "rubocop_runner", "~> 2.2"
-  spec.add_development_dependency "simplecov", "~> 0.21"
-  spec.add_development_dependency "sinatra", "~> 2.0"
-  spec.add_development_dependency "timecop", "~> 0.9"
 
   spec.add_runtime_dependency "rubyzip", "~> 2.3"
   spec.add_runtime_dependency "sidekiq", ">= 6.4", "< 8"

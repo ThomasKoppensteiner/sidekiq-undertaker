@@ -172,7 +172,7 @@ module Sidekiq
 
           filename = "#{@req_job_class}_#{filename}"
           zip = Zip::OutputStream.write_buffer do |file|
-            data.each_slice(chunk_size).each_with_index do |chunk, index|
+            data.each_slice(chunk_size).with_index do |chunk, index|
               file.put_next_entry("#{filename}_part-#{index + 1}.json")
               file.write chunk.to_json
             end
