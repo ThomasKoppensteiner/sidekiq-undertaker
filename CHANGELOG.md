@@ -6,6 +6,7 @@
 
 ## Changed
 - Dropped Ruby 2.x support
+- Dropped Sidekiq 6.x support
 
 ## [1.6.0] - 2022-11-02
 
