@@ -16,7 +16,7 @@ gem "rubocop-rake", "~> 0.6"
 gem "rubocop-rspec", "~> 2.25"
 gem "rubocop_runner", "~> 2.2"
 gem "simplecov", "~> 0.21"
-gem "sinatra", "~> 2.0"
+gem "sinatra", "~> 3.1"
 gem "timecop", "~> 0.9"
 
 # Good for debuging on travis-ci.org
