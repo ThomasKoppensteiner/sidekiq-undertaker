@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## [1.7.0] - 2023-12-15
+
+## Changed
+- Dropped Ruby 2.x support
+
 ## [1.6.0] - 2022-11-02
 
 ### Changed

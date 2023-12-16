@@ -23,7 +23,7 @@ module Sidekiq
             error_class:                "NoMethodError",
             error_msg:                  "undefined method `pause` for H...",
             bucket_name:                "1_hour",
-            job:                        job
+            job:
           }
         end
 
@@ -38,7 +38,7 @@ module Sidekiq
             {
               time_elapsed_since_failure: 9,
               bucket_name:                "1_hour",
-              job:                        job
+              job:
             }
           end
 

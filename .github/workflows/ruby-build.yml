@@ -30,7 +30,7 @@ jobs:
       matrix:
         # SEE: https://github.com/ruby/setup-ruby#supported-versions
         # https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs#expanding-or-adding-matrix-configurations
-        ruby-version: ['ruby', '3.1', '2.7.6', 'jruby', 'jruby-9.3.9.0']
+        ruby-version: ['ruby', '3.1', '3.2', 'jruby', 'jruby-9.4.4.0']
         experimental: [false]
         include: # HINT: Do not use arrays for values here
           - ruby-version: 'truffleruby'
