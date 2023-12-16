@@ -2,9 +2,12 @@
 
 ## Unreleased
 
+## Changed
+- Remove Dependabot
+
 ## [1.7.0] - 2023-12-15
 
-## Changed
+### Changed
 - Dropped Ruby 2.x support
 - Dropped Sidekiq 6.x support
 - Updated rspec-sidekiq to 4.1
