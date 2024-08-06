@@ -36,6 +36,12 @@ end
 
 require "sidekiq/undertaker"
 
+[
+  "spec/support/**/*.rb"
+].each do |pattern|
+  Dir[File.join(pattern)].each { |file| require file.gsub("spec/", "") }
+end
+
 RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
@@ -76,4 +82,8 @@ def push_job(params)
   jid = Sidekiq::Client.push(params)
   queue_name = params["queue"] || "default"
   Sidekiq::Queue.new(queue_name).find_job(jid)
+end
+
+Approvals.configure do |c|
+  c.approvals_path = "spec/fixtures/approvals/"
 end
