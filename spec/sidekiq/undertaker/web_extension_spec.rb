@@ -18,7 +18,8 @@ module Sidekiq
         Sidekiq::Web.new.tap do |app|
           # In order to use the Web UI of Sidekiq `6.2` a session is required
           # SEE: https://github.com/mperham/sidekiq/blob/master/Changes.md#620
-          app.use Rack::Session::Cookie, secret: "A-Test-Web-Session-Secret"
+          secret = "A-Test-Web-Session-Secret--A-Test-Web-Session-Secret--A-Test-Web-Session-Secret"
+          app.use Rack::Session::Cookie, secret: secret
         end
       end
       let(:job_refs) { [] }
@@ -221,7 +222,7 @@ module Sidekiq
           it "redirects back to referer after delete" do
             subject
             expect(last_response.status).to eq 302
-            expect(last_response.header["Location"]).to include "/undertaker/morgue/all/all/total_dead"
+            expect(last_response.headers["Location"]).to include "/undertaker/morgue/all/all/total_dead"
           end
         end
 
@@ -445,7 +446,7 @@ module Sidekiq
                "key[]=#{job_refs[0]}&retry=Retry+Now",
                "HTTP_REFERER" => "/undertaker/morgue/all/all/all/total_dead")
           expect(last_response.status).to eq 302
-          expect(last_response.header["Location"]).to include("/undertaker/morgue/all/all/all/total_dead")
+          expect(last_response.headers["Location"]).to include("/undertaker/morgue/all/all/all/total_dead")
         end
       end
     end
