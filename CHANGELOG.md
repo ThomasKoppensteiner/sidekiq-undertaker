@@ -5,6 +5,7 @@
 ## Changed
 - Remove Dependabot
 - Add Renovate dependency dashboard
+- Update test dependency sinatra to v4
 
 ## [1.7.0] - 2023-12-15
 
