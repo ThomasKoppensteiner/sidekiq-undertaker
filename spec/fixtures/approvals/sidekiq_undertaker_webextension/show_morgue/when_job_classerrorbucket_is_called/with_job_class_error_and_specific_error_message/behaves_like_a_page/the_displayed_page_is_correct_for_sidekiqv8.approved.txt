@@ -1,0 +1,407 @@
+<!doctype html>
+<html dir="ltr" lang="en">
+  <head>
+    <title>[TEST] Sidekiq</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <link href="/sidekiq/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" nonce="<nonce>" />
+
+    <link rel="apple-touch-icon" href="/sidekiq/images/apple-touch-icon.png">
+    <link rel="shortcut icon" type="image/ico" href="/sidekiq/images/favicon.ico" />
+    <script type="text/javascript" src="/sidekiq/javascripts/application.js" nonce="<nonce>"></script>
+    <meta name="google" content="notranslate" />
+    
+  </head>
+  <body class="admin" data-locale="en">
+    <header>
+  <div class="container">
+    <div class="navbar-header" data-navbar="static">
+      <button type="button" class="btn navbar-toggle" data-toggle="navbar-menu" data-target="#navbar-menu">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-livereload">
+        
+    <a class="btn live-poll live-poll-start btn-primary">Live Poll</a>
+    <a class="btn live-poll live-poll-stop btn-danger">Stop Polling</a>
+
+
+        
+      </div>
+      <a class="navbar-brand" href="/sidekiq/">
+        Sidekiq
+      </a>
+    </div>
+
+    <div class="navbar-collapse" role="navigation" id="navbar-menu">
+      <ul class="nav" data-navbar="static">
+        
+          
+            <li class="">
+              <a href="/sidekiq/">Dashboard</a>
+            </li>
+          
+        
+          
+            <li class="">
+              <a href="/sidekiq/busy">Busy</a>
+            </li>
+          
+        
+          
+            <li class="">
+              <a href="/sidekiq/queues">Queues</a>
+            </li>
+          
+        
+          
+            <li class="">
+              <a href="/sidekiq/retries">Retries</a>
+            </li>
+          
+        
+          
+            <li class="">
+              <a href="/sidekiq/scheduled">Scheduled</a>
+            </li>
+          
+        
+          
+            <li class="">
+              <a href="/sidekiq/morgue">Dead</a>
+            </li>
+          
+        
+          
+            <li class="">
+              <a href="/sidekiq/metrics">Metrics</a>
+            </li>
+          
+        
+          
+            <li class="">
+              <a href="/sidekiq/profiles">Profiles</a>
+            </li>
+          
+        
+          
+            <li class="">
+              <a href="/sidekiq/undertaker/filter">Undertaker</a>
+            </li>
+          
+        
+
+        <li class="navbar-livereload">
+          <div class="poll-wrapper">
+            
+    <a class="btn live-poll live-poll-start btn-primary">Live Poll</a>
+    <a class="btn live-poll live-poll-stop btn-danger">Stop Polling</a>
+
+
+            
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <main id="page">
+      <div class="container">
+        <div class="cards-container">
+  <article>
+    <span id="txtProcessed" class="count" data-nwp>0</span>
+    <span class="desc">Processed</span>
+  </article>
+  <article>
+    <span id="txtFailed" class="count" data-nwp>0</span>
+    <span class="desc">Failed</span>
+  </article>
+  <article>
+    <a href="/sidekiq/busy">
+      <span id="txtBusy" class="count" data-nwp>0</span>
+      <span class="desc">Busy</span>
+    </a>
+  </article>
+  <article>
+    <a href="/sidekiq/queues">
+      <span id="txtEnqueued" class="count" data-nwp>0</span>
+      <span class="desc">Enqueued</span>
+    </a>
+  </article>
+  <article>
+    <a href="/sidekiq/retries">
+      <span id="txtRetries" class="count" data-nwp>0</span>
+      <span class="desc">Retries</span>
+    </a>
+  </article>
+  <article>
+    <a href="/sidekiq/scheduled">
+      <span id="txtScheduled" class="count" data-nwp>0</span>
+      <span class="desc">Scheduled</span>
+    </a>
+  </article>
+  <article>
+    <a href="/sidekiq/morgue">
+      <span id="txtDead" class="count" data-nwp>4</span>
+      <span class="desc">Dead</span>
+    </a>
+  </article>
+</div>
+
+        <header class="row head">
+  <div class="col-sm-12">
+    <h3>
+      <b>2</b> dead jobs
+       of <b>HardWorker</b> class
+       with <b>RuntimeError</b> exception
+       with <b>Option 'data/file_name' is req...</b> message
+       in <b>1_hour</b> bucket
+    </h3>
+  </div>
+  <div class="col-sm-12">
+    <div class="col-sm-4">
+      
+
+
+
+    </div>
+  </div>
+</header>
+
+
+    <form action="/sidekiq/undertaker/morgue" method="post">
+      <input type='hidden' name='authenticity_token' value=''/>
+      <table class="table table-striped table-bordered table-white">
+        <thead>
+          <tr>
+            <th width="20px" class="table-checkbox">
+              <label>
+                <input type="checkbox" class="check_all" />
+              </label>
+            </th>
+            <th width="25%">Last Retry</th>
+            <th>Queue</th>
+            <th>Job</th>
+            <th>Arguments</th>
+            <th>Error</th>
+          </tr>
+        </thead>
+        
+          <tr>
+            <td class="table-checkbox">
+              <label>
+                <input type='checkbox' name='key[]' value='1544993820.0-4416aa76eb8cf03f56a49220' />
+              </label>
+            </td>
+            <td>
+              <a href="/sidekiq/morgue/1544993820.0-4416aa76eb8cf03f56a49220"><time class="ltr" dir="ltr" title="2018-12-16T20:57:00Z" datetime="2018-12-16T20:57:00Z">2018-12-16 20:57:00 UTC</time></a>
+            </td>
+            <td>
+              <a href="/sidekiq/queues/foo">foo</a>
+            </td>
+            <td>HardWorker</td>
+            <td>
+              <div class="args">&quot;asdf&quot;, 1234</div>
+            </td>
+            <td>
+              <div>RuntimeError: Option &#39;data/file_name&#39; is required! This is an extra long error message.</div>
+            </td>
+          </tr>
+        
+          <tr>
+            <td class="table-checkbox">
+              <label>
+                <input type='checkbox' name='key[]' value='1544993820.0-34e79a46b1956d3a1180767b' />
+              </label>
+            </td>
+            <td>
+              <a href="/sidekiq/morgue/1544993820.0-34e79a46b1956d3a1180767b"><time class="ltr" dir="ltr" title="2018-12-16T20:57:00Z" datetime="2018-12-16T20:57:00Z">2018-12-16 20:57:00 UTC</time></a>
+            </td>
+            <td>
+              <a href="/sidekiq/queues/foo">foo</a>
+            </td>
+            <td>HardWorker</td>
+            <td>
+              <div class="args">&quot;asdf&quot;, 1234</div>
+            </td>
+            <td>
+              <div>RuntimeError: Option &#39;data/file_name&#39; is required! This is an extra long error message.</div>
+            </td>
+          </tr>
+        
+      </table>
+      <input class="btn btn-primary btn-xs pull-left" type="submit" name="retry" value="Revive" />
+      <input class="btn btn-secondary btn-xs pull-left" type="submit" name="export" value="Export" />
+      <input class="btn btn-danger btn-xs pull-left" type="submit" name="delete" value="Bury" />
+    </form>
+
+    <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/1_hour/delete" method="post">
+      <input type='hidden' name='authenticity_token' value=''/>
+      <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Bury All" data-confirm="Are you sure?" />
+    </form>
+
+    <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/1_hour/export" method="post">
+      <input type='hidden' name='authenticity_token' value=''/>
+      <input class="btn btn-secondary btn-xs pull-right" type="submit" name="export" value="Export All" />
+    </form>
+
+    <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/T3B0aW9uICdkYXRhL2ZpbGVfbmFtZScgaXMgcmVxLi4u/1_hour/retry" method="post">
+      <input type='hidden' name='authenticity_token' value=''/>
+      <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="Revive All" data-confirm="Are you sure?" />
+    </form>
+
+
+      </div>
+    </main>
+    <footer>
+  <div class="container">
+    <ul class="nav">
+      <li>
+        <p><b>Sidekiq v*EXCLUDED*</b></p>
+      </li>
+      <li>
+        <p title="redis://localhost:6379">redis://localhost:6379</p>
+      </li>
+      <li>
+        <p id="serverUtcTime">20:57:00 UTC</p>
+      </li>
+      <li>
+        <p><a rel=help href="https://github.com/sidekiq/sidekiq/wiki">docs</a></p>
+      </li>
+      <li>
+        <form id="locale-form" action="/sidekiq/change_locale" method="post">
+          <input type='hidden' name='authenticity_token' value=''/>
+          <select id="locale-select" aria-label="Language" class="form-control" name="locale">
+            
+              
+                <option value="ar">العربية</option>
+              
+            
+              
+                <option value="cs">Čeština</option>
+              
+            
+              
+                <option value="da">Dansk</option>
+              
+            
+              
+                <option value="de">Deutsch</option>
+              
+            
+              
+                <option value="el">ελληνικά</option>
+              
+            
+              
+                <option selected value="en">English</option>
+              
+            
+              
+                <option value="es">Español</option>
+              
+            
+              
+                <option value="fa">فارسى</option>
+              
+            
+              
+                <option value="fr">Français</option>
+              
+            
+              
+                <option value="gd">Gaeilge</option>
+              
+            
+              
+                <option value="he">עברית</option>
+              
+            
+              
+                <option value="hi">हिन्दी</option>
+              
+            
+              
+                <option value="it">Italiano</option>
+              
+            
+              
+                <option value="ja">日本語</option>
+              
+            
+              
+                <option value="ko">한국어</option>
+              
+            
+              
+                <option value="lt">Lietuvių</option>
+              
+            
+              
+                <option value="nb">Norsk</option>
+              
+            
+              
+                <option value="nl">Nederlands</option>
+              
+            
+              
+                <option value="pl">Polski</option>
+              
+            
+              
+                <option value="pt-BR">Português (Brasil)</option>
+              
+            
+              
+                <option value="pt">Português</option>
+              
+            
+              
+                <option value="ru">Русский</option>
+              
+            
+              
+                <option value="sv">Svenska</option>
+              
+            
+              
+                <option value="ta">தமிழ்</option>
+              
+            
+              
+                <option value="tr">Türkçe</option>
+              
+            
+              
+                <option value="uk">Українська</option>
+              
+            
+              
+                <option value="ur">اردو</option>
+              
+            
+              
+                <option value="vi">Tiếng Việt</option>
+              
+            
+              
+                <option value="zh-CN">中文</option>
+              
+            
+              
+                <option value="zh-TW">臺灣話</option>
+              
+            
+          </select>
+        </form>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+  </body>
+</html>

@@ -10,9 +10,11 @@ rescue LoadError
 end
 
 if defined?(Sidekiq::Web)
-  Sidekiq::Web.register Sidekiq::Undertaker::WebExtension
-  Sidekiq::Web.tabs["Undertaker"] = "undertaker/filter"
-  Sidekiq::Web.settings.locales << File.join(File.dirname(__FILE__), "../../web/locales")
+  Sidekiq::Web.configure do |config|
+    config.register(Sidekiq::Undertaker::WebExtension, name: "Undertaker", tab: "Undertaker",
+index: "undertaker/filter")
+    config.locales << File.join(File.dirname(__FILE__), "../../web/locales")
+  end
 end
 
 module Sidekiq
