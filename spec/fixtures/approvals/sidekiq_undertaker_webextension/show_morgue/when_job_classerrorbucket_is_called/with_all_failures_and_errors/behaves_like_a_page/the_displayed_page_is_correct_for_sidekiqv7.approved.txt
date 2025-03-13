@@ -328,8 +328,7 @@
           <li>
             <form id="locale-form" class="form-inline" action="/sidekiq/change_locale" method="post">
               <input type='hidden' name='authenticity_token' value='stubbed-csrf-token'/>
-              <label class="sr-only" for="locale">Language</label>
-              <select id="locale-select" class="form-control" name="locale">
+              <select id="locale-select" class="form-control" aria-label="Language" name="locale">
                 
                   
                     <option value="ar">ar</option>
