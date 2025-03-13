@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "approvals", "~> 0.0.25"
+gem "approvals", "~> 0.1.0"
 gem "mock_redis", "~> 0.19"
 gem "pry", "~> 0.12"
 gem "rack-test", "~> 2.0"
