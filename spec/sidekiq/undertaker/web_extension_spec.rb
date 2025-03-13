@@ -6,6 +6,7 @@ require "sidekiq/api"
 require "sidekiq/web"
 require "sinatra"
 require "rack/test"
+require "rack/session"
 require "stringio"
 
 module Sidekiq
@@ -15,13 +16,17 @@ module Sidekiq
       include Rack::Test::Methods
 
       let(:app) do
-        Sidekiq::Web.new.tap do |app|
-          # In order to use the Web UI of Sidekiq `6.2` a session is required
-          # SEE: https://github.com/mperham/sidekiq/blob/master/Changes.md#620
-          secret = "A-Test-Web-Session-Secret--A-Test-Web-Session-Secret--A-Test-Web-Session-Secret"
-          app.use Rack::Session::Cookie, secret: secret
+        # In order to use the Web UI of Sidekiq a session is required
+        # SEE: https://github.com/mperham/sidekiq/blob/master/Changes.md#620
+        secret = "A-Test-Web-Session-Secret--A-Test-Web-Session-Secret--A-Test-Web-Session-Secret"
+        Sidekiq::Web.configure do |c|
+          c.middlewares.clear
+          c.use Rack::Session::Cookie, secrets: secret
         end
+
+        Sidekiq::Web.new
       end
+
       let(:job_refs) { [] }
 
       let(:jid1) { "4416aa76eb8cf03f56a49220" }
@@ -52,7 +57,7 @@ module Sidekiq
         job_refs.push add_dead("jid" => jid3, "error_class" => "NoMethodError")
         job_refs.push add_dead("jid" => jid4, "class" => "HardWorker1", "error_class" => "NoMethodError")
 
-        allow_any_instance_of(Sidekiq::WebAction).to receive(:root_path).and_return("/sidekiq/")
+        allow_any_instance_of(Sidekiq::Web::Action).to receive(:root_path).and_return("/sidekiq/")
 
         allow_any_instance_of(::Sidekiq::Web::CsrfProtection).to receive(:valid_token?).and_return(true)
       end

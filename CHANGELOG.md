@@ -2,12 +2,15 @@
 
 ## Unreleased
 
+## [1.8.0]
+
 ## Changed
 - Remove Dependabot
 - Add Renovate dependency dashboard
 - Update test dependency sinatra to v4
 - Update paambaati/codeclimate-action action to v9
 - Update build config
+- Upgrade Sidekiq to version 8
 
 ## [1.7.0] - 2023-12-15
 
