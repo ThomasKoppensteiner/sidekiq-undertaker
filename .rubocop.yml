@@ -1,13 +1,14 @@
 inherit_from: .rubocop_todo.yml
 
-require:
+plugins:
   - rubocop-rake
   - rubocop-rspec
 
+require:
   - rt_rubocop_defaults
 
 AllCops:
-  TargetRubyVersion: 3.1
+  TargetRubyVersion: 3.2
 Layout/LineLength:
   Exclude:
     - 'sidekiq-undertaker.gemspec'

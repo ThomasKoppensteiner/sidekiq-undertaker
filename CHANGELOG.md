@@ -11,6 +11,7 @@
 - Update paambaati/codeclimate-action action to v9
 - Update build config
 - Upgrade Sidekiq to version 8
+- Drop Ruby 3.1 suppport
 
 ## [1.7.0] - 2023-12-15
 
