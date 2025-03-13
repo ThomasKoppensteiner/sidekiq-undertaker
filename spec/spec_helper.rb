@@ -11,9 +11,12 @@ ENV["RACK_ENV"] ||= ENV["ENVIRONMENT"] ||= "test"
 
 require "bundler/setup"
 Bundler.setup
+
 require "approvals/rspec"
 require "mock_redis"
 require "pry"
+require "rack/session"
+require "rack/test"
 require "sidekiq"
 require "timecop"
 

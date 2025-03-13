@@ -2,13 +2,6 @@
 
 require "spec_helper"
 
-require "sidekiq/api"
-require "sidekiq/web"
-require "sinatra"
-require "rack/test"
-require "rack/session"
-require "stringio"
-
 module Sidekiq
   # rubocop:disable Metrics/ModuleLength
   module Undertaker
