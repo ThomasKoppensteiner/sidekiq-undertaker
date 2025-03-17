@@ -2,6 +2,6 @@
 
 module Sidekiq
   module Undertaker
-    VERSION = "1.8.0.rc01"
+    VERSION = "1.8.0"
   end
 end

@@ -84,6 +84,7 @@ The [Sidekiq-Cleaner](https://github.com/HackingHabits/sidekiq-cleaner) gem was 
 [Zlatko Rednjak](https://github.com/Rednjak) added the initial version of the `CHANGELOG.md`.
 [Lucas Dell'Isola](https://github.com/ldellisola) added the export/import feature for dead jobs.
 [thoesl](https://github.com/thoesl) added the error message based filter.
+[Simon Himmelreich](https://github.com/shimel1) prepared the upgrade to Sidekiq 8.
 
 For the complete list of network members have a look at the [fork overview](https://github.com/ThomasKoppensteiner/sidekiq-undertaker/network/members).
 
