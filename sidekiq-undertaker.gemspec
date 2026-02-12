@@ -33,6 +33,6 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib", "lib/sidekiq/undertaker"]
 
-  spec.add_dependency "rubyzip", "~> 2.3"
-  spec.add_dependency "sidekiq", "~> 8"
+  spec.add_dependency "rubyzip", "~> 3.0"
+  spec.add_dependency "sidekiq", "~> 8.1"
 end

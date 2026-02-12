@@ -2,15 +2,14 @@
 <html dir="ltr" lang="en">
   <head>
     <title>[TEST] Sidekiq</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-
-    <link href="/sidekiq/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" nonce="<nonce>" />
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <link href="/sidekiq/stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" nonce="<nonce>">
     <link rel="apple-touch-icon" href="/sidekiq/images/apple-touch-icon.png">
-    <link rel="shortcut icon" type="image/ico" href="/sidekiq/images/favicon.ico" />
+    <link rel="shortcut icon" type="image/ico" href="/sidekiq/images/favicon.ico">
     <script type="text/javascript" src="/sidekiq/javascripts/application.js" nonce="<nonce>"></script>
-    <meta name="google" content="notranslate" />
+    <meta name="google" content="notranslate">
     
   </head>
   <body class="admin" data-locale="en">
@@ -24,8 +23,8 @@
       </button>
       <div class="navbar-livereload">
         
-    <a class="btn live-poll live-poll-start btn-primary">Live Poll</a>
-    <a class="btn live-poll live-poll-stop btn-danger">Stop Polling</a>
+  <a href="#" class="btn live-poll live-poll-start btn-primary">Live Poll</a>
+  <a href="#" class="btn live-poll live-poll-stop btn-danger">Stop Polling</a>
 
 
         
@@ -96,8 +95,8 @@
         <li class="navbar-livereload">
           <div class="poll-wrapper">
             
-    <a class="btn live-poll live-poll-start btn-primary">Live Poll</a>
-    <a class="btn live-poll live-poll-stop btn-danger">Stop Polling</a>
+  <a href="#" class="btn live-poll live-poll-start btn-primary">Live Poll</a>
+  <a href="#" class="btn live-poll live-poll-stop btn-danger">Stop Polling</a>
 
 
             
@@ -151,6 +150,7 @@
   </article>
 </div>
 
+        
         <header class="row head">
   <div class="col-sm-12">
     <h3>
@@ -186,14 +186,13 @@
   </div>
 
 
-
     </div>
   </div>
 </header>
 
 
     <form action="/sidekiq/undertaker/morgue" method="post">
-      <input type='hidden' name='authenticity_token' value=''/>
+      
       <table class="table table-striped table-bordered table-white">
         <thead>
           <tr>
@@ -1267,17 +1266,17 @@
     </form>
 
     <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/YWxs/1_hour/delete" method="post">
-      <input type='hidden' name='authenticity_token' value=''/>
+      
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="delete" value="Bury All" data-confirm="Are you sure?" />
     </form>
 
     <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/YWxs/1_hour/export" method="post">
-      <input type='hidden' name='authenticity_token' value=''/>
+      
       <input class="btn btn-secondary btn-xs pull-right" type="submit" name="export" value="Export All" />
     </form>
 
     <form action="/sidekiq/undertaker/morgue/HardWorker/RuntimeError/YWxs/1_hour/retry" method="post">
-      <input type='hidden' name='authenticity_token' value=''/>
+      
       <input class="btn btn-danger btn-xs pull-right" type="submit" name="retry" value="Revive All" data-confirm="Are you sure?" />
     </form>
 
@@ -1297,11 +1296,11 @@
         <p id="serverUtcTime">20:57:00 UTC</p>
       </li>
       <li>
-        <p><a rel=help href="https://github.com/sidekiq/sidekiq/wiki">docs</a></p>
+        <p><a rel="help" href="https://github.com/sidekiq/sidekiq/wiki">docs</a></p>
       </li>
       <li>
         <form id="locale-form" action="/sidekiq/change_locale" method="post">
-          <input type='hidden' name='authenticity_token' value=''/>
+          
           <select id="locale-select" aria-label="Language" class="form-control" name="locale">
             
               

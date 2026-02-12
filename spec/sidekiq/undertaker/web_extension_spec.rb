@@ -51,8 +51,6 @@ module Sidekiq
         job_refs.push add_dead("jid" => jid4, "class" => "HardWorker1", "error_class" => "NoMethodError")
 
         allow_any_instance_of(Sidekiq::Web::Action).to receive(:root_path).and_return("/sidekiq/")
-
-        allow_any_instance_of(::Sidekiq::Web::CsrfProtection).to receive(:valid_token?).and_return(true)
       end
 
       after { Timecop.return }
@@ -78,10 +76,6 @@ module Sidekiq
       end
 
       describe "show filter" do
-        before do
-          allow_any_instance_of(Sidekiq::Web::CsrfProtection).to receive(:mask_token).and_return("stubbed-csrf-token")
-        end
-
         # /undertaker/filter
         context "when filter page is called" do
           subject { get "/undertaker/filter" }
@@ -119,10 +113,6 @@ module Sidekiq
       end
 
       describe "show morgue" do
-        before do
-          allow_any_instance_of(Sidekiq::Web::CsrfProtection).to receive(:mask_token).and_return("stubbed-csrf-token")
-        end
-
         # /undertaker/morgue/:job_class/:error_class/:error_msg/:bucket_name
         context "when job-class/error/bucket is called" do
           context "with specific job-class and a specific error" do
@@ -171,7 +161,8 @@ module Sidekiq
       describe "delete" do
         context "when job-class, error, error message and bucket are given" do
           subject do
-            post "/undertaker/morgue/HardWorker/RuntimeError/#{encoded_error_msg}/1_hour/delete"
+            post "/undertaker/morgue/HardWorker/RuntimeError/#{encoded_error_msg}/1_hour/delete", {},
+                 { "HTTP_SEC_FETCH_SITE" => "same-origin" }
           end
 
           let(:expected_redirect_url) { "http://example.org/undertaker/morgue/HardWorker/RuntimeError/#{encoded_error_msg}/1_hour" }
@@ -214,7 +205,7 @@ module Sidekiq
           subject do
             post("/undertaker/morgue",
                  "key[]=#{job_refs[0]}&delete=Delete",
-                 "HTTP_REFERER" => "/undertaker/morgue/all/all/total_dead")
+                 "HTTP_REFERER" => "/undertaker/morgue/all/all/total_dead", "HTTP_SEC_FETCH_SITE" => "same-origin")
           end
 
           it "redirects back to referer after delete" do
@@ -226,7 +217,10 @@ module Sidekiq
 
         context "when /undertaker/morgue is called" do
           context "when a key is given" do
-            subject { post "/undertaker/morgue", "key[]=#{job_refs[0]}&delete=Delete" }
+            subject do
+              post "/undertaker/morgue", "key[]=#{job_refs[0]}&delete=Delete",
+                   { "HTTP_SEC_FETCH_SITE" => "same-origin" }
+            end
 
             it "deletes specific dead job now" do
               expect { subject }.to change { Sidekiq::DeadSet.new.size }.from(4).to(3)
@@ -234,7 +228,7 @@ module Sidekiq
           end
 
           context "when a key is missing" do
-            subject { post "/undertaker/morgue" }
+            subject { post "/undertaker/morgue", {}, { "HTTP_SEC_FETCH_SITE" => "same-origin" } }
 
             it "returns 400 Bad Request" do
               subject
@@ -245,7 +239,9 @@ module Sidekiq
       end
 
       describe "import" do
-        subject { post "/undertaker/import_jobs", "upload_file" => file }
+        subject do
+          post "/undertaker/import_jobs", { "upload_file" => file }, { "HTTP_SEC_FETCH_SITE" => "same-origin" }
+        end
 
         let(:file) do
           Rack::Test::UploadedFile.new(StringIO.new(file_content), file_content_type, original_filename: file_name)
@@ -307,7 +303,10 @@ module Sidekiq
 
       describe "retry" do
         context "when job class, error and bucket are given" do
-          subject { post "/undertaker/morgue/HardWorker/RuntimeError/all/1_hour/retry" }
+          subject do
+            post "/undertaker/morgue/HardWorker/RuntimeError/all/1_hour/retry", {},
+                 { "HTTP_SEC_FETCH_SITE" => "same-origin" }
+          end
 
           let(:expected_redirect_url) { "http://example.org/undertaker/morgue/HardWorker/RuntimeError/all/1_hour" }
 
@@ -347,7 +346,10 @@ module Sidekiq
 
         context "when /undertaker/morgue is called" do
           context "when a key is given" do
-            subject { post "/undertaker/morgue", "key[]=#{job_refs[0]}&retry=Retry+Now" }
+            subject do
+              post "/undertaker/morgue", "key[]=#{job_refs[0]}&retry=Retry+Now",
+                   { "HTTP_SEC_FETCH_SITE" => "same-origin" }
+            end
 
             it "reduces DeadSet" do
               expect { subject }.to change { Sidekiq::DeadSet.new.size }.from(4).to(3)
@@ -355,7 +357,7 @@ module Sidekiq
           end
 
           context "when a key is missing" do
-            subject { post "/undertaker/morgue" }
+            subject { post "/undertaker/morgue", {}, { "HTTP_SEC_FETCH_SITE" => "same-origin" } }
 
             it "returns 400 Bad Request" do
               subject
@@ -367,7 +369,10 @@ module Sidekiq
 
       describe "export" do
         context "when job class, error and bucket are given" do
-          subject { post "/undertaker/morgue/HardWorker/RuntimeError/all/1_hour/export" }
+          subject do
+            post "/undertaker/morgue/HardWorker/RuntimeError/all/1_hour/export", {},
+                 { "HTTP_SEC_FETCH_SITE" => "same-origin" }
+          end
 
           let(:expected_redirect_url) { "http://example.org/undertaker/morgue/HardWorker/RuntimeError/all/1_hour" }
           let(:expected_content_disposition_header) { "attachment; filename=\"2018-12-16_20-57.json\"" }
@@ -427,11 +432,11 @@ module Sidekiq
 
         it "retries specific dead job now" do
           expect(dead_job).to receive(:retry)
-          post "/undertaker/morgue", "key[]=#{job_refs[0]}&retry=Retry+Now"
+          post "/undertaker/morgue", "key[]=#{job_refs[0]}&retry=Retry+Now", { "HTTP_SEC_FETCH_SITE" => "same-origin" }
         end
 
         it "exports specific dead job now" do
-          post "/undertaker/morgue", "key[]=#{job_refs[0]}&export=now"
+          post "/undertaker/morgue", "key[]=#{job_refs[0]}&export=now", { "HTTP_SEC_FETCH_SITE" => "same-origin" }
 
           expect(last_response.status).to eq 200
           expect(last_response.content_type).to eq "application/json"
@@ -442,7 +447,7 @@ module Sidekiq
         it "redirects on specific retry post" do
           post("/undertaker/morgue",
                "key[]=#{job_refs[0]}&retry=Retry+Now",
-               "HTTP_REFERER" => "/undertaker/morgue/all/all/all/total_dead")
+               "HTTP_REFERER" => "/undertaker/morgue/all/all/all/total_dead", "HTTP_SEC_FETCH_SITE" => "same-origin")
           expect(last_response.status).to eq 302
           expect(last_response.headers["Location"]).to include("/undertaker/morgue/all/all/all/total_dead")
         end
