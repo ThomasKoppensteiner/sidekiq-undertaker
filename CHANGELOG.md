@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## [1.9.0-rc01] - 2026-02-12
+
+## Changed
+- Upgrade Sidekiq to version 8.1
+
 ## [1.8.0] - 2025-03-17
 
 ## Changed
