@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## [1.9.0-rc02] - 2026-02-12
+
+## Changed
+- Upgrade rubyzip to version 3.0
+
 ## [1.9.0-rc01] - 2026-02-12
 
 ## Changed
