@@ -44,7 +44,7 @@ jobs:
       JRUBY_OPTS: '--debug'
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - name: Set up Ruby
     # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
     # change this to (see https://github.com/ruby/setup-ruby#versioning):
@@ -67,7 +67,7 @@ jobs:
     name: coverage
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - name: Download Coverage Report
       uses: actions/download-artifact@v4
       with:
